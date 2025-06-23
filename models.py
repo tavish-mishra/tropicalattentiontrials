@@ -356,7 +356,7 @@ def trop_norm(x: torch.Tensor) -> torch.Tensor:
     Projective normalization in tropical projective space:
     subtract the max coordinate so that max_i x_i = 0.
     """
-    return x - x.min(dim=-1, keepdim=True).values
+    return x - x.max(dim=-1, keepdim=True).values
 
 
 class TropicalAttention_(nn.Module):
