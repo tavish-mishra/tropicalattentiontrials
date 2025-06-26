@@ -393,7 +393,7 @@ class QuickselectDataset(Dataset):
             #k = random.randint(1, k)
 
             # 4) Determine the TRUE k-th smallest value (y_val) from xs_original_unsorted.
-            y_val = nth_smallest(xs_original_unsorted.copy(), k)
+            y_val = nth_smallest(xs_original_unsorted.copy(), k-1)
 
             # 5) Build the input tensor x_t using the UNSORTED xs_original_unsorted.
             # Each token is [value_from_unsorted_list, k].
