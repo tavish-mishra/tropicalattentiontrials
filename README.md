@@ -1,7 +1,5 @@
 # Tropical-Attention
 Official repository for the paper "Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms." 
-
-It contains all code, data-set generators, and pretrained checkpoints.
 ---
 
 ### 1. Repository Contents
