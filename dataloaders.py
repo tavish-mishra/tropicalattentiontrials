@@ -950,8 +950,8 @@ class SCCDataset(Dataset):
                     if i != j and random.random() < self.edge_prob:
                         A[i, j] = 1.0
             
-            graph = csr_matrix(A + A.T)
-            _, labels = connected_components(csgraph=graph, directed=False, 
+            graph = csr_matrix(A)
+            _, labels = connected_components(csgraph=graph, directed=True, 
                                              return_labels=True, connection='strong')
             same_cc = (labels[:, None] == labels[None, :]).astype(float)
             
