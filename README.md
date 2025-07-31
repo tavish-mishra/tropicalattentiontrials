@@ -1,5 +1,5 @@
 # Tropical-Attention
-Official repository for the paper "Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms." 
+Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms.
 ---
 
 ### 1. Repository Contents
@@ -14,7 +14,7 @@ Official repository for the paper "Tropical Attention: Neural Algorithmic Reason
 | `models/` | Pretrained model checkpoints (`*.pth`) used for the tables and figures. |
 
 
-We experimetn on 11 combinatorial tasks:
+We experiment on 11 combinatorial tasks:
 
 1. **Floyd–Warshall**
 2. **Quickselect**
