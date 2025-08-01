@@ -20,9 +20,9 @@ We experiment on 11 combinatorial tasks:
 
 ---
 
-## Minimal Tropical kernel
+## Tropical kernel
 
-If you just want the **Tropical Attention kernel**, use **`TropicalAttention.py`** (a self-contained reference implementation you can copy or import).
+If you just want the **Tropical Attention kernel**, use **`TropicalAttention.py`**.
 
 <summary>Example (instantiate inside your model)</summary>
 
