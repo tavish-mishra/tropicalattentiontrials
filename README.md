@@ -24,7 +24,6 @@ We experiment on 11 combinatorial tasks:
 
 If you just want the **Tropical Attention kernel**, use **`TropicalAttention.py`** (a self-contained reference implementation you can copy or import).
 
-<details>
 <summary>Example (instantiate inside your model)</summary>
 
 ```python
@@ -43,8 +42,6 @@ attn = TropicalAttention(
 x = torch.randn(2, 32, 128)     # [batch, seq, d_model]
 y, scores = attn(x)
 ```
-
-</details>
 
 ---
 
