@@ -6,17 +6,17 @@ Dynamic programming (DP) algorithms for combinatorial optimization problems work
 ---
 We experiment on 11 combinatorial tasks:
 
-1. **Floyd–Warshall** - All-pairs shortest paths on a weighted directed graph. (Both Regression and Classification)
+1. **Floyd–Warshall** - All-pairs shortest paths on a weighted undirected graph. (Both Regression and Classification)
 2. **Quickselect** — Find the k-th smallest elements in a set. (Classification)
-3. **3SUM (Decision)** — Decide if there exist a, b, c with a+b+c=0. (Classification)
+3. **3SUM (Decision)** — Decide if there exist a, b, c with a+b+c=T. (Classification)
 4. **Balanced Partition** - Split numbers into two subsets with equal sum. (NP-complete Classification)
 5. **Convex Hull** - Given 2D points, identify the hull. (Classification)
-6. **Subset Sum (Decision)** - Decide if some subset sums to a target. (NP-complete Classification)
+6. **Subset Sum (Decision)** - Decide if some subset sums to a target T. (NP-complete Classification)
 7. **0/1 Knapsack** — Maximize value under capacity with binary item choices. (NP-hard Classification)
 8. **Fractional Knapsack** — Items can be taken fractionally; predict optimal value. (Regression)
-9. **Strongly Connected Components (SCC)** Decompose a directed graph into SCCs. (Classification)
+9. **Strongly Connected Components (SCC)** Decompose a directed graph with community structure; predict pairwise same-component. (Classification)
 10. **Bin Packing** — Pack items into the fewest bins of fixed capacity. (NP-hard Classification)
-11. **Min Coin Change** — Minimum number of coins to reach a target amount. (Classification)
+11. **Min Coin Change** — Minimum number of coins to reach a target T with each coin used at most once. (Classification)
 
 ---
 
