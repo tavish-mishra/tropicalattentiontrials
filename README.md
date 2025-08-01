@@ -20,17 +20,6 @@ We experiment on 11 combinatorial tasks:
 
 ---
 
-
-### Training a model from scratch
-```bash
-python experiment.py --job_file jobs_to_do_train --job_id 0 
-```
-`--job_id` selects the row in `jobs_to_do_train.csv`.
-The script logs training progress to outputs/<timestamp>/.
-
----
-
-
 ## Minimal Tropical kernel
 
 If you just want the **Tropical Attention kernel**, use **`TropicalAttention.py`** (a self-contained reference implementation you can copy or import).
@@ -59,7 +48,16 @@ y, scores = attn(x)
 
 ---
 
-### 4. Citation
+### Training a model from scratch
+```bash
+python experiment.py --job_file jobs_to_do_train --job_id 0 
+```
+`--job_id` selects the row in `jobs_to_do_train.csv`.
+The script logs training progress to outputs/<timestamp>/.
+
+---
+
+### Citation
 
 If you use this repository or Tropical Attention in your research, please cite:
 
