@@ -28,7 +28,7 @@ If you just want the **Tropical Attention kernel**, use **`TropicalAttention.py`
 
 ```python
 from TropicalAttention import TropicalAttention
-import torch, torch.nn as nn
+import torch
 
 attn = TropicalAttention(
     d_model=128,
@@ -67,3 +67,4 @@ If you use this repository or Tropical Attention in your research, please cite:
   year={2025}
 }
 ```
+
