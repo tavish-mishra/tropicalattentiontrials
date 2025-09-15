@@ -20,7 +20,7 @@ class TropicalLinear(nn.Module):
 class TropicalAttention(nn.Module):
     def __init__(self, d_model, n_heads, device, tropical_proj=True, tropical_norm=False, symmetric=True):
         super(TropicalAttention, self).__init__()
-        assert d_model % n_heads == 0,
+        assert d_model % n_heads == 0
         self.d_k = d_model // n_heads
         self.n_heads = n_heads
         self.tropical_proj = tropical_proj
