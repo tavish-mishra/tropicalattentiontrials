@@ -562,6 +562,7 @@ class SimpleTransformerModel(nn.Module):
         pool: bool = False,
         pre_norm: bool = False,
         aggregator: str = 'softmax',
+        num_classes:int = 1,
     ):
         super().__init__()
         self.input_linear = nn.Linear(input_dim, d_model)
@@ -583,7 +584,7 @@ class SimpleTransformerModel(nn.Module):
             aggregator=aggregator,
         )       
         self.pool = pool
-        self.output_linear = nn.Linear(d_model, 1)
+        self.output_linear = nn.Linear(d_model, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.input_linear(x) # [B, S]

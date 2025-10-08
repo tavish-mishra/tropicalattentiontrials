@@ -6,7 +6,7 @@ import csv
 import time
 from torch.utils.data import DataLoader
 from dataloaders import *
-from models_new import *
+from models import *
 import pandas as pd
 import schedulefree
 import ast
@@ -530,7 +530,7 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
     args = parser.parse_args()
 
-    df = pd.read_csv(f'jobs_to_do/{args.job_file}.csv')
+    df = pd.read_csv(f'{args.job_file}.csv')
 
     if args.job_id == -1:
         rows_to_run = df.itertuples(index=False)
