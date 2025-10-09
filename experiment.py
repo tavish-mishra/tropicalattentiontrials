@@ -322,6 +322,7 @@ class Experiment:
         return time.strftime("%Y%m%d_%H%M%S",time.localtime())
     
     def _write_to_csv(self, mode, task, list_data):
+        print(self.top_cat, task)
         task_folder = os.path.join(self.top_cat, task)
         os.makedirs(task_folder, exist_ok=True)
         if task == 'evaluate':
