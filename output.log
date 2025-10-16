@@ -1,0 +1,27 @@
+nohup: ignoring input
+
+ Running config: {'task': 'train', 'model_type': 'tropical', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 64, 'n_heads': 2, 'num_layers': 1, 'num_epochs': 100, 'dropout': 0, 'lr': 0.0001, 'seed': 999, 'n_samples': 100000, 'batch_size': 16, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'noise_prob': 0, 'value_range': '(1,15)'}
+FloydWarshallDataset_tropical_0.0001_100_20251016_120229
+...setting dataloader...20251016_120229
+...setting model object...20251016_120258
+...training model...20251016_120259
+15_exp train
+/global/u2/t/tmishra/Tropical-Attention/experiment.py:464: UserWarning: Using a target size (torch.Size([16, 64])) that is different to the input size (torch.Size([16, 64, 33])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+  loss = F.mse_loss(pred, y)
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 556, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 124, in run
+    self.train_model()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 497, in train_model
+    self._train_one_epoch(epoch)
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 464, in _train_one_epoch
+    loss = F.mse_loss(pred, y)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/nn/functional.py", line 3884, in mse_loss
+    expanded_input, expanded_target = torch.broadcast_tensors(input, target)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/functional.py", line 76, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (33) must match the size of tensor b (64) at non-singleton dimension 2
