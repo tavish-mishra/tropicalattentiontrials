@@ -48,7 +48,7 @@ class Experiment:
             'BinPackingDataset': {'class': BinPackingDataset, 'classification': True, 'pool': False},
             'ConvexHullDataset': {'class': ConvexHullDataset, 'classification': True, 'pool': False}, 
             'ThreeSumDecisionDataset': {'class': ThreeSumDecisionDataset, 'classification': True, 'pool': True},
-            'FloydWarshallDataset': {'class': FloydWarshallDataset, 'classification': False, 'pool': False},
+            'FloydWarshallDataset': {'class': FloydWarshallDataset, 'classification': True, 'pool': False},
             'SCCDataset': {'class': SCCDataset, 'classification': True, 'pool': False},
             'LISDataset': {'class': LISDataset, 'classification': False, 'pool': True}
         }
