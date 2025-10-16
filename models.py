@@ -474,7 +474,7 @@ class TransformerBlock(nn.Module):
         # Feed-forward
         self.ff = nn.Sequential(
             nn.Linear(d_model, dim_ff),
-            nn.ReLU(),
+            SwiGLU(dim_ff, dim_ff),
             nn.Linear(dim_ff, d_model)
         )
         # Layer norms
@@ -597,3 +597,41 @@ class SimpleTransformerModel(nn.Module):
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
         return out
+
+
+class SwiGLU(nn.Module):
+    def __init__(self, input_dim, hidden_dim):
+        super().__init__()
+        self.linear_gate = nn.Linear(input_dim, hidden_dim)
+        self.linear_value = nn.Linear(input_dim, hidden_dim)
+        self.silu = nn.SiLU()
+
+    def forward(self, x):
+        gate = self.silu(self.linear_gate(x))
+        value = self.linear_value(x)
+        return gate * value
+
+
+class GeGLU(nn.Module):
+    def __init__(self, dim_in, dim_out):
+        super().__init__()
+        # Linear layer to expand the input dimension,
+        # which will then be split for the gating mechanism.
+        self.proj = nn.Linear(dim_in, dim_out * 2)
+        self.dim_out = dim_out
+
+    def forward(self, x):
+        # Pass through the linear projection
+        projected = self.proj(x)
+
+        # Split the projected tensor into two halves
+        # One for the linear path, one for the gating path
+        linear_part, gate_part = projected.chunk(2, dim=-1)
+
+        # Apply GELU activation to the gating part
+        gated = F.gelu(gate_part)
+
+        # Element-wise multiplication for the gating effect
+        output = linear_part * gated
+
+        return output
