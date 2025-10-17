@@ -414,6 +414,7 @@ class Experiment:
     
         for i, (x, y) in enumerate(self.train_loader, start=1):
             x, y = x.to(self.device), y.to(self.device)
+            print('x: ', x.size(), ' y: ', y.size())
             # (set_to_none=True can be a tiny speedup / lower memory)
             if hasattr(self.optimizer, "zero_grad"):
                 try:

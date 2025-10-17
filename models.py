@@ -587,7 +587,7 @@ class SimpleTransformerModel(nn.Module):
         self.output_linear = nn.Linear(d_model, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        print(x.size())
+        print('input size: ', x.size())
         x = self.input_linear(x) # [B, S]
         x = self.encoder(x) # [B, S, d_model]  
         if self.pool:
