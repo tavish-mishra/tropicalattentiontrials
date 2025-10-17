@@ -170,11 +170,11 @@ class Experiment:
         torch.manual_seed(self.seed)
         train_set, test_set = torch.utils.data.random_split(self.dataset,[n_train, n_test])
         self.train_loader = DataLoader(train_set,
-                                       num_workers= 4, 
+                                       num_workers= 0,
                                        batch_size=self.batch_size,
                                        shuffle=True)
         self.test_loader  = DataLoader(test_set,
-                                       num_workers= 4,
+                                       num_workers= 0,
                                        batch_size=self.batch_size,
                                        shuffle=False)
         #self.dataloader = DataLoader(self.dataset, 
