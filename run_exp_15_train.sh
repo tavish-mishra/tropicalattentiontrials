@@ -15,9 +15,9 @@ mkdir -p logs
 
 module load cudatoolkit
 module load pytorch
+module load conda
 
 # Activate conda environment
-source ~/miniconda3/etc/profile.d/conda.sh
 conda activate tropical_attention
 
 export OMP_NUM_THREADS=10
