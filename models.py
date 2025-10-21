@@ -587,16 +587,19 @@ class SimpleTransformerModel(nn.Module):
         self.output_linear = nn.Linear(d_model, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        print('input size: ', x.size())
+        print('current size 0: ', x.size())
         x = self.input_linear(x) # [B, S]
-        x = self.encoder(x) # [B, S, d_model]  
+        x = self.encoder(x) # [B, S, d_model]
+        print('current size 1: ', x.size())
         if self.pool:
             pooled = x.mean(dim=1) # [B, d_model]
             out = self.output_linear(pooled) # [B, 1]
+            print('current size 2: ', x.size())
         else:
             out = self.output_linear(x) # [B, S, 1] 
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
+        print('current size 3: ', x.size())
         return out
 
 
