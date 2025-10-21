@@ -1,0 +1,23 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+/global/u2/t/tmishra/Tropical-Attention/experiment.py:464: UserWarning: Using a target size (torch.Size([16, 64])) that is different to the input size (torch.Size([16, 33])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+  loss = F.mse_loss(pred, y)
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 556, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 124, in run
+    self.train_model()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 497, in train_model
+    self._train_one_epoch(epoch)
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 464, in _train_one_epoch
+    loss = F.mse_loss(pred, y)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/nn/functional.py", line 3884, in mse_loss
+    expanded_input, expanded_target = torch.broadcast_tensors(input, target)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/functional.py", line 76, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (33) must match the size of tensor b (64) at non-singleton dimension 1
