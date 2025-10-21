@@ -593,13 +593,14 @@ class SimpleTransformerModel(nn.Module):
         print('current size 1: ', x.size())
         if self.pool:
             pooled = x.mean(dim=1) # [B, d_model]
+            print('current size 2: ', pooled.size())
             out = self.output_linear(pooled) # [B, 1]
-            print('current size 2: ', x.size())
+            print('current size 3: ', out.size())
         else:
             out = self.output_linear(x) # [B, S, 1] 
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
-        print('current size 3: ', x.size())
+        print('current size 4: ', out.size())
         return out
 
 
