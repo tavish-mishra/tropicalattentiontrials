@@ -127,7 +127,7 @@ class Experiment:
         print(f'...setting model object...{self._time_string()}')
 
         if self.dataset_name == "FloydWarshallDataset":
-            self.num_classes = 32+1 #max(self.length_range) + 1
+            self.num_classes = 64#32+1 #max(self.length_range) + 1
         else:
             self.num_classes = 1
 
