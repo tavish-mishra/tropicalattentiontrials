@@ -36,7 +36,8 @@ class Experiment:
                  d_model: int = 32, 
                  n_heads: int = 2, 
                  num_layers: int = 1, 
-                 dropout: float = 0.0): 
+                 dropout: float = 0.0,
+                 activation: str = 'relu'):
         dict_datasets = {
             'SubsetSumDecisionDataset': {'class': SubsetSumDecisionDataset, 'classification': True, 'pool': True}, 
             'MaxSubsetSumDataset': {'class': MaxSubsetSumDataset, 'classification': True, 'pool': False},
@@ -63,6 +64,7 @@ class Experiment:
         self.dataset_name = dataset_name
         self.experiment_type = experiment_type
         self.dict_dataset = dict_datasets[self.dataset_name]
+        self.activation = activation
         
         # -- data --
         self.device = device
@@ -88,9 +90,9 @@ class Experiment:
         self.init_time = self._time_string()
         self.base_pattern = f"{self.dataset_name}_{self.model_type}"
         if task == 'evaluate':
-            self.full_file_name =  f"{self.base_pattern}_{self.length_range}_{self.noise_prob}_{self.value_range}_{self.init_time}"
+            self.full_file_name =  f"{self.base_pattern}_{self.length_range}_{self.noise_prob}_{self.value_range}_{self.init_time}_{self.model_type}_{self.activation}_{self.dataset_name}"
         else:  
-            self.full_file_name =  f"{self.base_pattern}_{self.lr}_{self.num_epochs}_{self.init_time}"
+            self.full_file_name =  f"{self.base_pattern}_{self.lr}_{self.num_epochs}_{self.init_time}_{self.activation}"
         print(self.full_file_name)
 
     def run(self):
@@ -141,7 +143,8 @@ class Experiment:
                                             tropical_attention_cls = TropicalAttention(self.d_model, self.n_heads, self.device) if self.model_type == 'tropical' else None,
                                             classification=self.dict_dataset['classification'],
                                             pool=self.dict_dataset['pool'],
-                                            aggregator='softmax' if self.model_type == 'vanilla' else 'adaptive').to(self.device)
+                                            aggregator='softmax' if self.model_type == 'vanilla' else 'adaptive',
+                                            activation=self.activation).to(self.device)
     
     def _save_model(self, best: bool = False):
         model_folder = os.path.join(self.top_cat, "models")
@@ -340,7 +343,7 @@ class Experiment:
     def _plot_training_run(self):
         plots_folder = os.path.join(self.top_cat, 'plots')
         os.makedirs(plots_folder, exist_ok=True)
-        output_file = os.path.join(plots_folder, f'plots_{self.full_file_name}.png')
+        output_file = os.path.join(plots_folder, f'plots_{self.full_file_name}_ReLU.png')
         f_name = f"{os.path.join(self.top_cat, 'train')}/train_{self.full_file_name}.csv"
         data = pd.read_csv(f_name)
         data.sort_values(by=['epoch', 'batch'], inplace=True)
@@ -357,7 +360,7 @@ class Experiment:
         loss_type = "BCE" if self.dict_dataset['classification'] else "MSE"
         plt.xlabel('Global Step (cumulative batch index)')
         plt.ylabel(f'{loss_type} Loss')
-        plt.title(f'{loss_type} Loss Progression Across Epochs')
+        plt.title(f'{loss_type} Loss Progression Across Epochs with ReLU')
         plt.legend()
         plt.grid(True)
 
