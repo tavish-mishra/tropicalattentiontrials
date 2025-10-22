@@ -343,7 +343,7 @@ class Experiment:
     def _plot_training_run(self):
         plots_folder = os.path.join(self.top_cat, 'plots')
         os.makedirs(plots_folder, exist_ok=True)
-        output_file = os.path.join(plots_folder, f'plots_{self.full_file_name}_ReLU.png')
+        output_file = os.path.join(plots_folder, f'plots_{self.full_file_name}.png')
         f_name = f"{os.path.join(self.top_cat, 'train')}/train_{self.full_file_name}.csv"
         data = pd.read_csv(f_name)
         data.sort_values(by=['epoch', 'batch'], inplace=True)
@@ -417,7 +417,7 @@ class Experiment:
     
         for i, (x, y) in enumerate(self.train_loader, start=1):
             x, y = x.to(self.device), y.to(self.device)
-            print('x: ', x.size(), ' y: ', y.size())
+            #print('x: ', x.size(), ' y: ', y.size())
             # (set_to_none=True can be a tiny speedup / lower memory)
             if hasattr(self.optimizer, "zero_grad"):
                 try:
@@ -530,6 +530,7 @@ if __name__ == "__main__":
     parser.add_argument("--job_file", type=str, default='jobs_to_do_train', help="job file to read")
     parser.add_argument("--tag", type=str, help="Experiment name")
     parser.add_argument("--job_id", type=int, default=-1, help="Row index in the CSV. Use -1 to sweep over every row.")
+    parser.add_argument("--activation", type=str, default='relu', help="Activation function")
     default_device = "cuda:0" if torch.cuda.is_available() else "cpu"
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
     args = parser.parse_args()
@@ -554,6 +555,7 @@ if __name__ == "__main__":
         experiment = Experiment(
             device= args.device,
             top_cat = args.tag,
+            activation = args.activation,
             **config_params,
         )
         experiment.run()
