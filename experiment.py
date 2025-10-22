@@ -360,7 +360,7 @@ class Experiment:
         loss_type = "BCE" if self.dict_dataset['classification'] else "MSE"
         plt.xlabel('Global Step (cumulative batch index)')
         plt.ylabel(f'{loss_type} Loss')
-        plt.title(f'{loss_type} Loss Progression Across Epochs with ReLU')
+        plt.title(f'{loss_type} Loss Progression Across Epochs with {self.model_type} and ReLU')
         plt.legend()
         plt.grid(True)
 
