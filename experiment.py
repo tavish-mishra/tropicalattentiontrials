@@ -129,7 +129,7 @@ class Experiment:
         print(f'...setting model object...{self._time_string()}')
 
         if self.dataset_name == "FloydWarshallDataset":
-            self.num_classes = 64#32+1 #max(self.length_range) + 1
+            self.num_classes = 64#32+1 #max(self.length_range) + 1 #i think it's been set for classification only, i'm assuming there's a fix that needs to be made somewhere...
         else:
             self.num_classes = 1
 
