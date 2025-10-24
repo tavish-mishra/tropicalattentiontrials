@@ -35,7 +35,7 @@ class Experiment:
                  lr: float = 0.001, 
                  d_model: int = 32, 
                  n_heads: int = 2, 
-                 num_layers: int = 1, 
+                 num_layers: int = 3,
                  dropout: float = 0.0,
                  activation: str = 'relu'):
         dict_datasets = {
