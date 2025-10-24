@@ -558,7 +558,7 @@ class SimpleTransformerModel(nn.Module):
         input_dim: int = 1,
         d_model: int = 32,
         n_heads: int = 2,
-        num_layers: int = 1,
+        num_layers: int = 3,
         dropout: float = 0.0,
         tropical: bool = False,
         tropical_attention_cls=None,
