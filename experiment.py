@@ -201,10 +201,11 @@ class Experiment:
                                      batch_size=self.batch_size,
                                      shuffle=(self.task == 'train'))
 
-
     def _eval_one_epoch(self, type: str = "test"):
         self.model.eval()
-        self.optimizer.eval()
+        if hasattr(self.optimizer, "eval"):
+            self.optimizer.eval()
+
         losses, total_loss = [], 0.0
         all_preds, all_targets, all_masks = [], [], []  # masks only for pointer metric
 
@@ -215,58 +216,47 @@ class Experiment:
         )
 
         with torch.no_grad():
-            for x, y in dl_to_use:                         # x: (B, n, d),  y: (B, …)
+            for x, y in dl_to_use:
                 x, y = x.to(self.device), y.to(self.device)
-                pred = self.model(x)                      # shape depends on model
+                pred = self.model(x)
 
                 # ------------- classification ------------- #
                 if self.model.classification:
-                    # ---- decide metric flavour on the fly ----
                     use_pointer = (
-                        (not self.model.pool)
-                        and pred.dim() == 2               # (B, n)
-                        and y.dim() == 2                  # (B, n)
-                        and pred.shape == y.shape
+                            (not self.model.pool)
+                            and pred.dim() == 2
+                            and y.dim() == 2
+                            and pred.shape == y.shape
                     )
 
                     if use_pointer:
-                        # ----- pointer-style evaluation -----
-                        logits      = pred              # (B, n)
+                        logits = pred
                         batch_preds = (torch.sigmoid(logits) > 0.5).long()
                         batch_targets = y.long()
-                        node_mask   = (x.abs().sum(dim=-1) != 0)  # (B, n) True for real (unpadded) nodes
+                        node_mask = (x.abs().sum(dim=-1) != 0)
 
                         all_preds.append(batch_preds.cpu())
                         all_targets.append(batch_targets.cpu())
                         all_masks.append(node_mask.cpu())
-                    
-                        # Masked loss: exclude padded nodes
-                        if node_mask.any():
-                            batch_loss = F.binary_cross_entropy_with_logits(
-                                logits[node_mask], y[node_mask].float()
-                            )
-                        else:
-                            # degenerate case: no valid nodes in this batch
-                            batch_loss = logits.sum() * 0.0
+
+                        batch_loss = (
+                            F.binary_cross_entropy_with_logits(logits[node_mask], y[node_mask].float())
+                            if node_mask.any()
+                            else logits.sum() * 0.0
+                        )
 
                     else:
-                        # ----- pooled-binary or multi-class -----
-                        if pred.size(-1) == 1:            # binary pooled
-                            logits      = pred.squeeze(-1)
+                        if pred.size(-1) == 1:  # binary pooled
+                            logits = pred.squeeze(-1)
                             batch_preds = (torch.sigmoid(logits) > 0.5).long()
-                            batch_loss  = F.binary_cross_entropy_with_logits(
-                                logits, y.squeeze(-1).float()
-                            )
+                            batch_loss = F.binary_cross_entropy_with_logits(logits, y.squeeze(-1).float())
                             all_preds.append(batch_preds.cpu())
                             all_targets.append(y.cpu())
-                        else:                             # multi-class
+                        else:  # multi-class
                             pred_reshaped = pred.view(-1, self.num_classes)
                             y_reshaped = y.view(-1)
                             batch_preds = torch.argmax(pred_reshaped, dim=-1)
-                            batch_loss  = F.cross_entropy(pred_reshaped, y_reshaped.long())
-                            #batch_preds = torch.argmax(pred, dim=-1)
-                            #batch_loss  = F.cross_entropy(pred, y)
-
+                            batch_loss = F.cross_entropy(pred_reshaped, y_reshaped.long())
                             all_preds.append(batch_preds.cpu())
                             all_targets.append(y.cpu())
 
@@ -285,39 +275,52 @@ class Experiment:
             pointer_mode = len(all_masks) > 0
 
             if pointer_mode:
-                preds_flat   = torch.cat(all_preds, 0).view(-1).numpy()
+                preds_flat = torch.cat(all_preds, 0).view(-1).numpy()
                 targets_flat = torch.cat(all_targets, 0).view(-1).numpy()
-                mask_flat    = torch.cat(all_masks,  0).view(-1).numpy().astype(bool)
+                mask_flat = torch.cat(all_masks, 0).view(-1).numpy().astype(bool)
 
-                micro_f1 = f1_score(
-                    targets_flat[mask_flat],
-                    preds_flat[mask_flat],
-                    average="binary",
-                    zero_division=0,
-                )
+                micro_f1 = f1_score(targets_flat[mask_flat], preds_flat[mask_flat], average="binary", zero_division=0)
+                accuracy = (preds_flat[mask_flat] == targets_flat[mask_flat]).mean()
             else:
-                preds_cat   = torch.cat(all_preds,   0).view(-1).numpy()
+                preds_cat = torch.cat(all_preds, 0).view(-1).numpy()
                 targets_cat = torch.cat(all_targets, 0).view(-1).numpy()
 
-                micro_f1 = f1_score(
-                    targets_cat, preds_cat, average="micro", zero_division=0
-                )
+                micro_f1 = f1_score(targets_cat, preds_cat, average="micro", zero_division=0)
+                accuracy = (preds_cat == targets_cat).mean()
 
-            return avg_loss, std_loss, micro_f1
+            return avg_loss, std_loss, micro_f1, accuracy
 
-        # regression – no F1
-        return avg_loss, std_loss, None
+        # regression – no F1 or accuracy
+        return avg_loss, std_loss, None, None
 
-
-
-    
     def evaluate_model(self):
         print(f'...evaluating model...{self._time_string()}')
-        loss, std, micro_f1_score = self._eval_one_epoch()
-        if os.path.exists(f'{self.top_cat}/evaluate/{self.experiment_type}_test/evaluate_{self.model_being_evaluated}.csv') == False:
-            self._write_to_csv('w', 'evaluate', ['seed','length_range', 'noise_prob', 'value_range', 'loss', 'std', 'micro_f1_score'])
-        self._write_to_csv('a', 'evaluate', [self.seed, self.length_range, self.noise_prob, self.value_range, loss, std, micro_f1_score])
-    
+
+        # Evaluate one epoch on test/validation set
+        loss, std, micro_f1_score, accuracy = self._eval_one_epoch()  # returns accuracy as well
+
+        csv_path = f'{self.top_cat}/evaluate/{self.experiment_type}_test/evaluate_{self.model_being_evaluated}.csv'
+
+        # Write header if file doesn't exist
+        if not os.path.exists(csv_path):
+            self._write_to_csv(
+                'w',
+                'evaluate',
+                ['seed', 'length_range', 'noise_prob', 'value_range', 'loss', 'std', 'micro_f1_score', 'accuracy']
+            )
+
+        # Append evaluation metrics
+        self._write_to_csv('a', 'evaluate', [
+            self.seed,
+            self.length_range,
+            self.noise_prob,
+            self.value_range,
+            loss,
+            std,
+            micro_f1_score,
+            accuracy
+        ])
+
     def _time_string(self):
         return time.strftime("%Y%m%d_%H%M%S",time.localtime())
     
@@ -345,76 +348,89 @@ class Experiment:
         data = pd.read_csv(f_name)
         data.sort_values(by=['epoch', 'batch'], inplace=True)
         data['global_step'] = data.index
-        plt.figure(figsize=(10,6))
-        plt.plot(data['global_step'], data['loss'], linestyle='-', label='loss')
+
+        plt.figure(figsize=(10, 6))
+        ax1 = plt.gca()
+        ax2 = ax1.twinx()
+
+        ax1.plot(data['global_step'], data['loss'], 'b-', label='Loss')
+        if 'accuracy' in data.columns:
+            ax2.plot(data['global_step'], data['accuracy'], 'r--', label='Accuracy')
 
         epochs = data['epoch'].unique()
         y_max = data['loss'].max()
         for epoch in epochs:
             first_idx = data[data['epoch'] == epoch]['global_step'].iloc[0]
-            plt.axvline(x=first_idx, color='gray', linestyle='--', alpha=0.5)
-            plt.text(first_idx, y_max, f'Epoch {epoch}', rotation=90, verticalalignment='bottom', fontsize=8, color='gray')
-        loss_type = "BCE" if self.dict_dataset['classification'] else "MSE"
-        plt.xlabel('Global Step (cumulative batch index)')
-        plt.ylabel(f'{loss_type} Loss')
-        plt.title(f'{loss_type} Loss Progression Across Epochs')
-        plt.legend()
-        plt.grid(True)
+            ax1.axvline(x=first_idx, color='gray', linestyle='--', alpha=0.5)
+            ax1.text(first_idx, y_max, f'Epoch {epoch}', rotation=90, verticalalignment='bottom', fontsize=8,
+                     color='gray')
 
+        loss_type = "BCE" if self.dict_dataset['classification'] else "MSE"
+        ax1.set_xlabel('Global Step (cumulative batch index)')
+        ax1.set_ylabel(f'{loss_type} Loss', color='b')
+        ax2.set_ylabel('Accuracy', color='r')
+        plt.title(f'{loss_type} Loss & Accuracy Across Epochs')
+
+        ax1.legend(loc='upper left')
+        ax2.legend(loc='upper right')
+        plt.grid(True)
         plt.savefig(output_file)
         plt.close()
 
         print(f'...plot saved to {output_file}...')
 
-    def _train_one_epoch(self, epoch):
-        self.model.train()
-        self.optimizer.train()
-        total_loss_val = 0
-        use_log_scale = False
-        #print(self.model.classification, self.model.output_linear.out_features)
-        for i, (x, y) in enumerate(self.train_loader, start=1):
-            x, y = x.to(self.device), y.to(self.device)
-            self.optimizer.zero_grad()
-            pred = self.model(x)
-            #print(pred.size(), y.size(), self.model.pool)
-            if self.model.classification:# Check if we are in classification mode.
-                #if self.model.pool: # Binary classification (n_classes == 1)
-                    #loss = F.binary_cross_entropy_with_logits(pred.squeeze(-1), y.float()) # Squeeze prediction to match target shape: [batch, seq_len]
-                #else:
-                if self.dataset_name in ["FloydWarshallDataset"]:
-                    #loss = F.cross_entropy(pred.squeeze(-1), y.squeeze(-1)) 
-                    loss = F.cross_entropy(pred.view(-1, pred.size(-1)), y.view(-1).long())
-                else:
-                    loss = F.binary_cross_entropy_with_logits(pred.squeeze(-1), y.squeeze(-1).float()) 
-            else:
-                # Use log-scale for regression if enabled.
-                if use_log_scale:
-                    loss = F.mse_loss(torch.log1p(F.relu(pred)), torch.log1p(F.relu(y))).sqrt()
-                else:
-                    loss = F.mse_loss(pred, y)
-            l1_reg = 0.0
-            for param in self.model.parameters():
-                l1_reg += torch.sum(torch.abs(param))
-            loss = loss + 0.000 * l1_reg
-            total_loss = loss
-            total_loss.backward()
-            self.optimizer.step()
-            total_loss_val += total_loss.item() * x.size(0)
-            if i % 10 == 0:
-                self._write_to_csv('a', 'train', [epoch, i, total_loss.item(), time.time()])
-        return total_loss_val / self.n_samples
+    # def _train_one_epoch(self, epoch):
+    #     self.model.train()
+    #     self.optimizer.train()
+    #     total_loss_val = 0
+    #     use_log_scale = False
+    #
+    #     #print(self.model.classification, self.model.output_linear.out_features)
+    #     for i, (x, y) in enumerate(self.train_loader, start=1):
+    #         x, y = x.to(self.device), y.to(self.device)
+    #         self.optimizer.zero_grad()
+    #         pred = self.model(x)
+    #         #print(pred.size(), y.size(), self.model.pool)
+    #         if self.model.classification:# Check if we are in classification mode.
+    #             #if self.model.pool: # Binary classification (n_classes == 1)
+    #                 #loss = F.binary_cross_entropy_with_logits(pred.squeeze(-1), y.float()) # Squeeze prediction to match target shape: [batch, seq_len]
+    #             #else:
+    #             if self.dataset_name in ["FloydWarshallDataset"]:
+    #                 #loss = F.cross_entropy(pred.squeeze(-1), y.squeeze(-1))
+    #                 loss = F.cross_entropy(pred.view(-1, pred.size(-1)), y.view(-1).long())
+    #             else:
+    #                 loss = F.binary_cross_entropy_with_logits(pred.squeeze(-1), y.squeeze(-1).float())
+    #         else:
+    #             # Use log-scale for regression if enabled.
+    #             if use_log_scale:
+    #                 loss = F.mse_loss(torch.log1p(F.relu(pred)), torch.log1p(F.relu(y))).sqrt()
+    #             else:
+    #                 loss = F.mse_loss(pred, y)
+    #         l1_reg = 0.0
+    #         for param in self.model.parameters():
+    #             l1_reg += torch.sum(torch.abs(param))
+    #         loss = loss + 0.000 * l1_reg
+    #         total_loss = loss
+    #         total_loss.backward()
+    #         self.optimizer.step()
+    #         total_loss_val += total_loss.item() * x.size(0)
+    #         if i % 10 == 0:
+    #             self._write_to_csv('a', 'train', [epoch, i, total_loss.item(), time.time()])
+    #     return total_loss_val / self.n_samples
 
     def _train_one_epoch(self, epoch):
         self.model.train()
-        self.optimizer.train()
-    
+        # ⚠️ Optimizers don't have .train()
+        # self.optimizer.train()
+
         total_loss_val = 0.0
+        total_correct = 0
+        total_samples = 0
         seen_samples = 0
         use_log_scale = False
-    
+
         for i, (x, y) in enumerate(self.train_loader, start=1):
             x, y = x.to(self.device), y.to(self.device)
-            # (set_to_none=True can be a tiny speedup / lower memory)
             if hasattr(self.optimizer, "zero_grad"):
                 try:
                     self.optimizer.zero_grad(set_to_none=True)
@@ -422,38 +438,50 @@ class Experiment:
                     self.optimizer.zero_grad()
             else:
                 self.model.zero_grad(set_to_none=True)
-    
-            # forward
+
+            # Forward
             pred = self.model(x)
-            # ----- loss -----
+            accuracy = 0.0
+
+            # --- Classification ---
             if self.model.classification:
-                # Pointer-style: per-node binary outputs (no pooling) with same shape as targets
+                # Binary per-node
                 if (not self.model.pool) and pred.dim() == 2 and y.dim() == 2 and pred.shape == y.shape:
-                    logits = pred  # (B, n)
-                    node_mask = (x.abs().sum(dim=-1) != 0)  # True for real (unpadded) nodes
+                    logits = pred
+                    node_mask = (x.abs().sum(dim=-1) != 0)
                     if node_mask.any():
                         loss = F.binary_cross_entropy_with_logits(
                             logits[node_mask], y[node_mask].float()
                         )
+                        preds = torch.sigmoid(logits[node_mask]) > 0.5
+                        correct = (preds == y[node_mask].bool()).sum()
+                        total_correct += correct.item()
+                        total_samples += y[node_mask].numel()
                     else:
-                        # Degenerate case: no valid nodes (keep graph/device/dtype)
                         loss = logits.sum() * 0.0
-    
-                # Multi-class pooled (e.g., Floyd-Warshall)
+
+                # Multi-class
                 elif self.dataset_name in ["FloydWarshallDataset"]:
-                    loss = F.cross_entropy(
-                        pred.view(-1, pred.size(-1)),
-                        y.view(-1).long()
-                    )
-    
-                # Pooled binary
+                    pred_flat = pred.view(-1, pred.size(-1))
+                    y_flat = y.view(-1).long()
+                    loss = F.cross_entropy(pred_flat, y_flat)
+                    pred_classes = pred_flat.argmax(dim=1)
+                    correct = (pred_classes == y_flat).sum()
+                    total_correct += correct.item()
+                    total_samples += y_flat.numel()
+
+                # Binary pooled
                 else:
                     loss = F.binary_cross_entropy_with_logits(
                         pred.squeeze(-1), y.squeeze(-1).float()
                     )
-    
+                    preds = torch.sigmoid(pred) > 0.5
+                    correct = (preds.squeeze(-1) == y.bool()).sum()
+                    total_correct += correct.item()
+                    total_samples += y.numel()
+
+            # --- Regression ---
             else:
-                # Regression
                 if use_log_scale:
                     loss = F.mse_loss(
                         torch.log1p(F.relu(pred)),
@@ -461,32 +489,38 @@ class Experiment:
                     ).sqrt()
                 else:
                     loss = F.mse_loss(pred, y)
-    
-            # (Optional) L1 regularization — coefficient currently 0.000
+
+            # L1 reg (optional)
             l1_reg = 0.0
             for p in self.model.parameters():
                 l1_reg += torch.sum(torch.abs(p))
             loss = loss + 0.000 * l1_reg
-            
+
+            # Backward
             loss.backward()
             self.optimizer.step()
+
             batch_size = x.size(0)
             seen_samples += batch_size
             total_loss_val += loss.item() * batch_size
-    
-            # log every 10 steps: running average is more informative than last-batch loss
-            if i % 10 == 0:
-                running_avg = total_loss_val / seen_samples
-                self._write_to_csv('a', 'train', [epoch, i, running_avg, time.time()])
 
-        return total_loss_val / len(self.train_loader.dataset)
+            # Calculate running average loss & accuracy
+            running_avg_loss = total_loss_val / seen_samples
+            running_avg_acc = (total_correct / total_samples) if total_samples > 0 else 0.0
 
+            # Log every 10 batches or final batch
+            if i % 10 == 0 or i == len(self.train_loader):
+                self._write_to_csv('a', 'train', [epoch, i, running_avg_loss, running_avg_acc, time.time()])
+
+        avg_loss = total_loss_val / len(self.train_loader.dataset)
+        avg_acc = (total_correct / total_samples) if total_samples > 0 else 0.0
+        return avg_loss, avg_acc
 
     def train_model(self):
         print(f'...training model...{self._time_string()}')
         self.optimizer = schedulefree.RAdamScheduleFree(self.model.parameters(), lr=self.lr)
         #self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
-        self._write_to_csv('w', 'train', ['epoch', 'batch', 'loss', 'time'])
+        self._write_to_csv('w', 'train', ['epoch', 'batch', 'loss', 'accuracy', 'time'])
         #self._write_to_csv('w', 'validation', ['epoch', 'val_loss', 'val_f1', 'best_up_to_now', 'time'])
         #loss_measure = True
         ##best_metric = 100000.0
