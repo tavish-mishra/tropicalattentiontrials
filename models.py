@@ -591,6 +591,7 @@ class SimpleTransformerModel(nn.Module):
         )       
         self.pool = pool
         self.output_linear = nn.Linear(d_model, num_classes)
+        self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         #print('current size 0: ', x.size())

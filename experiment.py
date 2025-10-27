@@ -147,8 +147,6 @@ class Experiment:
                                             activation=self.activation).to(self.device)
 
         print(self.model.num_layers)
-        print(self.model.d_model)
-        print(self.model.n_heads)
     
     def _save_model(self, best: bool = False):
         model_folder = os.path.join(self.top_cat, "models")
