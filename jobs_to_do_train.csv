@@ -35,3 +35,5 @@ train,adaptive,ConvexHullDataset,2,64,2,1,100,0,0.0001,999,100000,500,na,na,"(10
 train,adaptive,ThreeSumDecisionDataset,2,64,2,1,100,0,0.0001,999,100000,500,"(-75,75)",na,"(40,60)","(8,8)",0,"(-20,20)"
 train,adaptive,FloydWarshallDataset,3,64,2,1,100,0,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
 train,adaptive,SCCDataset,3,64,2,1,100,0,0.0001,999,100000,16,na,na,na,"(8,8)",0,0.001
+train,tropical,FloydWarshallDataset,3,64,2,3,100,0,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
+train,vanilla,FloydWarshallDataset,3,64,2,3,100,0,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
