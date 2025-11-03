@@ -2,3 +2,95 @@ CUDA available? True
 GPU device: NVIDIA A100-SXM4-40GB
 CUDA_VISIBLE_DEVICES=0,1,2,3
 SLURM_JOB_GPUS=0,1,2,3
+
+ Running config: {'task': 'train', 'model_type': 'tropical', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 64, 'n_heads': 2, 'num_layers': 3, 'num_epochs': 100, 'dropout': 0, 'lr': 0.0001, 'seed': 999, 'n_samples': 100000, 'batch_size': 16, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'noise_prob': 0, 'value_range': '(1,15)'}
+FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu
+...setting dataloader...20251029_132903
+...setting model object...20251029_132928
+3
+...training model...20251029_132928
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133050
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133148
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133244
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133338
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133432
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133527
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133621
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133715
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133824
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_133928
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134032
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134138
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134249
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134403
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134514
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134620
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134733
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134844
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_134949
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135055
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135155
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135305
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135404
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135503
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135602
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135658
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135753
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135847
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_135942
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140036
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140131
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140225
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140320
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140415
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140513
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140610
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140705
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140759
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140854
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_140948
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141049
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141145
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141239
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141333
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141426
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141519
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141616
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141714
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141812
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_141911
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142010
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142104
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142202
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142256
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142351
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142444
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142537
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142630
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_142723
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143005
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143059
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143158
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143257
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143356
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143455
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143549
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143642
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143736
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143829
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_143926
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_144020
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_144118
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_145510
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_145603
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_145655
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_145748
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_145841
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_145934
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_150030
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_150127
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_150226
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_150319
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_150413
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu_best.pth...20251029_150508
+...plot saved to 15_exp/plots/plots_FloydWarshallDataset_tropical_0.0001_100_20251029_132903_relu.png...
