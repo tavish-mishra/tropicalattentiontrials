@@ -37,3 +37,5 @@ train,adaptive,FloydWarshallDataset,3,64,2,1,100,0,0.0001,999,100000,16,na,na,"(
 train,adaptive,SCCDataset,3,64,2,1,100,0,0.0001,999,100000,16,na,na,na,"(8,8)",0,0.001
 train,tropical,FloydWarshallDataset,3,64,2,3,100,0,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
 train,vanilla,FloydWarshallDataset,3,64,2,3,100,0,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
+train,tropical,FloydWarshallDataset,3,64,6,2,100,.05,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
+train,vanilla,FloydWarshallDataset,3,64,6,2,100,.05,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
