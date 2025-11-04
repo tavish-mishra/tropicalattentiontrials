@@ -1,0 +1,16 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 563, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 100, in run
+    self.set_model()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 143, in set_model
+    tropical_attention_cls = TropicalAttention(self.d_model, self.n_heads, self.device) if self.model_type == 'tropical' else None,
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 251, in __init__
+    assert d_model % n_heads == 0, "d_model must be divisible by n_heads"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: d_model must be divisible by n_heads

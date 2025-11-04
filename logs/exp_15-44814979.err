@@ -1,0 +1,25 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 563, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 100, in run
+    self.set_model()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 136, in set_model
+    self.model = SimpleTransformerModel(input_dim=self.input_dim,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 581, in __init__
+    self.encoder = TransformerEncoder(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 533, in __init__
+    block = TransformerBlock(
+            ^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 473, in __init__
+    self.attn = VanillaAttention(d_model, n_heads, aggregator=aggregator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 39, in __init__
+    assert d_model % n_heads == 0
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
