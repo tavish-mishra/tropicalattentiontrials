@@ -1197,6 +1197,9 @@ class FloydWarshallDataset(Dataset):
         adversarial_range: tuple[float, float] = (0.1, 0.5),
         classification: bool = True,
         seed: int = 42,
+        # New params for integer tokenization of edge weights
+        use_integer_edge_weights: bool = True,
+        max_weight_token: int = 15,
         **kwargs
     ):
         """
@@ -1216,6 +1219,8 @@ class FloydWarshallDataset(Dataset):
         self.noise_prob = noise_prob
         self.adversarial_range = adversarial_range
         self.classification = classification
+        self.use_integer_edge_weights = use_integer_edge_weights
+        self.max_weight_token = max_weight_token
 
         self.data = []
         for _ in range(n_samples):
@@ -1225,8 +1230,29 @@ class FloydWarshallDataset(Dataset):
             p_sample = random.uniform(*self.p_range)
             W = self._generate_er_graph(n, p_sample, self.weight_range)
             
-            W_features = np.copy(W)
-            W_features[np.isinf(W_features)] = 0.0
+            # Build model inputs
+            if self.use_integer_edge_weights:
+                # Map real-valued weights to integer tokens in [0..max_weight_token]
+                # 0 -> no edge/padding (includes diagonal and unreachable)
+                low, high = self.weight_range
+                # Avoid division by zero if low==high
+                denom = (high - low) if high > low else 1.0
+                W_tokens = np.zeros_like(W, dtype=np.int64)
+                mask_edge = np.isfinite(W)
+                # Exclude diagonal from edges (treat as padding 0)
+                diag_mask = np.eye(W.shape[0], dtype=bool)
+                mask_edge = np.logical_and(mask_edge, np.logical_not(diag_mask))
+                if np.any(mask_edge):
+                    norm = (W[mask_edge] - low) / denom
+                    # Map to 1..max_weight_token (clip into range)
+                    buckets = 1 + (norm * (self.max_weight_token - 1)).astype(np.int64)
+                    buckets = np.clip(buckets, 1, self.max_weight_token)
+                    W_tokens[mask_edge] = buckets
+                flat_input = torch.tensor(W_tokens.flatten(), dtype=torch.long)
+            else:
+                # Original float features (kept for backward-compat if needed)
+                W_features = np.copy(W)
+                W_features[np.isinf(W_features)] = 0.0
 
             graph = csr_matrix(W)
             # --- MINIMAL CHANGE: Get predecessors from floyd_warshall ---
@@ -1248,22 +1274,35 @@ class FloydWarshallDataset(Dataset):
                 y_t = torch.tensor(D.flatten(), dtype=torch.float)
             # --- END OF CHANGES ---
 
-            # Prepare input tensor x_t (this part is unchanged)
-            flat_W = W_features.flatten()
-            features = [torch.tensor(flat_W, dtype=torch.float).unsqueeze(-1)]
-            indices = np.arange(n * n)
-            norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n * n)
-            norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros(n * n)
-            features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
-            features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
-            x_t = torch.cat(features, dim=-1)
+            # Prepare input tensor x_t
+            if self.use_integer_edge_weights:
+                x_t = flat_input  # LongTensor of shape (n*n,)
+            else:
+                flat_W = W_features.flatten()
+                features = [torch.tensor(flat_W, dtype=torch.float).unsqueeze(-1)]
+                indices = np.arange(n * n)
+                norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n * n)
+                norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros(n * n)
+                features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
+                features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
+                x_t = torch.cat(features, dim=-1)
 
             # Noise addition (unchanged)
             if self.noise_prob > 0:
-                for k_idx in range(n * n):
-                    if (k_idx // n) != (k_idx % n) and random.random() < self.noise_prob:
-                        jitter_val = random.uniform(*self.adversarial_range)
-                        x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
+                if self.use_integer_edge_weights:
+                    # Jitter token by +/-1 within [1..max_weight_token], skip padding (0)
+                    for k_idx in range(n * n):
+                        i, j = (k_idx // n), (k_idx % n)
+                        if i != j and random.random() < self.noise_prob and x_t[k_idx] > 0:
+                            delta = 1 if random.random() < 0.5 else -1
+                            new_val = int(x_t[k_idx].item()) + delta
+                            new_val = min(max(new_val, 1), self.max_weight_token)
+                            x_t[k_idx] = new_val
+                else:
+                    for k_idx in range(n * n):
+                        if (k_idx // n) != (k_idx % n) and random.random() < self.noise_prob:
+                            jitter_val = random.uniform(*self.adversarial_range)
+                            x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
             
             self.data.append((x_t, y_t))
 

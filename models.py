@@ -563,9 +563,18 @@ class SimpleTransformerModel(nn.Module):
         pre_norm: bool = False,
         aggregator: str = 'softmax',
         num_classes:int = 1,
+        # New embedding pathway for integer edge weights
+        use_edge_weight_embedding: bool = False,
+        vocab_size: int = 16,  # 0..(vocab_size-1); 0 reserved for padding/no-edge
+        embedding_dim: int = 64,
     ):
         super().__init__()
-        self.input_linear = nn.Linear(input_dim, d_model)
+        self.use_edge_weight_embedding = use_edge_weight_embedding
+        if self.use_edge_weight_embedding:
+            self.token_embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
+            self.embed_to_model = nn.Identity() if embedding_dim == d_model else nn.Linear(embedding_dim, d_model)
+        else:
+            self.input_linear = nn.Linear(input_dim, d_model)
         self.classification = classification
 
         # Choose attention class
@@ -587,7 +596,15 @@ class SimpleTransformerModel(nn.Module):
         self.output_linear = nn.Linear(d_model, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.input_linear(x) # [B, S]
+        if self.use_edge_weight_embedding:
+            # Expect LongTensor of shape (B, S) or (S,)
+            if x.dim() == 1:
+                # add batch dim
+                x = x.unsqueeze(0)
+            x = self.token_embedding(x.long())
+            x = self.embed_to_model(x)
+        else:
+            x = self.input_linear(x) # [B, S, d_model]
         x = self.encoder(x) # [B, S, d_model]  
         if self.pool:
             pooled = x.mean(dim=1) # [B, d_model]
