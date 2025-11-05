@@ -467,6 +467,7 @@ class TransformerBlock(nn.Module):
         super().__init__()
         self.pre_norm = pre_norm
         self.vanilla = vanilla
+
         activation_dict = {'relu': nn.ReLU, 'silu': nn.SiLU, 'gelu': nn.GELU}
         # Attention layer
         if vanilla:
@@ -590,7 +591,7 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_linear = nn.Linear(d_model, num_classes)
+        self.output_ffn = nn.Sequential(nn.Linear(d_model, 256), nn.ReLU(), nn.Linear(256, num_classes))
         self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -601,10 +602,10 @@ class SimpleTransformerModel(nn.Module):
         if self.pool:
             pooled = x.mean(dim=1) # [B, d_model]
             #print('current size 2: ', pooled.size())
-            out = self.output_linear(pooled) # [B, 1]
+            out = self.output_ffn(pooled) # [B, 1]
             #print('current size 3: ', out.size())
         else:
-            out = self.output_linear(x) # [B, S, 1] 
+            out = self.output_ffn(x) # [B, S, 1]
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
         #print('current size 4: ', out.size())
