@@ -7,6 +7,26 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 ################################################################################
+## POSITIONAL ENCODING UTILITIES
+################################################################################
+
+def identity_pe(n):
+    """Create an identity matrix of size [n, n] for positional encoding."""
+    return torch.eye(n)
+
+def append_positional_encoding(x, pe):
+    """
+    Add positional encoding `pe` to input data `x`.
+    
+    Input `x` should have dimension [batch_size, seq_len, embed_dim]
+    Input `pe` should have dimension [seq_len, pe_dim]
+    Output has dimension [batch_size, seq_len, embed_dim + pe_dim]
+    """
+    pe = pe.unsqueeze(0)
+    pe = torch.repeat_interleave(pe, x.size(0), dim=0)
+    return torch.cat([x, pe], dim=-1)
+
+################################################################################
 ## 2. MODEL DEFINITIONS (Vanilla & Tropical Transformers)
 ################################################################################
 
@@ -563,10 +583,22 @@ class SimpleTransformerModel(nn.Module):
         pre_norm: bool = False,
         aggregator: str = 'softmax',
         num_classes:int = 1,
+        use_positional_encoding: bool = False,
     ):
         super().__init__()
-        self.input_linear = nn.Linear(input_dim, d_model)
+        self.use_positional_encoding = use_positional_encoding
+        self.base_input_dim = input_dim
+        self.d_model = d_model
         self.classification = classification
+        
+        # Create input_linear layer
+        # If using positional encoding, it will be recreated on first forward pass with expanded dim
+        if not use_positional_encoding:
+            self.input_linear = nn.Linear(input_dim, d_model)
+        else:
+            # Will be created dynamically in forward pass
+            self.input_linear = None
+            self._input_linear_created = False
 
         # Choose attention class
         attn_cls = VanillaAttention
@@ -587,7 +619,24 @@ class SimpleTransformerModel(nn.Module):
         self.output_linear = nn.Linear(d_model, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.input_linear(x) # [B, S]
+        # Apply positional encoding if enabled
+        if self.use_positional_encoding:
+            seq_len = x.shape[1]
+            pe = identity_pe(seq_len).to(x.device)
+            x = append_positional_encoding(x, pe)  # [B, S, input_dim + seq_len]
+            
+            # Create input_linear layer on first forward pass if needed
+            if not self._input_linear_created:
+                expanded_input_dim = self.base_input_dim + seq_len
+                self.input_linear = nn.Linear(expanded_input_dim, self.d_model).to(x.device)
+                self._input_linear_created = True
+            # If sequence length changed (shouldn't happen with fixed datasets, but handle it)
+            elif self.input_linear.in_features != x.shape[-1]:
+                expanded_input_dim = x.shape[-1]
+                self.input_linear = nn.Linear(expanded_input_dim, self.d_model).to(x.device)
+                self._input_linear_created = True
+        
+        x = self.input_linear(x) # [B, S, d_model]
         x = self.encoder(x) # [B, S, d_model]  
         if self.pool:
             pooled = x.mean(dim=1) # [B, d_model]
