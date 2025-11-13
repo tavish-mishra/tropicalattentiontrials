@@ -595,8 +595,10 @@ class SimpleTransformerModel(nn.Module):
         self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        #print('current size 0: ', x.size())
+        print('current size 0: ', x.size())
         x = self.append_positional_encoding(x, self.identity_pe(x.size(1)))
+        print('current size 1: ', x.size())
+        print(self.input_linear)
         x = self.input_linear(x) # [B, S]
         x = self.encoder(x) # [B, S, d_model]
         #print('current size 1: ', x.size())
