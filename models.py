@@ -618,8 +618,8 @@ class SimpleTransformerModel(nn.Module):
         # Input `pe` should have dimension [seq_len, pe_dim]
         # Output has dimension [batch_size, seq_len, embed_dim + pe_dim]
         pe = pe.unsqueeze(0)
-        pe = torch.repeat_interleave(pe, x.size(0), dim=0)
+        pe = torch.repeat_interleave(pe, x.size(0), dim=0).cuda()
         return torch.cat([x, pe], dim=-1)
 
     def identity_pe(self, n):
-        return torch.eye(n)
+        return torch.eye(n).cuda()
