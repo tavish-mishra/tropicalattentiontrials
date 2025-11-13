@@ -620,7 +620,7 @@ class SimpleTransformerModel(nn.Module):
 
         pe = pe.unsqueeze(0)
         pe = torch.repeat_interleave(pe, x.size(0), dim=0).cuda()
-        print(x.size(), pe.size())
+        #print(x.size(), pe.size())
         return torch.cat([x, pe], dim=-1)
 
     def identity_pe(self, n):
