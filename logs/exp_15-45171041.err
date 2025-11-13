@@ -1,0 +1,27 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 563, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 126, in run
+    self.train_model()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 502, in train_model
+    self._train_one_epoch(epoch)
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 433, in _train_one_epoch
+    pred = self.model(x)
+           ^^^^^^^^^^^^^
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 599, in forward
+    x = self.append_positional_encoding(x, self.identity_pe(x.shape[-1]))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/models.py", line 622, in append_positional_encoding
+    return torch.cat([x, pe], dim=-1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Sizes of tensors must match except in dimension 2. Expected size 64 but got size 3 for tensor number 1 in the list.
