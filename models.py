@@ -591,7 +591,7 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_ffn = nn.Sequential(nn.Linear(d_model, 256), nn.ReLU(), nn.Linear(256, num_classes))
+        self.output_ffn = nn.Linear(d_model, num_classes)#nn.Sequential(nn.Linear(d_model, 256), nn.ReLU(), nn.Linear(256, num_classes))
         self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
