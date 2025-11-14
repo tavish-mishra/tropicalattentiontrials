@@ -1,0 +1,102 @@
+CUDA available? True
+GPU device: NVIDIA A100-SXM4-80GB
+CUDA_VISIBLE_DEVICES=0,1,2,3
+SLURM_JOB_GPUS=0,1,2,3
+
+ Running config: {'task': 'train', 'model_type': 'vanilla', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 64, 'n_heads': 2, 'num_layers': 1, 'num_epochs': 100, 'dropout': 0.0, 'lr': 0.0001, 'seed': 999, 'n_samples': 100000, 'batch_size': 16, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'noise_prob': 0, 'value_range': '(1,15)'}
+FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu
+...setting dataloader...20251113_153741
+...setting model object...20251113_153805
+1
+...training model...20251113_153806
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_153841
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_153903
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_153925
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_153946
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154007
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154028
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154049
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154111
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154132
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154153
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154215
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154236
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154256
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154317
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154338
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154359
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154420
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154442
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154503
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154524
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154545
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154607
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154628
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154649
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154710
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154732
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154753
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154814
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154837
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154857
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154918
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154938
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_154959
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155020
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155041
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155102
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155124
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155145
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155206
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155415
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155436
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155457
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155520
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155543
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155604
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155626
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155647
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155708
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155729
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155812
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155834
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155938
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_155959
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160105
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160126
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160147
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160208
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160229
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160250
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160311
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160333
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160353
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160414
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160435
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160456
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160517
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160539
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160559
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160623
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160646
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160709
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160733
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160756
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160817
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160838
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160859
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160921
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_160942
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161004
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161025
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161046
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161107
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161128
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161149
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161211
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161232
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161253
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161314
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161335
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu_best.pth...20251113_161357
+...plot saved to 15_exp/plots/plots_FloydWarshallDataset_vanilla_0.0001_100_20251113_153741_relu.png...
