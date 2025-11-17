@@ -596,7 +596,8 @@ class SimpleTransformerModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # print('current size 0: ', x.size())
-        x = self.append_positional_encoding(x, self.identity_pe(x.size(1)))
+        pe = self.sin_pos_embedding(x)#self.identity_pe(x.size(1))
+        x = self.append_positional_encoding(x, pe)
         # print('current size 1: ', x.size())
         # print(self.input_linear)
         x = self.input_linear(x) # [B, S]
@@ -628,3 +629,20 @@ class SimpleTransformerModel(nn.Module):
 
     def identity_pe(self, n):
         return torch.eye(n).cuda()
+
+    def sin_pos_embedding(self, x):
+        seq_len = x.size(1)
+        d_model = x.size(2)
+        pe = torch.zeros(seq_len, d_model)
+        position = torch.arange(seq_len, dtype=torch.float).unsqueeze(1)
+
+        div_term = torch.exp(
+            torch.arange(0, d_model, 2, dtype=torch.float) *
+            (-math.log(10000.0) / d_model)
+        )
+
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+
+        return pe
+
