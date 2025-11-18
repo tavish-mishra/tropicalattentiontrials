@@ -612,8 +612,8 @@ class SimpleTransformerModel(nn.Module):
             out = self.output_ffn(x) # [B, S, 1]
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
-        print('current size 4: ', out.size())
-        print(out)
+        #print('current size 4: ', out.size())
+        #print(out)
         return out
 
     def append_positional_encoding(self, x, pe):
