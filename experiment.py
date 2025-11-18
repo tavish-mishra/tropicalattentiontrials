@@ -431,7 +431,6 @@ class Experiment:
     
             # forward
             pred = self.model(x)
-            break
             # ----- loss -----
             if self.model.classification:
                 # Pointer-style: per-node binary outputs (no pooling) with same shape as targets
