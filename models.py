@@ -596,7 +596,7 @@ class SimpleTransformerModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # print('current size 0: ', x.size())
-        pe = self.sin_pos_embedding(x)#self.identity_pe(x.size(1))
+        pe = self.identity_pe(x.size(1))
         x = self.append_positional_encoding(x, pe)
         # print('current size 1: ', x.size())
         # print(self.input_linear)
