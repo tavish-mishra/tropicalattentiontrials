@@ -114,6 +114,9 @@ class Experiment:
             # 3) Pick the most recent by modification time
             candidates.sort(key=os.path.getmtime, reverse=True)
             ckpt_path = candidates[0]
+
+            #LET US SEE WHAT HAPPENS HERE
+            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251114_080805_relu_best.pth'
     
             # 4) Load and record which model we evaluated
             state_dict = torch.load(ckpt_path, map_location=self.device)
@@ -223,6 +226,8 @@ class Experiment:
             for x, y in dl_to_use:                         # x: (B, n, d),  y: (B, …)
                 x, y = x.to(self.device), y.to(self.device)
                 pred = self.model(x)                      # shape depends on model
+                print('y', y)
+                print('pred', pred)
 
                 # ------------- classification ------------- #
                 if self.model.classification:
@@ -433,7 +438,6 @@ class Experiment:
             pred = self.model(x)
             print('pred', pred)
             print('y', y)
-            break
             # ----- loss -----
             if self.model.classification:
                 # Pointer-style: per-node binary outputs (no pooling) with same shape as targets
