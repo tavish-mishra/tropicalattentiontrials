@@ -228,6 +228,7 @@ class Experiment:
                 pred = self.model(x)                      # shape depends on model
                 print('y', y)
                 print('pred', pred)
+                break
 
                 # ------------- classification ------------- #
                 if self.model.classification:
