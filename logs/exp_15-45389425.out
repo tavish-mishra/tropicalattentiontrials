@@ -1,0 +1,29 @@
+CUDA available? True
+GPU device: NVIDIA A100-SXM4-40GB
+CUDA_VISIBLE_DEVICES=0,1,2,3
+SLURM_JOB_GPUS=0,1,2,3
+
+ Running config: {'task': 'train', 'model_type': 'tropical', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 64, 'n_heads': 4, 'num_layers': 3, 'num_epochs': 1, 'dropout': 0.05, 'lr': 0.0001, 'seed': 999, 'n_samples': 100000, 'batch_size': 16, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'noise_prob': 0, 'value_range': '(1,15)'}
+FloydWarshallDataset_tropical_0.0001_1_20251119_111942_relu
+...setting dataloader...20251119_111942
+...setting model object...20251119_112005
+3
+...training model...20251119_112006
+pred tensor([[-0.5501, -0.7014,  0.3115,  ...,  0.1414,  0.3335, -0.4846],
+        [-0.5058, -0.5820,  0.3851,  ...,  0.1177,  0.2627, -0.3939],
+        [-0.4615, -0.4582,  0.3745,  ...,  0.1319,  0.2630, -0.3171],
+        ...,
+        [-0.4706, -0.4662,  0.3127,  ...,  0.1112,  0.3351, -0.3684],
+        [-0.5355, -0.6072,  0.3616,  ...,  0.1261,  0.2776, -0.3980],
+        [-0.4887, -0.3816,  0.4257,  ...,  0.0830,  0.2508, -0.3509]],
+       device='cuda:0', grad_fn=<SqueezeBackward1>)
+y tensor([[  0.0000,  15.1424,  16.2937,  ...,  11.0528,   2.1361,   0.0000],
+        [  0.0000, 121.0000, 121.0000,  ...,  13.2385,   6.3960,   0.0000],
+        [  0.0000,  13.9996,  10.5937,  ...,   5.6898,   6.4025,   0.0000],
+        ...,
+        [  0.0000,  10.3782,  12.8429,  ...,   9.3999,  13.3654,   0.0000],
+        [  0.0000, 121.0000, 121.0000,  ...,   7.6094,   4.1162,   0.0000],
+        [  0.0000,   9.2412,   3.5210,  ...,   5.7177,   9.8476,   0.0000]],
+       device='cuda:0')
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_1_20251119_111942_relu_best.pth...20251119_112055
+...plot saved to 15_exp/plots/plots_FloydWarshallDataset_tropical_0.0001_1_20251119_111942_relu.png...
