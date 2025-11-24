@@ -1223,7 +1223,8 @@ class FloydWarshallDataset(Dataset):
             if n <= 0: continue
             
             p_sample = random.uniform(*self.p_range)
-            W = self._generate_er_graph(n, p_sample, self.weight_range)
+            #W = self._generate_er_graph(n, p_sample, self.weight_range)
+            W = self._generate_random_tree(n, self.weight_range)
             
             W_features = np.copy(W)
             W_features[np.isinf(W_features)] = 0.0
@@ -1278,6 +1279,42 @@ class FloydWarshallDataset(Dataset):
         weights = np.random.uniform(low=low, high=high, size=(n, n))
         symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
         
+        W = np.full((n, n), np.inf, dtype=float)
+        W[adj == 1] = symmetric_weights[adj == 1]
+        np.fill_diagonal(W, 0.0)
+        return W
+
+    def _generate_random_tree(self, n: int, weight_range: tuple[float, float]) -> np.ndarray:
+        """
+        Generates a weighted, undirected random tree with float weights.
+        Maintains the same semantics as the original ER version:
+          - W[i, j] = edge weight if edge exists
+          - W[i, j] = inf if no edge
+          - W[i, i] = 0
+          - weights are symmetric float values
+        """
+
+        low, high = weight_range
+        prufer = np.random.randint(0, n, size=n - 2)
+        degree = np.ones(n, dtype=int)
+        for x in prufer:
+            degree[x] += 1
+        adj = np.zeros((n, n), dtype=int)
+        leaf_set = set(np.where(degree == 1)[0])
+        for x in prufer:
+            leaf = min(leaf_set)
+            leaf_set.remove(leaf)
+            adj[leaf, x] = 1
+            adj[x, leaf] = 1
+            degree[leaf] -= 1
+            degree[x] -= 1
+            if degree[x] == 1:
+                leaf_set.add(x)
+        remaining = list(leaf_set)
+        a, b = remaining[0], remaining[1]
+        adj[a, b] = adj[b, a] = adj[b, a] = 1
+        weights = np.random.uniform(low=low, high=high, size=(n, n))
+        symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
         W = np.full((n, n), np.inf, dtype=float)
         W[adj == 1] = symmetric_weights[adj == 1]
         np.fill_diagonal(W, 0.0)
