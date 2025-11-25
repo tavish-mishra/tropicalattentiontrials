@@ -149,7 +149,7 @@ class Experiment:
                                             aggregator='softmax' if self.model_type == 'vanilla' else 'adaptive',
                                             activation=self.activation).to(self.device)
 
-        print(self.model.num_layers)
+        #print(self.model.num_layers)
     
     def _save_model(self, best: bool = False):
         model_folder = os.path.join(self.top_cat, "models")
@@ -226,8 +226,8 @@ class Experiment:
             for x, y in dl_to_use:                         # x: (B, n, d),  y: (B, …)
                 x, y = x.to(self.device), y.to(self.device)
                 pred = self.model(x)                      # shape depends on model
-                print('y', y)
-                print('pred', pred)
+                #('y', y)
+                #print('pred', pred)
                 break
 
                 # ------------- classification ------------- #
@@ -437,8 +437,8 @@ class Experiment:
     
             # forward
             pred = self.model(x)
-            print('pred', pred)
-            print('y', y)
+            #print('pred', pred)
+            #print('y', y)
             # ----- loss -----
             if self.model.classification:
                 # Pointer-style: per-node binary outputs (no pooling) with same shape as targets
