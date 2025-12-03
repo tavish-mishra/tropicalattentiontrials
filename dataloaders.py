@@ -1250,7 +1250,7 @@ class FloydWarshallDataset(Dataset):
             # --- END OF CHANGES ---
 
             # Prepare input tensor x_t (this part is unchanged)
-            flat_W = W_features.flatten()
+            flat_W = W_features#W_features.flatten()
             features = [torch.tensor(flat_W, dtype=torch.float).unsqueeze(-1)]
             indices = np.arange(n * n)
             norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n * n)
@@ -1285,15 +1285,6 @@ class FloydWarshallDataset(Dataset):
         return W
 
     def _generate_random_tree(self, n: int, weight_range: tuple[float, float]) -> np.ndarray:
-        """
-        Generates a weighted, undirected random tree with float weights.
-        Maintains the same semantics as the original ER version:
-          - W[i, j] = edge weight if edge exists
-          - W[i, j] = inf if no edge
-          - W[i, i] = 0
-          - weights are symmetric float values
-        """
-
         low, high = weight_range
         prufer = np.random.randint(0, n, size=n - 2)
         degree = np.ones(n, dtype=int)

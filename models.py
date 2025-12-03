@@ -591,12 +591,13 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_ffn = nn.Linear(d_model, num_classes)#nn.Sequential(nn.Linear(d_model, 256), nn.ReLU(), nn.Linear(256, num_classes))
+        self.output_ffn = nn.Sequential(nn.Linear(d_model, 64), nn.ReLU(), nn.Linear(64, num_classes))#nn.Linear(d_model, num_classes)#
         self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # print('current size 0: ', x.size())
         pe = self.identity_pe(x.size(1))
+        print(x.size(), pe.size())
         x = self.append_positional_encoding(x, pe)
         # print('current size 1: ', x.size())
         # print(self.input_linear)
