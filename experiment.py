@@ -437,7 +437,6 @@ class Experiment:
     
             # forward
             pred = self.model(x)
-            break
             #print('pred', pred)
             #print('y', y)
             # ----- loss -----
