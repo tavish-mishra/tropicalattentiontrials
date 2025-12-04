@@ -1257,6 +1257,8 @@ class FloydWarshallDataset(Dataset):
             norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros((n, n))
             features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
             features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
+            for f in features:
+                print(f.size())
             x_t = torch.cat(features, dim=-1)
 
             # Noise addition (unchanged)
