@@ -1252,7 +1252,7 @@ class FloydWarshallDataset(Dataset):
             # Prepare input tensor x_t (this part is unchanged)
             flat_W = W_features#W_features.flatten()
             features = [torch.tensor(flat_W, dtype=torch.float).unsqueeze(-1)]
-            indices = np.arange(n * n)
+            indices = np.arange((n, n))
             norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros((n, n))
             norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros((n, n))
             features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
