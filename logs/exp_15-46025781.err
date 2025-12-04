@@ -1,0 +1,16 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 572, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 99, in run
+    self.set_dataloader()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 166, in set_dataloader
+    self.dataset = self.dict_dataset['class'](n_samples = self.n_samples,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/dataloaders.py", line 1255, in __init__
+    indices = np.arange((n, n))
+              ^^^^^^^^^^^^^^^^^
+TypeError: arange: scalar arguments expected instead of a tuple.
