@@ -579,6 +579,7 @@ class SimpleTransformerModel(nn.Module):
         if tropical:
             attn_cls = tropical_attention_cls
 
+        self.gnn_enc = GNNEncoder(in_channels=3, hidden_channels=8, out_channels=3)
         self.encoder = TransformerEncoder(
             d_model=d_model,
             n_heads=n_heads,
@@ -596,8 +597,9 @@ class SimpleTransformerModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # print('current size 0: ', x.size())
+        x = self.gnn_enc(x)
         pe = self.identity_pe(x.size(1))
-        print(x.size(), pe.size())
+        #print(x.size(), pe.size())
         x = self.append_positional_encoding(x, pe)
         # print('current size 1: ', x.size())
         # print(self.input_linear)
@@ -654,3 +656,41 @@ class SimpleTransformerModel(nn.Module):
 
         return pe
 
+
+class GNNEncoder(nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels, num_layers=2):
+        """
+        Args:
+            in_channels (int): Number of input adjacency channels (e.g., 3)
+            hidden_channels (int): Hidden dimension
+            out_channels (int): Output embedding dimension per node pair
+            num_layers (int): Number of GNN layers
+        """
+        super(GNNEncoder, self).__init__()
+        self.num_layers = num_layers
+        self.layers = nn.ModuleList()
+        self.layers.append(nn.Linear(in_channels, hidden_channels))
+        for _ in range(num_layers - 2):
+            self.layers.append(nn.Linear(hidden_channels, hidden_channels))
+        self.layers.append(nn.Linear(hidden_channels, out_channels))
+
+    def forward(self, A):
+        """
+        Args:
+            A: Dense adjacency tensor [n, n, in_channels]
+
+        Returns:
+            pairwise_embeddings: Tensor [n, n, out_channels]
+        """
+        x = A  # shape [n, n, in_channels]
+
+        for layer in self.layers[:-1]:
+            # Linear transformation
+            x = layer(x)  # [n, n, hidden_channels]
+            # Message passing: aggregate along rows and columns
+            x = x + torch.matmul(A.sum(dim=2), x)  # row-wise aggregation
+            x = x + torch.matmul(x, A.sum(dim=2))  # column-wise aggregation
+            x = F.relu(x)
+
+        x = self.layers[-1](x)  # final layer
+        return x
