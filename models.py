@@ -617,16 +617,23 @@ class SimpleTransformerModel(nn.Module):
         #print(out)
         return out
 
+    # def append_positional_encoding(self, x, pe):
+    #     # Add positional encoding `pe` to input data `x`
+    #     # Input `x` should have dimension [batch_size, seq_len, embed_dim]
+    #     # Input `pe` should have dimension [seq_len, pe_dim]
+    #     # Output has dimension [batch_size, seq_len, embed_dim + pe_dim]
+    #
+    #     pe = pe.unsqueeze(0)
+    #     pe = torch.repeat_interleave(pe, x.size(0), dim=0).cuda()
+    #     #print(x.size(), pe.size())
+    #     return torch.cat([x, pe], dim=-1)
     def append_positional_encoding(self, x, pe):
-        # Add positional encoding `pe` to input data `x`
-        # Input `x` should have dimension [batch_size, seq_len, embed_dim]
-        # Input `pe` should have dimension [seq_len, pe_dim]
-        # Output has dimension [batch_size, seq_len, embed_dim + pe_dim]
+        # add channel dimension -> [8, 8, 1]
+        pe = pe.unsqueeze(-1)
 
-        pe = pe.unsqueeze(0)
-        pe = torch.repeat_interleave(pe, x.size(0), dim=0).cuda()
-        #print(x.size(), pe.size())
-        return torch.cat([x, pe], dim=-1)
+        # broadcast to batch automatically during cat
+        # no need to manually repeat
+        return torch.cat([x, pe.expand(x.size(0), -1, -1, -1)], dim=-1)
 
     def identity_pe(self, n):
         return torch.eye(n).cuda()
