@@ -498,8 +498,8 @@ class Experiment:
 
     def train_model(self):
         print(f'...training model...{self._time_string()}')
-        self.optimizer = schedulefree.RAdamScheduleFree(self.model.parameters(), lr=self.lr)
-        #self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
+        #self.optimizer = schedulefree.RAdamScheduleFree(self.model.parameters(), lr=self.lr)
+        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
         self._write_to_csv('w', 'train', ['epoch', 'batch', 'loss', 'time'])
         #self._write_to_csv('w', 'validation', ['epoch', 'val_loss', 'val_f1', 'best_up_to_now', 'time'])
         #loss_measure = True
