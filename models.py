@@ -358,99 +358,6 @@ def trop_norm(x: torch.Tensor) -> torch.Tensor:
     """
     return x - x.max(dim=-1, keepdim=True).values
 
-
-class TropicalAttention_(nn.Module):
-    """
-    Multi-head attention in the tropical (max,+) semiring, with optional smooth softmax
-    and per-head tropical Plücker embedding.
-    """
-    def __init__(
-        self,
-        d_model: int,
-        n_heads: int,
-        tau: float = 10.0,
-        use_tropical_sinkhorn: bool = False,
-        sinkhorn_iterations: int = 2,
-        max_plus: bool = True
-    ):
-        super().__init__()
-        assert d_model % n_heads == 0
-        self.n_heads = n_heads
-        self.d_k = d_model // n_heads
-        self.tau = tau
-        #self.use_softmax = use_softmax
-        self.use_tropical_sinkhorn = use_tropical_sinkhorn
-        self.sinkhorn_iterations = sinkhorn_iterations
-        self.max_plus = max_plus
-
-        # Linear maps for Q, K, V and final projection
-        self.query_linear = nn.Linear(d_model, d_model, bias=False)
-        self.key_linear   = nn.Linear(d_model, d_model, bias=False)
-        self.value_linear = nn.Linear(d_model, d_model, bias=False)
-        self.out = nn.Linear(d_model, d_model, bias=False)
-
-        # Per-head tropical Plücker embedding (rank d=2)
-        self.plucker = PluckerTropicalSpace(n=self.d_k, d=2, tau=self.tau)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        x: (B, S, d_model)
-        returns: (B, S, d_model)
-        """
-        B, S, _ = x.shape
-
-        # 1) Linear projections
-        q = self.query_linear(x)  # (B, S, d_model)
-        k = self.key_linear(x)
-        v = self.value_linear(x)
-
-        # 2) Split heads
-        q = q.view(B, S, self.n_heads, self.d_k).permute(0, 2, 1, 3)  # (B, H, S, d_k)
-        k = k.view(B, S, self.n_heads, self.d_k).permute(0, 2, 1, 3)
-        v = v.view(B, S, self.n_heads, self.d_k).permute(0, 2, 1, 3)
-
-        # 3) Projective normalization into TP^{d_k - 1}
-        #q = trop_norm(torch.log1p(F.relu(q)))
-        #k = trop_norm(torch.log1p(F.relu(k)))
-        #v = trop_norm(torch.log1p(F.relu(v)))
-        q = torch.log1p(trop_norm(q))
-        k = torch.log1p(trop_norm(k))
-        v = torch.log1p(trop_norm(v))
-
-        # 4) Per-head tropical Plücker map
-        last_q = self.plucker(q.reshape(-1, S, self.d_k)).view(B, self.n_heads, S, self.d_k)
-        last_k = self.plucker(k.reshape(-1, S, self.d_k)).view(B, self.n_heads, S, self.d_k)
-        last_v = self.plucker(v.reshape(-1, S, self.d_k)).view(B, self.n_heads, S, self.d_k)
-        self.last_q = last_q.clone()
-        self.last_k = last_k.clone()
-        self.last_v = last_v.clone()
-
-
-        # 5) Compute tropical distances / similarities
-        #   d_trop(q, k) = max_i(q_i - k_i) - min_i(q_i - k_i)
-        diff = q.unsqueeze(3) - k.unsqueeze(2)  # (B, H, S_q, S_k, d_k)
-        max_diff = diff.max(dim=-1).values  # (B, H, S_q, S_k)
-        min_diff = diff.min(dim=-1).values  # (B, H, S_q, S_k)
-        scores = - (max_diff - min_diff)
-
-        if self.use_tropical_sinkhorn:
-            scores = tropical_sinkhorn_normalization(
-                scores, iterations=self.sinkhorn_iterations, max_plus=self.max_plus
-            )
-
-        # 7) Aggregate values: context[i] = max_j(scores[i,j] + v[j])
-        sum_sv = scores.unsqueeze(-1) + v.unsqueeze(2)  # (B,H,S_q,S_k,d_k)
-        if self.max_plus:
-            context = sum_sv.max(dim=3).values  # (B,H,S_q,d_k)
-        else:
-            context = sum_sv.min(dim=3).values
-
-        # 8) Merge heads and final linear
-        context = torch.expm1(context)
-        context = context.permute(0, 2, 1, 3).contiguous().view(B, S, self.d_model)
-        output = self.out(context)
-        return output, scores
-
 class TransformerBlock(nn.Module):
     def __init__(
         self,
@@ -596,8 +503,9 @@ class SimpleTransformerModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # print('current size 0: ', x.size())
+        B, N, _, F = x.shape
+        x = x.reshape(B, N, N * F)
         pe = self.identity_pe(x.size(1))
-        print(x.size(), pe.size())
         x = self.append_positional_encoding(x, pe)
         # print('current size 1: ', x.size())
         # print(self.input_linear)
@@ -633,7 +541,7 @@ class SimpleTransformerModel(nn.Module):
 
         # broadcast to batch automatically during cat
         # no need to manually repeat
-        return torch.cat([x, pe.expand(x.size(0), -1, -1, -1)], dim=-1)
+        return torch.cat([x, pe.expand(x.size(0), -1, -1)], dim=-1)
 
     def identity_pe(self, n):
         return torch.eye(n).cuda()
