@@ -541,7 +541,7 @@ class SimpleTransformerModel(nn.Module):
 
         # broadcast to batch automatically during cat
         # no need to manually repeat
-        pe = pe.unsqueeze(0).unsqueeze(-1)
+        pe = pe.unsqueeze(0)
         pe = pe.expand(x.size(0), -1, -1, -1)
         x = torch.cat([x, pe], dim=-1)
         return x
