@@ -523,6 +523,7 @@ class SimpleTransformerModel(nn.Module):
             out = out.squeeze(-1) # [B, S] or [B]
         #print('current size 4: ', out.size())
         #print(out)
+        out = out.reshape(out.size(0), 64)
         return out
 
     # def append_positional_encoding(self, x, pe):
