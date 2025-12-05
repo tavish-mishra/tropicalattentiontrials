@@ -98,6 +98,97 @@ class SubsetSumDecisionDataset(Dataset):
 
 
 
+class FloydWarshallStepDataset(Dataset):
+    """
+    Single-step Floyd–Warshall dataset.
+
+    Uses the same sampling logic as FloydWarshallDataset but targets a single FW
+    update with pivot k=0. Inputs are (weight-like distance, normalized row,
+    normalized col); targets are the updated distances (regression).
+    """
+    def __init__(
+        self,
+        n_samples: int = 1000,
+        length_range: tuple[int, int] = (4, 4),
+        p_range: tuple[float, float] = (0.5, 0.9),
+        value_range: tuple[float, float] = (0.0, 0.2),
+        noise_prob: float = 0.0,
+        adversarial_range: tuple[float, float] = (0.1, 0.5),
+        seed: int = 42,
+        **kwargs
+    ):
+        super().__init__()
+        random.seed(seed)
+        np.random.seed(seed)
+
+        self.n_samples = n_samples
+        self.length_range = length_range
+        self.p_range = p_range
+        self.weight_range = value_range
+        self.noise_prob = noise_prob
+        self.adversarial_range = adversarial_range
+
+        large_missing = 1e6
+        self.data = []
+        for _ in range(n_samples):
+            n = random.randint(*self.length_range)
+            if n <= 0:
+                continue
+
+            p_sample = random.uniform(*self.p_range)
+            W = self._generate_er_graph(n, p_sample, self.weight_range)
+
+            # Initial distance matrix D0
+            D0 = np.copy(W)
+            D0[np.isinf(D0)] = large_missing
+
+            # One FW step with pivot k=0: D1 = min(D0, D0[:,0] + D0[0,:])
+            col0 = D0[:, 0:1]
+            row0 = D0[0:1, :]
+            D1 = np.minimum(D0, col0 + row0)
+
+            # Input features: distance from D0 + normalized indices -> shape (n^2, 3)
+            flat_D0 = D0.flatten()
+            features = [torch.tensor(flat_D0, dtype=torch.float).unsqueeze(-1)]
+            indices = np.arange(n * n)
+            norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n * n)
+            norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros(n * n)
+            features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
+            features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
+            x_t = torch.cat(features, dim=-1)
+
+            # Optional noise on distance feature
+            if self.noise_prob > 0:
+                for k_idx in range(n * n):
+                    if (k_idx // n) != (k_idx % n) and random.random() < self.noise_prob:
+                        jitter_val = random.uniform(*self.adversarial_range)
+                        x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
+
+            y_t = torch.tensor(D1.flatten(), dtype=torch.float)
+            self.data.append((x_t, y_t))
+
+    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
+        """
+        Generates a weighted, undirected Erdos-Renyi random graph with float weights.
+        """
+        low, high = weight_range
+        adj = np.random.binomial(1, p, size=(n, n))
+        adj = adj * adj.T
+        weights = np.random.uniform(low=low, high=high, size=(n, n))
+        symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
+
+        W = np.full((n, n), np.inf, dtype=float)
+        W[adj == 1] = symmetric_weights[adj == 1]
+        np.fill_diagonal(W, 0.0)
+        return W
+
+    def __len__(self):
+        return self.n_samples
+
+    def __getitem__(self, idx):
+        return self.data[idx]
+
+
 def set_max_subset_sum(x):
     """Maximum achievable subset-sum (empty set allowed)."""
     possible = {0}

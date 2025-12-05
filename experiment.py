@@ -49,6 +49,7 @@ class Experiment:
             'ConvexHullDataset': {'class': ConvexHullDataset, 'classification': True, 'pool': False}, 
             'ThreeSumDecisionDataset': {'class': ThreeSumDecisionDataset, 'classification': True, 'pool': True},
             'FloydWarshallDataset': {'class': FloydWarshallDataset, 'classification': True, 'pool': False},
+            'FloydWarshallStepDataset': {'class': FloydWarshallStepDataset, 'classification': False, 'pool': False},
             'SCCDataset': {'class': SCCDataset, 'classification': True, 'pool': False},
             'LISDataset': {'class': LISDataset, 'classification': False, 'pool': True}
         }
