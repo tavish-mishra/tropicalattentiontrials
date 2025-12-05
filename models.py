@@ -541,7 +541,7 @@ class SimpleTransformerModel(nn.Module):
 
         # broadcast to batch automatically during cat
         # no need to manually repeat
-        return torch.cat([x, pe.expand(x.size(0), -1, -1)], dim=-1)
+        return torch.cat([x, pe.expand(x.size(0), -1, -1, -1)], dim=-1)
 
     def identity_pe(self, n):
         return torch.eye(n).cuda()
