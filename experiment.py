@@ -212,7 +212,7 @@ class Experiment:
 
     def _eval_one_epoch(self, type: str = "test"):
         self.model.eval()
-        self.optimizer.eval()
+        #self.optimizer.eval()
         losses, total_loss = [], 0.0
         all_preds, all_targets, all_masks = [], [], []  # masks only for pointer metric
 
@@ -379,7 +379,7 @@ class Experiment:
 
     def _train_one_epoch(self, epoch):
         self.model.train()
-        self.optimizer.train()
+        #self.optimizer.train()
         total_loss_val = 0
         use_log_scale = False
         #print(self.model.classification, self.model.output_linear.out_features)
@@ -417,7 +417,7 @@ class Experiment:
 
     def _train_one_epoch(self, epoch):
         self.model.train()
-        self.optimizer.train()
+        #self.optimizer.train()
     
         total_loss_val = 0.0
         seen_samples = 0
