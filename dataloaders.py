@@ -1223,8 +1223,8 @@ class FloydWarshallDataset(Dataset):
             if n <= 0: continue
             
             p_sample = random.uniform(*self.p_range)
-            #W = self._generate_er_graph(n, p_sample, self.weight_range)
-            W = self._generate_random_tree(n, self.weight_range)
+            W = self._generate_er_graph(n, p_sample, self.weight_range)
+            #W = self._generate_random_tree(n, self.weight_range)
             
             W_features = np.copy(W)
             W_features[np.isinf(W_features)] = 0.0
@@ -1250,11 +1250,11 @@ class FloydWarshallDataset(Dataset):
             # --- END OF CHANGES ---
 
             # Prepare input tensor x_t (this part is unchanged)
-            flat_W = W_features#W_features.flatten()
+            flat_W = W_features.flatten()
             features = [torch.tensor(flat_W, dtype=torch.float).unsqueeze(-1)]
-            indices = np.arange(n*n).reshape((n, n))
-            norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros((n, n))
-            norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros((n, n))
+            indices = np.arange(n*n)#.reshape((n, n))
+            norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n*n)
+            norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros(n*n)
             features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
             features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
             # for f in features:
