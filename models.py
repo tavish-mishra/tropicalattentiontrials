@@ -571,7 +571,7 @@ class SimpleTransformerModel(nn.Module):
         activation: str = 'relu',
     ):
         super().__init__()
-        self.input_linear = nn.Linear(67, d_model)
+        self.input_linear = nn.Linear(4, d_model)
         self.classification = classification
 
         # Choose attention class
