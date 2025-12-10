@@ -1221,8 +1221,8 @@ class FloydWarshallDataset(Dataset):
         for _ in range(n_samples):
             n = random.randint(*self.length_range)
             if n <= 0: continue
-            
-            p_sample = random.uniform(*self.p_range)
+            p_low, p_high = self.p_range            
+            p_sample = random.uniform(np.sqrt(p_low), np.sqrt(p_high))
             #W = self._generate_er_graph(n, p_sample, self.weight_range)
             W = self._generate_random_tree(n, self.weight_range)
             

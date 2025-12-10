@@ -1,0 +1,10 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+/var/spool/slurmd/job46302065/slurm_script: line 20: /global/homes/t/tmishra/miniconda3/etc/profile.d/conda.sh: No such file or directory
+/var/spool/slurmd/job46302065/slurm_script: line 21: conda: command not found
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 11, in <module>
+    import schedulefree
+ModuleNotFoundError: No module named 'schedulefree'
