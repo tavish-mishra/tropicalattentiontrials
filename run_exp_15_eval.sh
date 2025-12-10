@@ -2,7 +2,7 @@
 #SBATCH -A m4790
 #SBATCH -C gpu
 #SBATCH -q regular
-#SBATCH -t 01:00:00
+#SBATCH -t 04:00:00
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gpus-per-node=1
@@ -15,9 +15,8 @@ mkdir -p logs
 
 module load cudatoolkit
 module load pytorch
+module load conda
 
-# Activate conda environment
-source ~/miniconda3/etc/profile.d/conda.sh
 conda activate tropical_attention
 
 export OMP_NUM_THREADS=10
