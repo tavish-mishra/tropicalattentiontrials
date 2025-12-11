@@ -116,7 +116,7 @@ class Experiment:
             ckpt_path = candidates[0]
 
             #LET US SEE WHAT HAPPENS HERE
-            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_100_20251114_080805_relu_best.pth'
+            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20251205_163813_relu_best.pth'
     
             # 4) Load and record which model we evaluated
             state_dict = torch.load(ckpt_path, map_location=self.device)
