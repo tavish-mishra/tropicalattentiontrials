@@ -1,0 +1,15 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 571, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 125, in run
+    self.model.load_state_dict(state_dict)
+  File "/global/homes/t/tmishra/.conda/envs/tropical_attention/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2581, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for SimpleTransformerModel:
+	Missing key(s) in state_dict: "encoder.layers.3.attn.lambda_param", "encoder.layers.3.attn.query_linear.weight", "encoder.layers.3.attn.key_linear.weight", "encoder.layers.3.attn.value_linear.weight", "encoder.layers.3.attn.out.weight", "encoder.layers.3.attn.query_trop.W", "encoder.layers.3.attn.key_trop.W", "encoder.layers.3.attn.value_trop.W", "encoder.layers.3.ff.0.weight", "encoder.layers.3.ff.0.bias", "encoder.layers.3.ff.2.weight", "encoder.layers.3.ff.2.bias", "encoder.layers.3.norm1.weight", "encoder.layers.3.norm1.bias", "encoder.layers.3.norm2.weight", "encoder.layers.3.norm2.bias", "output_ffn.0.weight", "output_ffn.0.bias", "output_ffn.2.weight", "output_ffn.2.bias". 
+	Unexpected key(s) in state_dict: "output_ffn.weight", "output_ffn.bias". 
+	size mismatch for input_linear.weight: copying a param with shape torch.Size([64, 67]) from checkpoint, the shape in current model is torch.Size([64, 32]).
