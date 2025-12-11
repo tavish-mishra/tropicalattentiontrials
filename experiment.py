@@ -101,7 +101,7 @@ class Experiment:
         if self.task == 'evaluate':
             model_dir = os.path.join(self.top_cat, "models")
             # 1) Prefer an explicitly saved "best" checkpoint
-            best_pattern = os.path.join(model_dir, f"{self.base_pattern}*_best.pth")
+            best_pattern = os.path.join(model_dir, 'FloydWarshallDataset_tropical_0.0001_20000_20251205_163813_relu_best.pth')#f"{self.base_pattern}*_best.pth")
             candidates = glob.glob(best_pattern)
             # 2) If no best checkpoint, fall back to any matching checkpoint
             if not candidates:
@@ -228,7 +228,6 @@ class Experiment:
                 pred = self.model(x)                      # shape depends on model
                 #('y', y)
                 #print('pred', pred)
-                break
 
                 # ------------- classification ------------- #
                 if self.model.classification:
