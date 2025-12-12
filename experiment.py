@@ -207,7 +207,7 @@ class Experiment:
         if hasattr(self.optimizer, "eval"):
             self.optimizer.eval()
 
-        losses, total_loss = [], 0.0
+        losses, total_loss, total_weight = [], 0.0, 0.0
         all_preds, all_targets, all_masks = [], [], []  # masks only for pointer metric
 
         dl_to_use = (
@@ -217,7 +217,16 @@ class Experiment:
         )
 
         with torch.no_grad():
-            for x, y in dl_to_use:
+            for batch in dl_to_use:
+                valid = None
+                # Support datasets that return a mask (e.g., FloydWarshallStepDataset)
+                if self.dataset_name == "FloydWarshallStepDataset" and len(batch) == 3:
+                    x, y, y_mask = batch
+                    y_mask = y_mask.to(self.device)
+                else:
+                    x, y = batch
+                    y_mask = None
+
                 x, y = x.to(self.device), y.to(self.device)
                 pred = self.model(x)
 
@@ -263,13 +272,28 @@ class Experiment:
 
                 # ------------- regression ------------- #
                 else:
-                    batch_loss = F.mse_loss(pred, y)
+                    if y_mask is not None:
+                        valid = y_mask > 0
+                        if valid.any():
+                            batch_loss = F.mse_loss(pred[valid], y[valid])
+                        else:
+                            batch_loss = pred.sum() * 0.0
+                    else:
+                        batch_loss = F.mse_loss(pred, y)
 
                 losses.append(batch_loss.item())
-                total_loss += batch_loss.item() * x.size(0)
+                if y_mask is not None and valid is not None:
+                    batch_weight = valid.sum().item()
+                else:
+                    batch_weight = x.size(0)
+                if batch_weight == 0:
+                    batch_weight = 1  # avoid divide-by-zero downstream
+                total_loss += batch_loss.item() * batch_weight
+                total_weight += batch_weight
 
         # -------- aggregate metrics -------- #
-        avg_loss = total_loss / len(dl_to_use.dataset)
+        denom = total_weight if total_weight > 0 else len(dl_to_use.dataset)
+        avg_loss = total_loss / denom
         std_loss = float(np.std(losses, ddof=0))
 
         if self.model.classification:
@@ -425,12 +449,21 @@ class Experiment:
         # self.optimizer.train()
 
         total_loss_val = 0.0
+        total_weight = 0.0
         total_correct = 0
         total_samples = 0
         seen_samples = 0
         use_log_scale = False
 
-        for i, (x, y) in enumerate(self.train_loader, start=1):
+        for i, batch in enumerate(self.train_loader, start=1):
+            # Support datasets that return a mask (e.g., FloydWarshallStepDataset)
+            if self.dataset_name == "FloydWarshallStepDataset" and len(batch) == 3:
+                x, y, y_mask = batch
+                y_mask = y_mask.to(self.device)
+            else:
+                x, y = batch
+                y_mask = None
+
             x, y = x.to(self.device), y.to(self.device)
             if hasattr(self.optimizer, "zero_grad"):
                 try:
@@ -483,13 +516,26 @@ class Experiment:
 
             # --- Regression ---
             else:
-                if use_log_scale:
-                    loss = F.mse_loss(
-                        torch.log1p(F.relu(pred)),
-                        torch.log1p(F.relu(y))
-                    ).sqrt()
+                if y_mask is not None:
+                    valid = y_mask > 0
+                    if valid.any():
+                        if use_log_scale:
+                            loss = F.mse_loss(
+                                torch.log1p(F.relu(pred[valid])),
+                                torch.log1p(F.relu(y[valid]))
+                            ).sqrt()
+                        else:
+                            loss = F.mse_loss(pred[valid], y[valid])
+                    else:
+                        loss = pred.sum() * 0.0
                 else:
-                    loss = F.mse_loss(pred, y)
+                    if use_log_scale:
+                        loss = F.mse_loss(
+                            torch.log1p(F.relu(pred)),
+                            torch.log1p(F.relu(y))
+                        ).sqrt()
+                    else:
+                        loss = F.mse_loss(pred, y)
 
             # L1 reg (optional)
             l1_reg = 0.0
@@ -502,8 +548,16 @@ class Experiment:
             self.optimizer.step()
 
             batch_size = x.size(0)
+            if self.dataset_name == "FloydWarshallStepDataset" and y_mask is not None:
+                batch_weight = y_mask.sum().item()
+                if batch_weight == 0:
+                    batch_weight = 1  # keep denominator nonzero
+            else:
+                batch_weight = batch_size
+
             seen_samples += batch_size
-            total_loss_val += loss.item() * batch_size
+            total_weight += batch_weight
+            total_loss_val += loss.item() * batch_weight
 
             # Calculate running average loss & accuracy
             running_avg_loss = total_loss_val / seen_samples
@@ -513,7 +567,8 @@ class Experiment:
             if i % 10 == 0 or i == len(self.train_loader):
                 self._write_to_csv('a', 'train', [epoch, i, running_avg_loss, running_avg_acc, time.time()])
 
-        avg_loss = total_loss_val / len(self.train_loader.dataset)
+        denom = total_weight if total_weight > 0 else len(self.train_loader.dataset)
+        avg_loss = total_loss_val / denom
         avg_acc = (total_correct / total_samples) if total_samples > 0 else 0.0
         return avg_loss, avg_acc
 

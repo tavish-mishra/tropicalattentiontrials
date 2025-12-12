@@ -92,7 +92,8 @@ class SubsetSumDecisionDataset(Dataset):
             self.data.append((x_t, y_t))
 
     def __len__(self):
-        return self.n_samples
+        # Use actual populated size in case samples were skipped
+        return len(self.data)
     def __getitem__(self, idx):
         return self.data[idx]
 
@@ -110,7 +111,7 @@ class FloydWarshallStepDataset(Dataset):
         self,
         n_samples: int = 1000,
         length_range: tuple[int, int] = (4, 4),
-        p_range: tuple[float, float] = (0.5, 0.9),
+        p_range: tuple[float, float] = (math.sqrt(0.5), math.sqrt(0.9)),
         value_range: tuple[float, float] = (0.0, 0.2),
         noise_prob: float = 0.0,
         adversarial_range: tuple[float, float] = (0.1, 0.5),
@@ -138,17 +139,28 @@ class FloydWarshallStepDataset(Dataset):
             p_sample = random.uniform(*self.p_range)
             W = self._generate_er_graph(n, p_sample, self.weight_range)
 
-            # Initial distance matrix D0
-            D0 = np.copy(W)
-            D0[np.isinf(D0)] = large_missing
+            # Initial distance matrix D0 (keep a large sentinel for FW math)
+            D0_fw = np.copy(W)
+            D0_fw[np.isinf(D0_fw)] = large_missing
+
+            # Input view of D0: use -1 to mark missing edges instead of inf/large
+            # (Old behavior kept here for easy revert)
+            # old: D0_features = np.copy(W); D0_features[np.isinf(D0_features)] = large_missing
+            D0_features = np.copy(W)
+            D0_features[np.isinf(D0_features)] = -1.0
 
             # One FW step with pivot k=0: D1 = min(D0, D0[:,0] + D0[0,:])
-            col0 = D0[:, 0:1]
-            row0 = D0[0:1, :]
-            D1 = np.minimum(D0, col0 + row0)
+            col0 = D0_fw[:, 0:1]
+            row0 = D0_fw[0:1, :]
+            D1 = np.minimum(D0_fw, col0 + row0)
+            # Mark unreachable pairs with -1 for outputs as well
+            D1[np.isinf(D1)] = -1.0
+
+            # Mask: 1 where target is valid (reachable), 0 where unreachable
+            y_mask = torch.tensor((D1 != -1.0).astype(np.float32)).flatten()
 
             # Input features: distance from D0 + normalized indices -> shape (n^2, 3)
-            flat_D0 = D0.flatten()
+            flat_D0 = D0_features.flatten()
             features = [torch.tensor(flat_D0, dtype=torch.float).unsqueeze(-1)]
             indices = np.arange(n * n)
             norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n * n)
@@ -165,7 +177,8 @@ class FloydWarshallStepDataset(Dataset):
                         x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
 
             y_t = torch.tensor(D1.flatten(), dtype=torch.float)
-            self.data.append((x_t, y_t))
+            # Return mask alongside target for loss filtering
+            self.data.append((x_t, y_t, y_mask))
 
     def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
         """
@@ -183,7 +196,7 @@ class FloydWarshallStepDataset(Dataset):
         return W
 
     def __len__(self):
-        return self.n_samples
+        return len(self.data)
 
     def __getitem__(self, idx):
         return self.data[idx]
