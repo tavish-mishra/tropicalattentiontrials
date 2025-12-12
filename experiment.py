@@ -515,6 +515,7 @@ class Experiment:
             test_loss, _, test_f1 = self._eval_one_epoch()   # always uses test_loader
 
             if test_loss < best_metric:
+                print(f"At epoch {epoch}, test loss = {test_loss:.4f}")
                 best_metric = test_loss
                 self._save_model(best=True)
 
