@@ -153,11 +153,13 @@ class FloydWarshallStepDataset(Dataset):
             col0 = D0_fw[:, 0:1]
             row0 = D0_fw[0:1, :]
             D1 = np.minimum(D0_fw, col0 + row0)
-            # Mark unreachable pairs with -1 for outputs as well
-            D1[np.isinf(D1)] = -1.0
+
+            # Mark unreachable pairs (still at sentinel value) with -1 for outputs
+            unreachable_mask = (D1 >= large_missing - 1)  # Threshold to catch 1e6 values
+            D1[unreachable_mask] = -1.0
 
             # Mask: 1 where target is valid (reachable), 0 where unreachable
-            y_mask = torch.tensor((D1 != -1.0).astype(np.float32)).flatten()
+            y_mask = torch.tensor((~unreachable_mask).astype(np.float32)).flatten()
 
             # Input features: distance from D0 + normalized indices -> shape (n^2, 3)
             flat_D0 = D0_features.flatten()
