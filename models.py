@@ -503,11 +503,11 @@ class SimpleTransformerModel(nn.Module):
         self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        print('current size 0: ', x.size())
+        #print('current size 0: ', x.size())
         pe = self.identity_pe(x.size(1))
         x = self.append_positional_encoding(x, pe)
         projected_x = x#self.concat_proj(x)
-        print('projected x size: ', projected_x.size())
+        #print('projected x size: ', projected_x.size())
         B, N, _, F = x.shape
         x = x.reshape(B, N, N * F)
         # print('current size 1: ', x.size())
@@ -520,6 +520,8 @@ class SimpleTransformerModel(nn.Module):
         else:
             pooled = x
             #print('current size 2: ', pooled.size())
+        print(pooled.size())
+        print(projected_x.size())
         pooled = torch.cat([pooled, projected_x], dim=-1)
         print('pooled x size: ', pooled.size())
         out = self.output_ffn(pooled) # [B, 1]
