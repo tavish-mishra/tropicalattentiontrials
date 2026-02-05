@@ -506,7 +506,7 @@ class SimpleTransformerModel(nn.Module):
         #print('current size 0: ', x.size())
         pe = self.identity_pe(x.size(1))
         x = self.append_positional_encoding(x, pe)
-        projected_x = x#self.concat_proj(x)
+        projected_x = x.view(1000, -1)#self.concat_proj(x)
         #print('projected x size: ', projected_x.size())
         B, N, _, F = x.shape
         x = x.reshape(B, N, N * F)
