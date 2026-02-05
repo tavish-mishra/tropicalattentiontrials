@@ -486,6 +486,7 @@ class SimpleTransformerModel(nn.Module):
         if tropical:
             attn_cls = tropical_attention_cls
 
+        self.concat_proj = nn.Linear(input_dim, d_model)
         self.encoder = TransformerEncoder(
             d_model=d_model,
             n_heads=n_heads,
@@ -498,13 +499,15 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_ffn = nn.Sequential(nn.Linear(d_model, 64), nn.ReLU(), nn.Linear(64, num_classes))#nn.Linear(d_model, num_classes)#
+        self.output_ffn = nn.Sequential(nn.Linear(d_model * 2, 64), nn.ReLU(), nn.Linear(64, num_classes))#nn.Linear(d_model, num_classes)#
         self.num_layers = num_layers
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # print('current size 0: ', x.size())
+        #print('current size 0: ', x.size())
         pe = self.identity_pe(x.size(1))
         x = self.append_positional_encoding(x, pe)
+        projected_x = x#self.concat_proj(x)
+        #print('projected x size: ', projected_x.size())
         B, N, _, F = x.shape
         x = x.reshape(B, N, N * F)
         # print('current size 1: ', x.size())
@@ -514,11 +517,15 @@ class SimpleTransformerModel(nn.Module):
         #print('current size 1: ', x.size())
         if self.pool:
             pooled = x.mean(dim=1) # [B, d_model]
-            #print('current size 2: ', pooled.size())
-            out = self.output_ffn(pooled) # [B, 1]
-            #print('current size 3: ', out.size())
         else:
-            out = self.output_ffn(x) # [B, S, 1]
+            pooled = x
+            #print('current size 2: ', pooled.size())
+        print(pooled.size())
+        print(projected_x.size())
+        pooled = torch.cat([pooled, projected_x], dim=-1)
+        print('pooled x size: ', pooled.size())
+        out = self.output_ffn(pooled) # [B, 1]
+        #print('current size 3: ', out.size())
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
         #print('current size 4: ', out.size())
