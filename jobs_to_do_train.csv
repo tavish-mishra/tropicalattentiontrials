@@ -1,5 +1,5 @@
 task,model_type,dataset_name,input_dim,d_model,n_heads,num_layers,num_epochs,dropout,lr,seed,n_samples,batch_size,target_range,weight_range,adversarial_range,length_range,noise_prob,value_range
-train,vanilla,SubsetSumDecisionDataset,2,64,2,1,100,0,0.0001,999,100000,500,"(1,10)",na,"(10,30)","(8,8)",0,"(-5,5)"
+False,vanilla,SubsetSumDecisionDataset,2,64,2,1,100,0,0.0001,999,100000,500,"(1,10)",na,"(10,30)","(8,8)",0,"(-5,5)"
 train,vanilla,LISDataset,2,64,2,1,100,0,0.0001,999,100000,500,na,na,"(10,30)","(8,8)",0,"(1,10)"
 train,vanilla,KnapsackDataset,3,64,2,1,100,0,0.0001,999,100000,500,"(10,20)","(1,10)","(10,30)","(8,8)",0,"(1,10)"
 train,vanilla,FractionalKnapsackDataset,3,64,2,1,100,0,0.0001,999,100000,500,"(10,20)","(1,10)","(10,30)","(8,8)",0,"(1,10)"
@@ -46,3 +46,4 @@ train,tropical,FloydWarshallDataset,3,64,8,6,100,.05,0.0001,999,100000,16,na,na,
 train,vanilla,FloydWarshallDataset,3,64,8,6,100,.05,0.0001,999,100000,16,na,na,"(10,20)","(8,8)",0,"(1,15)"
 train,tropical,FloydWarshallDataset,3,64,4,4,20000,.05,0.0001,999,50000,1000,na,na,"(10,20)","(8,8)",0,"(1,15)"
 train,tropical,FloydWarshallDataset,3,32,4,4,20000,.05,0.0001,999,50000,1000,na,na,"(10,20)","(8,8)",0,"(1,15)"
+train,vanilla,FloydWarshallDataset,3,32,4,4,20000,.05,0.0001,999,50000,1000,na,na,"(10,20)","(8,8)",0,"(1,15)"

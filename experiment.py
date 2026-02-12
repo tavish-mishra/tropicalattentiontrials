@@ -37,7 +37,8 @@ class Experiment:
                  n_heads: int = 2, 
                  num_layers: int = 3,
                  dropout: float = 0.0,
-                 activation: str = 'relu'):
+                 activation: str = 'relu',
+                 skip : bool = False,):
         dict_datasets = {
             'SubsetSumDecisionDataset': {'class': SubsetSumDecisionDataset, 'classification': True, 'pool': True}, 
             'MaxSubsetSumDataset': {'class': MaxSubsetSumDataset, 'classification': True, 'pool': False},
@@ -65,6 +66,7 @@ class Experiment:
         self.experiment_type = experiment_type
         self.dict_dataset = dict_datasets[self.dataset_name]
         self.activation = activation
+        self.skip = skip
         
         # -- data --
         self.device = device
@@ -146,7 +148,8 @@ class Experiment:
                                             classification=self.dict_dataset['classification'],
                                             pool=self.dict_dataset['pool'],
                                             aggregator='softmax' if self.model_type == 'vanilla' else 'adaptive',
-                                            activation=self.activation).to(self.device)
+                                            activation=self.activation,
+                                            skip=self.skip).to(self.device)
 
         #print(self.model.num_layers)
     
@@ -539,7 +542,8 @@ if __name__ == "__main__":
     parser.add_argument("--job_file", type=str, default='jobs_to_do_train', help="job file to read")
     parser.add_argument("--tag", type=str, help="Experiment name")
     parser.add_argument("--job_id", type=int, default=-1, help="Row index in the CSV. Use -1 to sweep over every row.")
-    parser.add_argument("--activation", type=str, default='gelu', help="Activation function")
+    parser.add_argument("--activation", type=str, default='relu', help="Activation function")
+    parser.add_argument("--skip", type=bool, default=False, help="Whether or not to use skip connection")
     default_device = "cuda:0" if torch.cuda.is_available() else "cpu"
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
     args = parser.parse_args()
