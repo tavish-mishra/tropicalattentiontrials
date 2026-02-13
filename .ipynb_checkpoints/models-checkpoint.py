@@ -476,6 +476,7 @@ class SimpleTransformerModel(nn.Module):
         aggregator: str = 'softmax',
         num_classes:int = 1,
         activation: str = 'relu',
+        skip : bool = False,
     ):
         super().__init__()
         self.input_linear = nn.Linear(32, d_model)
@@ -498,8 +499,14 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_ffn = nn.Sequential(nn.Linear(320, 64), nn.ReLU(), nn.Linear(64, num_classes))#nn.Linear(d_model, num_classes)#
+        if skip:
+            output_in_dim = 256 + d_model
+        else:
+            output_in_dim = d_model
+        self.output_ffn = nn.Sequential(nn.Linear(output_in_dim, d_model), nn.ReLU(), nn.Linear(d_model, num_classes))
         self.num_layers = num_layers
+        self.skip = skip
+
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # print('current size 0: ', x.size())
@@ -508,7 +515,8 @@ class SimpleTransformerModel(nn.Module):
         B, N, _, F = x.shape
         x = x.reshape(B, N, N * F)
         #print(x.size())
-        x_flat = x.view(B, N*N*F)
+        if self.skip:
+            x_flat = x.view(B, N*N*F)
         #print(x_flat.size())
         # print('current size 1: ', x.size())
         # print(self.input_linear)
@@ -521,8 +529,9 @@ class SimpleTransformerModel(nn.Module):
             #out = self.output_ffn(pooled) # [B, 1]
             #print('current size 3: ', out.size())
         #print(x.size())
-        x = torch.cat([x, x_flat], dim=-1)
-        print(x.size())
+        if self.skip:
+            x = torch.cat([x, x_flat], dim=-1)
+        #print(x.size(), 'right before output_ffn')
         out = self.output_ffn(x) # [B, S, 1]
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]

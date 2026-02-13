@@ -499,7 +499,11 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_ffn = nn.Sequential(nn.Linear(320, d_model), nn.ReLU(), nn.Linear(d_model, num_classes))#nn.Linear(d_model, num_classes)#
+        if skip:
+            output_in_dim = 256 + d_model
+        else:
+            output_in_dim = d_model
+        self.output_ffn = nn.Sequential(nn.Linear(output_in_dim, d_model), nn.ReLU(), nn.Linear(d_model, num_classes))
         self.num_layers = num_layers
         self.skip = skip
 
@@ -527,7 +531,7 @@ class SimpleTransformerModel(nn.Module):
         #print(x.size())
         if self.skip:
             x = torch.cat([x, x_flat], dim=-1)
-        #print(x.size())
+        #print(x.size(), 'right before output_ffn')
         out = self.output_ffn(x) # [B, S, 1]
         if not self.classification:
             out = out.squeeze(-1) # [B, S] or [B]
