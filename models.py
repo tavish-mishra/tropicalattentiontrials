@@ -499,7 +499,7 @@ class SimpleTransformerModel(nn.Module):
             activation=activation
         )       
         self.pool = pool
-        self.output_ffn = nn.Sequential(nn.Linear(320, 64), nn.ReLU(), nn.Linear(64, num_classes))#nn.Linear(d_model, num_classes)#
+        self.output_ffn = nn.Sequential(nn.Linear(320, d_model), nn.ReLU(), nn.Linear(d_model, num_classes))#nn.Linear(d_model, num_classes)#
         self.num_layers = num_layers
         self.skip = skip
 
