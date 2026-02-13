@@ -543,7 +543,8 @@ if __name__ == "__main__":
     parser.add_argument("--tag", type=str, help="Experiment name")
     parser.add_argument("--job_id", type=int, default=-1, help="Row index in the CSV. Use -1 to sweep over every row.")
     parser.add_argument("--activation", type=str, default='relu', help="Activation function")
-    parser.add_argument("--skip", type=bool, default=False, help="Whether or not to use skip connection")
+    #parser.add_argument("--skip", type=bool, default=False, help="Whether or not to use skip connection")
+    parser.add_argument("--skip", action='store_true', help="Whether or not to use skip connection")
     default_device = "cuda:0" if torch.cuda.is_available() else "cpu"
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
     args = parser.parse_args()
