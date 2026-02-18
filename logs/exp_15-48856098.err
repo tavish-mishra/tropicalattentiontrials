@@ -1,0 +1,6 @@
+
+The following have been reloaded with a version change:
+  1) cudatoolkit/12.4 => cudatoolkit/12.9
+
+/global/u2/t/tmishra/Tropical-Attention/experiment.py:376: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  plt.savefig(output_file)
