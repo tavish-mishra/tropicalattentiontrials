@@ -570,6 +570,7 @@ if __name__ == "__main__":
             device= args.device,
             top_cat = args.tag,
             activation = args.activation,
+            skip = args.skip,
             **config_params,
         )
         experiment.run()
