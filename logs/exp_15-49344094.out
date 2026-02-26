@@ -1,0 +1,1871 @@
+CUDA available? True
+GPU device: NVIDIA A100-SXM4-40GB
+CUDA_VISIBLE_DEVICES=0,1,2,3
+SLURM_JOB_GPUS=0,1,2,3
+
+ Running config: {'task': 'train', 'model_type': 'vanilla', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 32, 'n_heads': 4, 'num_layers': 4, 'num_epochs': 20000, 'dropout': 0.05, 'lr': 0.0001, 'seed': 999, 'n_samples': 50000, 'batch_size': 1000, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'noise_prob': 0, 'value_range': '(1,15)'}
+FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu
+...setting dataloader...20260225_110902
+...setting model object...20260225_110914
+...training model...20260225_110915
+At epoch 0, test loss = 102.9664
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110931
+At epoch 1, test loss = 93.5596
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110932
+At epoch 2, test loss = 81.3216
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110933
+At epoch 3, test loss = 69.2052
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110933
+At epoch 4, test loss = 60.4246
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110934
+At epoch 5, test loss = 54.7651
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110935
+At epoch 6, test loss = 51.2393
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110935
+At epoch 7, test loss = 49.0059
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110936
+At epoch 8, test loss = 47.5199
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110936
+At epoch 9, test loss = 46.1133
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110937
+At epoch 10, test loss = 44.4247
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110938
+At epoch 11, test loss = 43.4518
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110938
+At epoch 12, test loss = 42.9022
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110939
+At epoch 13, test loss = 42.4949
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110939
+At epoch 14, test loss = 42.1634
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110940
+At epoch 15, test loss = 41.8208
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110941
+At epoch 16, test loss = 41.4875
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110941
+At epoch 17, test loss = 41.1533
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110942
+At epoch 18, test loss = 40.8233
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110943
+At epoch 19, test loss = 40.4870
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110943
+At epoch 20, test loss = 40.1562
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110944
+At epoch 21, test loss = 39.8271
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110944
+At epoch 22, test loss = 39.4918
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110945
+At epoch 23, test loss = 39.1742
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110946
+At epoch 24, test loss = 38.8638
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110946
+At epoch 25, test loss = 38.6296
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110947
+At epoch 26, test loss = 38.3186
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110947
+At epoch 27, test loss = 38.1025
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110948
+At epoch 28, test loss = 37.8267
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110949
+At epoch 29, test loss = 37.6404
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110949
+At epoch 30, test loss = 37.4376
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110950
+At epoch 31, test loss = 37.2674
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110951
+At epoch 32, test loss = 37.1108
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110951
+At epoch 33, test loss = 37.0110
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110952
+At epoch 34, test loss = 36.8546
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110953
+At epoch 35, test loss = 36.7739
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110953
+At epoch 36, test loss = 36.6102
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110954
+At epoch 37, test loss = 36.5703
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110954
+At epoch 38, test loss = 36.3923
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110955
+At epoch 39, test loss = 36.1607
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110956
+At epoch 40, test loss = 36.0528
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110956
+At epoch 41, test loss = 35.8847
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110957
+At epoch 42, test loss = 35.8494
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110958
+At epoch 43, test loss = 35.5715
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110958
+At epoch 44, test loss = 35.3462
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_110959
+At epoch 45, test loss = 35.3220
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111000
+At epoch 47, test loss = 35.1043
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111001
+At epoch 48, test loss = 34.8644
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111002
+At epoch 49, test loss = 34.7317
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111002
+At epoch 50, test loss = 34.5537
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111003
+At epoch 51, test loss = 34.4338
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111003
+At epoch 52, test loss = 34.4251
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111004
+At epoch 53, test loss = 34.2866
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111005
+At epoch 54, test loss = 34.1563
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111005
+At epoch 55, test loss = 34.0972
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111006
+At epoch 56, test loss = 34.0273
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111007
+At epoch 57, test loss = 33.8860
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111007
+At epoch 59, test loss = 33.6892
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111009
+At epoch 60, test loss = 33.5937
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111009
+At epoch 61, test loss = 33.5521
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111010
+At epoch 62, test loss = 33.4725
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111011
+At epoch 63, test loss = 33.3670
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111011
+At epoch 64, test loss = 33.3080
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111012
+At epoch 65, test loss = 33.2399
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111012
+At epoch 66, test loss = 33.1588
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111013
+At epoch 68, test loss = 33.0671
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111014
+At epoch 70, test loss = 32.9544
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111016
+At epoch 72, test loss = 32.8809
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111017
+At epoch 73, test loss = 32.7844
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111018
+At epoch 75, test loss = 32.7345
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111019
+At epoch 76, test loss = 32.6831
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111019
+At epoch 80, test loss = 32.6182
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111022
+At epoch 81, test loss = 32.5914
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111023
+At epoch 82, test loss = 32.5499
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111023
+At epoch 84, test loss = 32.5015
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111024
+At epoch 85, test loss = 32.4470
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111025
+At epoch 88, test loss = 32.4293
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111027
+At epoch 90, test loss = 32.3708
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111028
+At epoch 91, test loss = 32.3649
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111029
+At epoch 92, test loss = 32.3367
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111030
+At epoch 97, test loss = 32.3059
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111033
+At epoch 98, test loss = 32.3047
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111033
+At epoch 102, test loss = 32.2716
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111036
+At epoch 103, test loss = 32.2496
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111036
+At epoch 109, test loss = 32.2222
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111040
+At epoch 111, test loss = 32.2214
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111041
+At epoch 126, test loss = 32.2006
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111049
+At epoch 134, test loss = 32.1280
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111054
+At epoch 136, test loss = 32.1182
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111055
+At epoch 137, test loss = 32.1083
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111055
+At epoch 144, test loss = 32.0902
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111059
+At epoch 149, test loss = 32.0523
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111102
+At epoch 150, test loss = 32.0361
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111103
+At epoch 152, test loss = 32.0335
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111104
+At epoch 153, test loss = 32.0134
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111105
+At epoch 154, test loss = 31.9878
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111105
+At epoch 155, test loss = 31.9723
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111106
+At epoch 157, test loss = 31.9448
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111107
+At epoch 159, test loss = 31.9315
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111108
+At epoch 160, test loss = 31.8949
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111109
+At epoch 162, test loss = 31.8467
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111110
+At epoch 163, test loss = 31.7857
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111110
+At epoch 170, test loss = 31.7629
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111114
+At epoch 172, test loss = 31.7170
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111115
+At epoch 175, test loss = 31.6554
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111117
+At epoch 176, test loss = 31.5938
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111118
+At epoch 177, test loss = 31.5894
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111118
+At epoch 179, test loss = 31.5712
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111119
+At epoch 180, test loss = 31.4706
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111120
+At epoch 181, test loss = 31.3895
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111121
+At epoch 184, test loss = 31.3886
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111122
+At epoch 185, test loss = 31.3204
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111123
+At epoch 186, test loss = 31.3002
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111124
+At epoch 187, test loss = 31.2176
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111124
+At epoch 188, test loss = 31.1230
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111125
+At epoch 191, test loss = 31.0961
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111127
+At epoch 192, test loss = 31.0811
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111127
+At epoch 193, test loss = 31.0080
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111128
+At epoch 194, test loss = 30.9377
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111129
+At epoch 196, test loss = 30.8141
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111130
+At epoch 199, test loss = 30.7710
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111132
+At epoch 200, test loss = 30.6791
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111133
+At epoch 204, test loss = 30.6424
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111135
+At epoch 206, test loss = 30.5300
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111136
+At epoch 208, test loss = 30.5196
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111137
+At epoch 209, test loss = 30.4731
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111138
+At epoch 211, test loss = 30.3513
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111139
+At epoch 212, test loss = 30.3234
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111140
+At epoch 216, test loss = 30.2435
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111142
+At epoch 218, test loss = 30.0940
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111144
+At epoch 221, test loss = 30.0483
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111145
+At epoch 222, test loss = 29.9409
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111146
+At epoch 226, test loss = 29.8820
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111148
+At epoch 227, test loss = 29.8139
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111149
+At epoch 228, test loss = 29.7673
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111150
+At epoch 229, test loss = 29.7015
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111150
+At epoch 231, test loss = 29.6612
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111152
+At epoch 232, test loss = 29.5297
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111152
+At epoch 233, test loss = 29.5028
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111153
+At epoch 235, test loss = 29.4689
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111154
+At epoch 236, test loss = 29.4483
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111155
+At epoch 237, test loss = 29.3918
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111155
+At epoch 238, test loss = 29.2902
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111156
+At epoch 240, test loss = 29.2722
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111157
+At epoch 243, test loss = 29.1632
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111159
+At epoch 244, test loss = 29.0389
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111200
+At epoch 246, test loss = 28.9124
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111201
+At epoch 247, test loss = 28.8773
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111202
+At epoch 248, test loss = 28.7134
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111202
+At epoch 251, test loss = 28.7061
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111204
+At epoch 254, test loss = 28.6911
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111206
+At epoch 255, test loss = 28.5947
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111207
+At epoch 256, test loss = 28.5400
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111207
+At epoch 257, test loss = 28.5240
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111208
+At epoch 258, test loss = 28.2923
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111208
+At epoch 262, test loss = 28.2714
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111211
+At epoch 263, test loss = 28.1540
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111212
+At epoch 265, test loss = 28.1254
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111213
+At epoch 267, test loss = 27.8932
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111214
+At epoch 269, test loss = 27.7946
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111215
+At epoch 271, test loss = 27.7727
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111216
+At epoch 273, test loss = 27.5585
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111218
+At epoch 274, test loss = 27.4416
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111218
+At epoch 276, test loss = 27.4301
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111220
+At epoch 278, test loss = 27.3591
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111221
+At epoch 281, test loss = 27.1290
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111223
+At epoch 282, test loss = 27.1221
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111223
+At epoch 283, test loss = 27.1208
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111224
+At epoch 284, test loss = 27.1207
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111225
+At epoch 285, test loss = 27.0710
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111225
+At epoch 286, test loss = 26.9211
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111226
+At epoch 288, test loss = 26.8503
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111227
+At epoch 290, test loss = 26.5162
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111228
+At epoch 291, test loss = 26.4548
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111229
+At epoch 294, test loss = 26.4305
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111231
+At epoch 295, test loss = 26.2288
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111231
+At epoch 297, test loss = 26.1960
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111233
+At epoch 298, test loss = 26.1670
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111233
+At epoch 299, test loss = 25.9405
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111234
+At epoch 301, test loss = 25.8986
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111235
+At epoch 302, test loss = 25.8345
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111236
+At epoch 305, test loss = 25.7639
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111237
+At epoch 306, test loss = 25.6386
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111238
+At epoch 307, test loss = 25.6267
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111239
+At epoch 308, test loss = 25.4356
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111239
+At epoch 309, test loss = 25.3940
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111240
+At epoch 311, test loss = 25.3152
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111241
+At epoch 312, test loss = 25.1291
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111242
+At epoch 313, test loss = 25.0603
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111243
+At epoch 314, test loss = 24.9551
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111243
+At epoch 317, test loss = 24.8067
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111245
+At epoch 319, test loss = 24.7770
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111246
+At epoch 321, test loss = 24.6353
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111247
+At epoch 322, test loss = 24.5459
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111248
+At epoch 323, test loss = 24.5244
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111249
+At epoch 324, test loss = 24.4397
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111249
+At epoch 325, test loss = 24.3388
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111250
+At epoch 327, test loss = 24.2077
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111251
+At epoch 330, test loss = 24.0415
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111253
+At epoch 331, test loss = 23.9662
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111254
+At epoch 332, test loss = 23.9640
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111254
+At epoch 333, test loss = 23.9122
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111255
+At epoch 334, test loss = 23.7488
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111255
+At epoch 335, test loss = 23.6550
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111256
+At epoch 336, test loss = 23.6270
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111257
+At epoch 337, test loss = 23.5477
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111257
+At epoch 338, test loss = 23.4660
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111258
+At epoch 340, test loss = 23.4556
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111259
+At epoch 341, test loss = 23.3542
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111300
+At epoch 342, test loss = 23.3200
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111301
+At epoch 343, test loss = 23.1459
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111301
+At epoch 346, test loss = 22.9956
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111303
+At epoch 347, test loss = 22.9374
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111304
+At epoch 348, test loss = 22.8139
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111304
+At epoch 350, test loss = 22.7825
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111306
+At epoch 352, test loss = 22.5067
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111307
+At epoch 353, test loss = 22.5023
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111307
+At epoch 354, test loss = 22.4383
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111308
+At epoch 355, test loss = 22.3433
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111309
+At epoch 356, test loss = 22.3413
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111309
+At epoch 357, test loss = 22.2469
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111310
+At epoch 358, test loss = 22.2161
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111310
+At epoch 359, test loss = 22.2070
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111311
+At epoch 360, test loss = 22.1365
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111311
+At epoch 361, test loss = 21.9524
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111312
+At epoch 362, test loss = 21.8936
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111313
+At epoch 364, test loss = 21.8717
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111314
+At epoch 365, test loss = 21.8107
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111315
+At epoch 366, test loss = 21.7670
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111315
+At epoch 367, test loss = 21.5886
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111316
+At epoch 368, test loss = 21.5740
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111317
+At epoch 370, test loss = 21.3962
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111318
+At epoch 371, test loss = 21.3784
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111318
+At epoch 372, test loss = 21.3013
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111319
+At epoch 373, test loss = 21.2402
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111319
+At epoch 375, test loss = 21.1513
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111321
+At epoch 376, test loss = 21.1102
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111321
+At epoch 377, test loss = 21.0298
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111322
+At epoch 378, test loss = 20.9221
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111322
+At epoch 379, test loss = 20.8938
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111323
+At epoch 380, test loss = 20.7911
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111323
+At epoch 381, test loss = 20.7394
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111324
+At epoch 382, test loss = 20.6614
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111325
+At epoch 383, test loss = 20.5703
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111325
+At epoch 384, test loss = 20.5345
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111326
+At epoch 386, test loss = 20.4386
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111327
+At epoch 388, test loss = 20.2109
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111328
+At epoch 390, test loss = 20.1741
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111329
+At epoch 391, test loss = 19.9889
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111330
+At epoch 394, test loss = 19.8938
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111331
+At epoch 395, test loss = 19.8107
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111332
+At epoch 396, test loss = 19.6939
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111333
+At epoch 397, test loss = 19.6639
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111333
+At epoch 399, test loss = 19.5246
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111334
+At epoch 400, test loss = 19.4362
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111335
+At epoch 401, test loss = 19.3457
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111335
+At epoch 403, test loss = 19.1780
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111337
+At epoch 404, test loss = 19.0984
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111337
+At epoch 405, test loss = 19.0678
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111338
+At epoch 407, test loss = 18.9024
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111339
+At epoch 408, test loss = 18.8414
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111340
+At epoch 410, test loss = 18.7798
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111341
+At epoch 411, test loss = 18.6237
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111341
+At epoch 412, test loss = 18.5863
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111342
+At epoch 413, test loss = 18.5170
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111342
+At epoch 414, test loss = 18.5051
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111343
+At epoch 415, test loss = 18.3910
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111344
+At epoch 416, test loss = 18.2615
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111344
+At epoch 417, test loss = 18.2519
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111345
+At epoch 418, test loss = 18.1481
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111345
+At epoch 419, test loss = 18.1292
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111346
+At epoch 421, test loss = 18.1090
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111347
+At epoch 422, test loss = 17.9240
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111348
+At epoch 424, test loss = 17.7376
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111349
+At epoch 427, test loss = 17.5984
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111351
+At epoch 429, test loss = 17.4131
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111352
+At epoch 431, test loss = 17.3863
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111353
+At epoch 433, test loss = 17.2883
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111354
+At epoch 434, test loss = 17.1871
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111355
+At epoch 435, test loss = 17.1053
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111355
+At epoch 437, test loss = 16.9874
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111356
+At epoch 438, test loss = 16.9172
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111357
+At epoch 439, test loss = 16.8352
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111357
+At epoch 440, test loss = 16.7794
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111358
+At epoch 441, test loss = 16.6807
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111359
+At epoch 442, test loss = 16.5685
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111359
+At epoch 443, test loss = 16.5661
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111400
+At epoch 444, test loss = 16.4835
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111401
+At epoch 447, test loss = 16.3786
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111403
+At epoch 449, test loss = 16.2035
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111404
+At epoch 450, test loss = 16.1669
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111404
+At epoch 451, test loss = 16.0734
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111405
+At epoch 452, test loss = 16.0687
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111406
+At epoch 453, test loss = 15.9472
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111406
+At epoch 454, test loss = 15.8621
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111407
+At epoch 455, test loss = 15.8597
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111408
+At epoch 456, test loss = 15.7934
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111408
+At epoch 457, test loss = 15.7851
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111409
+At epoch 458, test loss = 15.7133
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111410
+At epoch 459, test loss = 15.6680
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111410
+At epoch 460, test loss = 15.5665
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111411
+At epoch 461, test loss = 15.4363
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111411
+At epoch 463, test loss = 15.3245
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111413
+At epoch 464, test loss = 15.2430
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111413
+At epoch 466, test loss = 15.1441
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111414
+At epoch 468, test loss = 15.1254
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111416
+At epoch 469, test loss = 15.0904
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111416
+At epoch 470, test loss = 15.0278
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111417
+At epoch 471, test loss = 14.9251
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111417
+At epoch 472, test loss = 14.8616
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111418
+At epoch 473, test loss = 14.7971
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111419
+At epoch 475, test loss = 14.7517
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111420
+At epoch 476, test loss = 14.6755
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111421
+At epoch 477, test loss = 14.5761
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111421
+At epoch 480, test loss = 14.4961
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111423
+At epoch 483, test loss = 14.4156
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111425
+At epoch 484, test loss = 14.3477
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111426
+At epoch 485, test loss = 14.2976
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111426
+At epoch 486, test loss = 14.2602
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111427
+At epoch 489, test loss = 14.1086
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111429
+At epoch 491, test loss = 14.0140
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111430
+At epoch 492, test loss = 13.9333
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111431
+At epoch 494, test loss = 13.8591
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111432
+At epoch 495, test loss = 13.8584
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111432
+At epoch 496, test loss = 13.7885
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111433
+At epoch 497, test loss = 13.7625
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111434
+At epoch 498, test loss = 13.7418
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111434
+At epoch 499, test loss = 13.7108
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111435
+At epoch 500, test loss = 13.6454
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111435
+At epoch 501, test loss = 13.5396
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111436
+At epoch 506, test loss = 13.4360
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111439
+At epoch 508, test loss = 13.3752
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111440
+At epoch 511, test loss = 13.3314
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111442
+At epoch 512, test loss = 13.2202
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111443
+At epoch 514, test loss = 13.2127
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111444
+At epoch 517, test loss = 13.1800
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111446
+At epoch 518, test loss = 13.0788
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111447
+At epoch 519, test loss = 13.0352
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111447
+At epoch 521, test loss = 13.0280
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111448
+At epoch 523, test loss = 12.9546
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111450
+At epoch 525, test loss = 12.8754
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111451
+At epoch 532, test loss = 12.8699
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111455
+At epoch 534, test loss = 12.7137
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111456
+At epoch 535, test loss = 12.6959
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111457
+At epoch 536, test loss = 12.6817
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111458
+At epoch 540, test loss = 12.6393
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111500
+At epoch 541, test loss = 12.6080
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111501
+At epoch 542, test loss = 12.6012
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111501
+At epoch 543, test loss = 12.5748
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111502
+At epoch 546, test loss = 12.5689
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111504
+At epoch 547, test loss = 12.5202
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111504
+At epoch 548, test loss = 12.5126
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111505
+At epoch 550, test loss = 12.4677
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111506
+At epoch 554, test loss = 12.3913
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111509
+At epoch 556, test loss = 12.3807
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111510
+At epoch 557, test loss = 12.3664
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111511
+At epoch 558, test loss = 12.3628
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111511
+At epoch 560, test loss = 12.3418
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111512
+At epoch 561, test loss = 12.3358
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111513
+At epoch 562, test loss = 12.2623
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111514
+At epoch 567, test loss = 12.2455
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111517
+At epoch 571, test loss = 12.2079
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111519
+At epoch 572, test loss = 12.1433
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111520
+At epoch 574, test loss = 12.1331
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111521
+At epoch 575, test loss = 12.1224
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111522
+At epoch 578, test loss = 12.0894
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111523
+At epoch 582, test loss = 12.0389
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111526
+At epoch 583, test loss = 11.9956
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111526
+At epoch 585, test loss = 11.9779
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111528
+At epoch 588, test loss = 11.9645
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111530
+At epoch 589, test loss = 11.9501
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111530
+At epoch 590, test loss = 11.9068
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111531
+At epoch 591, test loss = 11.8944
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111531
+At epoch 595, test loss = 11.8604
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111534
+At epoch 597, test loss = 11.8020
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111535
+At epoch 598, test loss = 11.7791
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111536
+At epoch 602, test loss = 11.7512
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111538
+At epoch 603, test loss = 11.7430
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111539
+At epoch 605, test loss = 11.7146
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111540
+At epoch 606, test loss = 11.6978
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111541
+At epoch 607, test loss = 11.6557
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111541
+At epoch 611, test loss = 11.6256
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111544
+At epoch 615, test loss = 11.5957
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111546
+At epoch 618, test loss = 11.5598
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111548
+At epoch 621, test loss = 11.5344
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111550
+At epoch 622, test loss = 11.4866
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111551
+At epoch 626, test loss = 11.4723
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111553
+At epoch 629, test loss = 11.4372
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111555
+At epoch 630, test loss = 11.4257
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111555
+At epoch 631, test loss = 11.3766
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111556
+At epoch 635, test loss = 11.3652
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111558
+At epoch 638, test loss = 11.3357
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111600
+At epoch 640, test loss = 11.3179
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111601
+At epoch 641, test loss = 11.2677
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111602
+At epoch 643, test loss = 11.2585
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111603
+At epoch 644, test loss = 11.2540
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111604
+At epoch 645, test loss = 11.2131
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111604
+At epoch 647, test loss = 11.2130
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111606
+At epoch 650, test loss = 11.2059
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111608
+At epoch 651, test loss = 11.1930
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111608
+At epoch 652, test loss = 11.1405
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111609
+At epoch 656, test loss = 11.0915
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111611
+At epoch 658, test loss = 11.0617
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111612
+At epoch 664, test loss = 11.0485
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111616
+At epoch 670, test loss = 11.0202
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111620
+At epoch 671, test loss = 10.9713
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111620
+At epoch 673, test loss = 10.9686
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111622
+At epoch 677, test loss = 10.9517
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111624
+At epoch 683, test loss = 10.9337
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111628
+At epoch 684, test loss = 10.9106
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111628
+At epoch 687, test loss = 10.9031
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111630
+At epoch 688, test loss = 10.8858
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111631
+At epoch 691, test loss = 10.8597
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111633
+At epoch 702, test loss = 10.8256
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111639
+At epoch 704, test loss = 10.7704
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111640
+At epoch 708, test loss = 10.7689
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111643
+At epoch 710, test loss = 10.7365
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111644
+At epoch 717, test loss = 10.7345
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111648
+At epoch 718, test loss = 10.7277
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111649
+At epoch 719, test loss = 10.6590
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111650
+At epoch 735, test loss = 10.6538
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111659
+At epoch 739, test loss = 10.6143
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111702
+At epoch 754, test loss = 10.6143
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111710
+At epoch 760, test loss = 10.5970
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111714
+At epoch 762, test loss = 10.5945
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111715
+At epoch 763, test loss = 10.5791
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111716
+At epoch 768, test loss = 10.5624
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111719
+At epoch 774, test loss = 10.5262
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111723
+At epoch 775, test loss = 10.4884
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111723
+At epoch 783, test loss = 10.4867
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111728
+At epoch 784, test loss = 10.4707
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111728
+At epoch 794, test loss = 10.4596
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111735
+At epoch 795, test loss = 10.4476
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111735
+At epoch 802, test loss = 10.4392
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111739
+At epoch 815, test loss = 10.4159
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111747
+At epoch 816, test loss = 10.3561
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111748
+At epoch 829, test loss = 10.3537
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111756
+At epoch 840, test loss = 10.3445
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111803
+At epoch 843, test loss = 10.3381
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111804
+At epoch 852, test loss = 10.2814
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111810
+At epoch 870, test loss = 10.2693
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111821
+At epoch 871, test loss = 10.2448
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111822
+At epoch 874, test loss = 10.2260
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111823
+At epoch 879, test loss = 10.2247
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111826
+At epoch 884, test loss = 10.1702
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111829
+At epoch 888, test loss = 10.1527
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111831
+At epoch 896, test loss = 10.1457
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111836
+At epoch 898, test loss = 10.1265
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111837
+At epoch 904, test loss = 10.1109
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111840
+At epoch 907, test loss = 10.0939
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111842
+At epoch 909, test loss = 10.0612
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111843
+At epoch 913, test loss = 10.0325
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111845
+At epoch 914, test loss = 10.0039
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111846
+At epoch 923, test loss = 9.9729
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111851
+At epoch 927, test loss = 9.9603
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111853
+At epoch 928, test loss = 9.9570
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111854
+At epoch 930, test loss = 9.9511
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111855
+At epoch 931, test loss = 9.9474
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111855
+At epoch 935, test loss = 9.9175
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111858
+At epoch 942, test loss = 9.8919
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111901
+At epoch 945, test loss = 9.8476
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111903
+At epoch 962, test loss = 9.8253
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111913
+At epoch 964, test loss = 9.8124
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111914
+At epoch 966, test loss = 9.7870
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111915
+At epoch 981, test loss = 9.7782
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111923
+At epoch 986, test loss = 9.7662
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111926
+At epoch 987, test loss = 9.7611
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111927
+At epoch 989, test loss = 9.7413
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111928
+At epoch 990, test loss = 9.7406
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111928
+At epoch 997, test loss = 9.7153
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111932
+At epoch 1010, test loss = 9.7122
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111939
+At epoch 1013, test loss = 9.7116
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111941
+At epoch 1015, test loss = 9.6968
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111942
+At epoch 1017, test loss = 9.6912
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111943
+At epoch 1026, test loss = 9.6857
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111948
+At epoch 1034, test loss = 9.6603
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_111953
+At epoch 1048, test loss = 9.6511
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112001
+At epoch 1055, test loss = 9.6334
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112005
+At epoch 1060, test loss = 9.6191
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112007
+At epoch 1067, test loss = 9.6101
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112011
+At epoch 1097, test loss = 9.6058
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112028
+At epoch 1099, test loss = 9.5970
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112029
+At epoch 1105, test loss = 9.5899
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112032
+At epoch 1106, test loss = 9.5682
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112033
+At epoch 1108, test loss = 9.5673
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112034
+At epoch 1118, test loss = 9.5562
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112040
+At epoch 1122, test loss = 9.5275
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112042
+At epoch 1150, test loss = 9.5080
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112058
+At epoch 1154, test loss = 9.5066
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112100
+At epoch 1162, test loss = 9.4993
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112104
+At epoch 1175, test loss = 9.4917
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112112
+At epoch 1204, test loss = 9.4833
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112128
+At epoch 1206, test loss = 9.4798
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112129
+At epoch 1212, test loss = 9.4366
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112132
+At epoch 1281, test loss = 9.4169
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112211
+At epoch 1321, test loss = 9.3998
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112233
+At epoch 1364, test loss = 9.3877
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112257
+At epoch 1379, test loss = 9.3796
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112305
+At epoch 1380, test loss = 9.3768
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112306
+At epoch 1400, test loss = 9.3652
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112317
+At epoch 1422, test loss = 9.3533
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112330
+At epoch 1442, test loss = 9.3524
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112341
+At epoch 1443, test loss = 9.3492
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112341
+At epoch 1446, test loss = 9.3469
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112343
+At epoch 1451, test loss = 9.3431
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112346
+At epoch 1454, test loss = 9.3375
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112347
+At epoch 1465, test loss = 9.3126
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112354
+At epoch 1524, test loss = 9.3059
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112426
+At epoch 1534, test loss = 9.2940
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112432
+At epoch 1543, test loss = 9.2918
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112437
+At epoch 1544, test loss = 9.2886
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112438
+At epoch 1545, test loss = 9.2838
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112438
+At epoch 1551, test loss = 9.2827
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112442
+At epoch 1566, test loss = 9.2441
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112450
+At epoch 1592, test loss = 9.2435
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112505
+At epoch 1594, test loss = 9.2407
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112506
+At epoch 1601, test loss = 9.2279
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112510
+At epoch 1614, test loss = 9.2264
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112517
+At epoch 1616, test loss = 9.2253
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112518
+At epoch 1633, test loss = 9.2105
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112528
+At epoch 1634, test loss = 9.1967
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112528
+At epoch 1647, test loss = 9.1917
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112536
+At epoch 1655, test loss = 9.1549
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112540
+At epoch 1670, test loss = 9.1514
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112549
+At epoch 1674, test loss = 9.1492
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112551
+At epoch 1677, test loss = 9.1291
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112553
+At epoch 1688, test loss = 9.1285
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112559
+At epoch 1691, test loss = 9.0649
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112600
+At epoch 1701, test loss = 9.0633
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112606
+At epoch 1712, test loss = 9.0591
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112612
+At epoch 1717, test loss = 9.0500
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112615
+At epoch 1720, test loss = 9.0335
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112617
+At epoch 1727, test loss = 8.9864
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112621
+At epoch 1729, test loss = 8.9773
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112622
+At epoch 1738, test loss = 8.9466
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112627
+At epoch 1748, test loss = 8.9433
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112632
+At epoch 1750, test loss = 8.9255
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112634
+At epoch 1752, test loss = 8.9148
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112635
+At epoch 1755, test loss = 8.9065
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112636
+At epoch 1759, test loss = 8.8882
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112639
+At epoch 1764, test loss = 8.8835
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112642
+At epoch 1770, test loss = 8.8677
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112645
+At epoch 1772, test loss = 8.8517
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112646
+At epoch 1780, test loss = 8.8492
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112651
+At epoch 1782, test loss = 8.8383
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112652
+At epoch 1799, test loss = 8.8365
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112701
+At epoch 1806, test loss = 8.8083
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112705
+At epoch 1808, test loss = 8.7304
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112706
+At epoch 1852, test loss = 8.7234
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112731
+At epoch 1857, test loss = 8.7209
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112734
+At epoch 1858, test loss = 8.6983
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112734
+At epoch 1860, test loss = 8.6982
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112735
+At epoch 1868, test loss = 8.6825
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112740
+At epoch 1869, test loss = 8.6770
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112741
+At epoch 1870, test loss = 8.6540
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112741
+At epoch 1871, test loss = 8.6297
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112742
+At epoch 1882, test loss = 8.6233
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112748
+At epoch 1883, test loss = 8.6103
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112748
+At epoch 1884, test loss = 8.5893
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112749
+At epoch 1885, test loss = 8.5777
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112750
+At epoch 1896, test loss = 8.5723
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112756
+At epoch 1898, test loss = 8.5555
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112757
+At epoch 1900, test loss = 8.5377
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112758
+At epoch 1901, test loss = 8.5372
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112759
+At epoch 1905, test loss = 8.5185
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112801
+At epoch 1908, test loss = 8.5163
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112803
+At epoch 1911, test loss = 8.4897
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112804
+At epoch 1913, test loss = 8.4894
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112805
+At epoch 1916, test loss = 8.4883
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112807
+At epoch 1917, test loss = 8.4718
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112808
+At epoch 1923, test loss = 8.4616
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112811
+At epoch 1925, test loss = 8.4398
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112812
+At epoch 1928, test loss = 8.4262
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112814
+At epoch 1930, test loss = 8.4255
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112815
+At epoch 1931, test loss = 8.4162
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112816
+At epoch 1934, test loss = 8.4055
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112817
+At epoch 1938, test loss = 8.3962
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112820
+At epoch 1944, test loss = 8.3960
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112823
+At epoch 1955, test loss = 8.3838
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112829
+At epoch 1958, test loss = 8.3680
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112831
+At epoch 1961, test loss = 8.3679
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112833
+At epoch 1962, test loss = 8.3633
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112833
+At epoch 1964, test loss = 8.3609
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112834
+At epoch 1965, test loss = 8.3529
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112835
+At epoch 1966, test loss = 8.3430
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112836
+At epoch 1970, test loss = 8.3186
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112838
+At epoch 1976, test loss = 8.3058
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112841
+At epoch 1979, test loss = 8.3028
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112843
+At epoch 1983, test loss = 8.2965
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112845
+At epoch 1986, test loss = 8.2673
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112847
+At epoch 1987, test loss = 8.2629
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112848
+At epoch 1988, test loss = 8.2457
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112848
+At epoch 1989, test loss = 8.2432
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112849
+At epoch 1990, test loss = 8.2332
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112850
+At epoch 1992, test loss = 8.2257
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112851
+At epoch 1994, test loss = 8.1983
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112852
+At epoch 1995, test loss = 8.1958
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112852
+At epoch 1997, test loss = 8.1923
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112854
+At epoch 2008, test loss = 8.1827
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112900
+At epoch 2010, test loss = 8.1813
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112901
+At epoch 2012, test loss = 8.1744
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112902
+At epoch 2016, test loss = 8.1676
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112905
+At epoch 2017, test loss = 8.1311
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112905
+At epoch 2026, test loss = 8.1098
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112910
+At epoch 2028, test loss = 8.1071
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112911
+At epoch 2037, test loss = 8.1065
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112917
+At epoch 2039, test loss = 8.0974
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112918
+At epoch 2042, test loss = 8.0740
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112920
+At epoch 2048, test loss = 8.0735
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112923
+At epoch 2049, test loss = 8.0571
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112924
+At epoch 2053, test loss = 8.0476
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112926
+At epoch 2055, test loss = 8.0185
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112927
+At epoch 2060, test loss = 8.0149
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112930
+At epoch 2066, test loss = 8.0023
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112933
+At epoch 2067, test loss = 7.9706
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112934
+At epoch 2078, test loss = 7.9635
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112940
+At epoch 2080, test loss = 7.9077
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112941
+At epoch 2087, test loss = 7.8992
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112945
+At epoch 2093, test loss = 7.8735
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112949
+At epoch 2094, test loss = 7.8712
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112949
+At epoch 2101, test loss = 7.8015
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_112953
+At epoch 2113, test loss = 7.7920
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113001
+At epoch 2115, test loss = 7.7824
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113002
+At epoch 2117, test loss = 7.7617
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113003
+At epoch 2123, test loss = 7.7587
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113007
+At epoch 2140, test loss = 7.7568
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113016
+At epoch 2141, test loss = 7.7409
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113017
+At epoch 2142, test loss = 7.7005
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113017
+At epoch 2156, test loss = 7.6845
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113025
+At epoch 2157, test loss = 7.6399
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113026
+At epoch 2178, test loss = 7.6037
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113038
+At epoch 2192, test loss = 7.5989
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113046
+At epoch 2198, test loss = 7.5601
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113049
+At epoch 2203, test loss = 7.5520
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113052
+At epoch 2208, test loss = 7.5471
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113055
+At epoch 2212, test loss = 7.5449
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113057
+At epoch 2216, test loss = 7.5223
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113059
+At epoch 2220, test loss = 7.5194
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113102
+At epoch 2229, test loss = 7.4926
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113107
+At epoch 2238, test loss = 7.4647
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113112
+At epoch 2242, test loss = 7.4479
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113114
+At epoch 2270, test loss = 7.4388
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113130
+At epoch 2274, test loss = 7.4234
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113132
+At epoch 2278, test loss = 7.4142
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113134
+At epoch 2284, test loss = 7.3994
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113138
+At epoch 2308, test loss = 7.3824
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113151
+At epoch 2311, test loss = 7.3738
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113153
+At epoch 2315, test loss = 7.3686
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113155
+At epoch 2352, test loss = 7.3574
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113216
+At epoch 2359, test loss = 7.3448
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113220
+At epoch 2380, test loss = 7.3225
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113231
+At epoch 2408, test loss = 7.3141
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113247
+At epoch 2412, test loss = 7.3138
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113249
+At epoch 2413, test loss = 7.3032
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113250
+At epoch 2424, test loss = 7.2992
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113256
+At epoch 2448, test loss = 7.2934
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113309
+At epoch 2451, test loss = 7.2837
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113311
+At epoch 2475, test loss = 7.2684
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113324
+At epoch 2513, test loss = 7.2679
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113345
+At epoch 2515, test loss = 7.2584
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113347
+At epoch 2522, test loss = 7.2510
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113351
+At epoch 2538, test loss = 7.2406
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113400
+At epoch 2558, test loss = 7.2406
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113411
+At epoch 2564, test loss = 7.2343
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113415
+At epoch 2565, test loss = 7.2146
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113415
+At epoch 2612, test loss = 7.2143
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113442
+At epoch 2616, test loss = 7.2102
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113444
+At epoch 2656, test loss = 7.2029
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113507
+At epoch 2658, test loss = 7.1903
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113508
+At epoch 2701, test loss = 7.1863
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113532
+At epoch 2731, test loss = 7.1803
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113549
+At epoch 2732, test loss = 7.1713
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113550
+At epoch 2759, test loss = 7.1690
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113605
+At epoch 2789, test loss = 7.1666
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113622
+At epoch 2799, test loss = 7.1603
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113628
+At epoch 2802, test loss = 7.1486
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113629
+At epoch 2812, test loss = 7.1439
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113635
+At epoch 2821, test loss = 7.1434
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113641
+At epoch 2850, test loss = 7.1387
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113658
+At epoch 2856, test loss = 7.1347
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113702
+At epoch 2887, test loss = 7.1347
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113721
+At epoch 2892, test loss = 7.1309
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113724
+At epoch 2904, test loss = 7.1108
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113731
+At epoch 2914, test loss = 7.0978
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113737
+At epoch 2928, test loss = 7.0975
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113746
+At epoch 2934, test loss = 7.0925
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113749
+At epoch 2938, test loss = 7.0839
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113752
+At epoch 2939, test loss = 7.0645
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113752
+At epoch 2943, test loss = 7.0626
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113755
+At epoch 2946, test loss = 7.0625
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113757
+At epoch 2948, test loss = 7.0305
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113758
+At epoch 2953, test loss = 7.0180
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113801
+At epoch 2959, test loss = 7.0177
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113805
+At epoch 2960, test loss = 6.9993
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113805
+At epoch 2961, test loss = 6.9853
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113806
+At epoch 2969, test loss = 6.9680
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113811
+At epoch 2972, test loss = 6.9616
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113813
+At epoch 2973, test loss = 6.9558
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113813
+At epoch 2975, test loss = 6.9479
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113815
+At epoch 2976, test loss = 6.9469
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113815
+At epoch 2977, test loss = 6.9339
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113816
+At epoch 2979, test loss = 6.9282
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113817
+At epoch 2980, test loss = 6.9264
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113818
+At epoch 2982, test loss = 6.9260
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113819
+At epoch 2987, test loss = 6.9020
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113822
+At epoch 2997, test loss = 6.8938
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113828
+At epoch 3001, test loss = 6.8890
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113830
+At epoch 3009, test loss = 6.8767
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113835
+At epoch 3026, test loss = 6.8647
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113846
+At epoch 3029, test loss = 6.8601
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113848
+At epoch 3049, test loss = 6.8491
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113900
+At epoch 3051, test loss = 6.8478
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113901
+At epoch 3052, test loss = 6.8341
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113902
+At epoch 3087, test loss = 6.8223
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113923
+At epoch 3097, test loss = 6.8179
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113929
+At epoch 3109, test loss = 6.8176
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113937
+At epoch 3111, test loss = 6.8010
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113938
+At epoch 3119, test loss = 6.7993
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113943
+At epoch 3121, test loss = 6.7991
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113944
+At epoch 3122, test loss = 6.7950
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113944
+At epoch 3125, test loss = 6.7882
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113946
+At epoch 3126, test loss = 6.7821
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113947
+At epoch 3127, test loss = 6.7797
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113947
+At epoch 3132, test loss = 6.7628
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113951
+At epoch 3138, test loss = 6.7594
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_113954
+At epoch 3160, test loss = 6.7558
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114008
+At epoch 3166, test loss = 6.7549
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114011
+At epoch 3173, test loss = 6.7531
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114016
+At epoch 3174, test loss = 6.7445
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114016
+At epoch 3177, test loss = 6.7392
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114018
+At epoch 3180, test loss = 6.7369
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114020
+At epoch 3181, test loss = 6.7205
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114021
+At epoch 3197, test loss = 6.7155
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114030
+At epoch 3213, test loss = 6.7083
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114040
+At epoch 3216, test loss = 6.7016
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114042
+At epoch 3220, test loss = 6.6948
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114044
+At epoch 3247, test loss = 6.6937
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114101
+At epoch 3250, test loss = 6.6885
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114103
+At epoch 3251, test loss = 6.6790
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114103
+At epoch 3254, test loss = 6.6758
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114105
+At epoch 3257, test loss = 6.6600
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114107
+At epoch 3270, test loss = 6.6461
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114115
+At epoch 3279, test loss = 6.6368
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114121
+At epoch 3310, test loss = 6.6314
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114139
+At epoch 3317, test loss = 6.6083
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114144
+At epoch 3355, test loss = 6.6021
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114207
+At epoch 3402, test loss = 6.5936
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114236
+At epoch 3403, test loss = 6.5916
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114236
+At epoch 3411, test loss = 6.5819
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114241
+At epoch 3418, test loss = 6.5804
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114245
+At epoch 3420, test loss = 6.5683
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114247
+At epoch 3428, test loss = 6.5558
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114251
+At epoch 3471, test loss = 6.5545
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114317
+At epoch 3474, test loss = 6.5473
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114319
+At epoch 3550, test loss = 6.5386
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114405
+At epoch 3639, test loss = 6.5190
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114459
+At epoch 3649, test loss = 6.5024
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114506
+At epoch 3723, test loss = 6.4868
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114549
+At epoch 3734, test loss = 6.4691
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114555
+At epoch 3890, test loss = 6.4673
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114723
+At epoch 3902, test loss = 6.4655
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114730
+At epoch 3943, test loss = 6.4429
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114753
+At epoch 4050, test loss = 6.4417
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114853
+At epoch 4067, test loss = 6.4309
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114903
+At epoch 4116, test loss = 6.4269
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114930
+At epoch 4149, test loss = 6.4062
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_114949
+At epoch 4179, test loss = 6.3936
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115006
+At epoch 4181, test loss = 6.3850
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115008
+At epoch 4182, test loss = 6.3761
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115008
+At epoch 4491, test loss = 6.3401
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115306
+At epoch 4721, test loss = 6.3112
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115525
+At epoch 4740, test loss = 6.3097
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115537
+At epoch 4966, test loss = 6.2504
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_115754
+At epoch 5441, test loss = 6.2299
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_120240
+At epoch 5745, test loss = 6.1999
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_120533
+At epoch 6066, test loss = 6.0459
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_120832
+At epoch 7959, test loss = 6.0285
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122707
+At epoch 7961, test loss = 6.0080
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122708
+At epoch 7963, test loss = 5.9868
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122710
+At epoch 7964, test loss = 5.9561
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122710
+At epoch 7967, test loss = 5.9451
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122712
+At epoch 7968, test loss = 5.9396
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122712
+At epoch 7974, test loss = 5.9371
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122716
+At epoch 7975, test loss = 5.9137
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122716
+At epoch 7977, test loss = 5.8789
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122717
+At epoch 7984, test loss = 5.8735
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122721
+At epoch 7993, test loss = 5.8668
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122726
+At epoch 8001, test loss = 5.8468
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122731
+At epoch 8025, test loss = 5.8261
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122744
+At epoch 8068, test loss = 5.8247
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122809
+At epoch 8076, test loss = 5.8197
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122813
+At epoch 8083, test loss = 5.8045
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_122817
+At epoch 8436, test loss = 5.8004
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123134
+At epoch 8578, test loss = 5.7997
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123252
+At epoch 8658, test loss = 5.7930
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123337
+At epoch 8677, test loss = 5.7910
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123347
+At epoch 8678, test loss = 5.7894
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123348
+At epoch 8686, test loss = 5.7823
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123352
+At epoch 8755, test loss = 5.7618
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123430
+At epoch 9258, test loss = 5.7604
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123910
+At epoch 9271, test loss = 5.7476
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_123917
+At epoch 9401, test loss = 5.7469
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124029
+At epoch 9592, test loss = 5.7360
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124216
+At epoch 9702, test loss = 5.7276
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124317
+At epoch 9707, test loss = 5.6967
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124320
+At epoch 9708, test loss = 5.6948
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124321
+At epoch 9711, test loss = 5.6863
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124322
+At epoch 9714, test loss = 5.6785
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124324
+At epoch 9715, test loss = 5.6773
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124325
+At epoch 9718, test loss = 5.6724
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124326
+At epoch 9722, test loss = 5.6637
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124329
+At epoch 9724, test loss = 5.6455
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124330
+At epoch 9726, test loss = 5.6254
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124331
+At epoch 9729, test loss = 5.6110
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124332
+At epoch 9730, test loss = 5.6073
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124333
+At epoch 9734, test loss = 5.6007
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124335
+At epoch 9737, test loss = 5.5798
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124337
+At epoch 9750, test loss = 5.5567
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124344
+At epoch 9753, test loss = 5.5366
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124346
+At epoch 9765, test loss = 5.4979
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124352
+At epoch 9826, test loss = 5.4928
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124426
+At epoch 9874, test loss = 5.4863
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124453
+At epoch 9910, test loss = 5.4741
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124513
+At epoch 9974, test loss = 5.4705
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124548
+At epoch 9990, test loss = 5.4662
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124556
+At epoch 10023, test loss = 5.4656
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124615
+At epoch 10057, test loss = 5.4574
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124633
+At epoch 10064, test loss = 5.4528
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124637
+At epoch 10113, test loss = 5.4474
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124704
+At epoch 10380, test loss = 5.4440
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124931
+At epoch 10408, test loss = 5.4372
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_124947
+At epoch 10463, test loss = 5.4335
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125017
+At epoch 10507, test loss = 5.4272
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125041
+At epoch 10532, test loss = 5.4260
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125055
+At epoch 10649, test loss = 5.4206
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125201
+At epoch 10975, test loss = 5.4188
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125515
+At epoch 10978, test loss = 5.4082
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125517
+At epoch 11028, test loss = 5.4064
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125547
+At epoch 11114, test loss = 5.4043
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125638
+At epoch 11161, test loss = 5.3866
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125707
+At epoch 11458, test loss = 5.3805
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_125954
+At epoch 11555, test loss = 5.3737
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130048
+At epoch 11729, test loss = 5.3732
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130224
+At epoch 11968, test loss = 5.3648
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130436
+At epoch 11985, test loss = 5.3545
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130445
+At epoch 12081, test loss = 5.3503
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130541
+At epoch 12151, test loss = 5.3456
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130624
+At epoch 12200, test loss = 5.3295
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130656
+At epoch 12352, test loss = 5.3104
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130829
+At epoch 12353, test loss = 5.2741
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130829
+At epoch 12354, test loss = 5.2696
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130830
+At epoch 12355, test loss = 5.2324
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130830
+At epoch 12357, test loss = 5.2167
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130832
+At epoch 12359, test loss = 5.2067
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130833
+At epoch 12360, test loss = 5.1737
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130833
+At epoch 12362, test loss = 5.1673
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130835
+At epoch 12366, test loss = 5.1644
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130837
+At epoch 12368, test loss = 5.1490
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130838
+At epoch 12371, test loss = 5.1449
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130840
+At epoch 12377, test loss = 5.1429
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130844
+At epoch 12379, test loss = 5.1301
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130845
+At epoch 12388, test loss = 5.1289
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130850
+At epoch 12389, test loss = 5.1123
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130851
+At epoch 12391, test loss = 5.0948
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130852
+At epoch 12419, test loss = 5.0882
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130909
+At epoch 12424, test loss = 5.0800
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130912
+At epoch 12452, test loss = 5.0684
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130929
+At epoch 12458, test loss = 5.0637
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_130933
+At epoch 12580, test loss = 5.0523
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131044
+At epoch 12764, test loss = 5.0310
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131251
+At epoch 12986, test loss = 4.8698
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131507
+At epoch 13076, test loss = 4.8643
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131557
+At epoch 13084, test loss = 4.8633
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131602
+At epoch 13085, test loss = 4.8424
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131602
+At epoch 13086, test loss = 4.8352
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131603
+At epoch 13107, test loss = 4.8236
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131615
+At epoch 13123, test loss = 4.8126
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131624
+At epoch 13163, test loss = 4.8028
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131647
+At epoch 13208, test loss = 4.8014
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131713
+At epoch 13227, test loss = 4.7798
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131725
+At epoch 13363, test loss = 4.7751
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_131843
+At epoch 13687, test loss = 4.7707
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_132209
+At epoch 13812, test loss = 4.7696
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_132320
+At epoch 13876, test loss = 4.7589
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_132356
+At epoch 13917, test loss = 4.7521
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_132420
+At epoch 14165, test loss = 4.7380
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_132645
+At epoch 14599, test loss = 4.7370
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_133100
+At epoch 14779, test loss = 4.7214
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_133246
+At epoch 15105, test loss = 4.7199
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_133545
+At epoch 15186, test loss = 4.6907
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_133630
+At epoch 15345, test loss = 4.6863
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_133802
+At epoch 17255, test loss = 4.6805
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_135559
+At epoch 17776, test loss = 4.6397
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140051
+At epoch 18680, test loss = 4.6394
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140918
+At epoch 18682, test loss = 4.6308
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140919
+At epoch 18683, test loss = 4.6039
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140920
+At epoch 18686, test loss = 4.5963
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140922
+At epoch 18687, test loss = 4.5763
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140923
+At epoch 18690, test loss = 4.5711
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140924
+At epoch 18692, test loss = 4.5274
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140926
+At epoch 18694, test loss = 4.5184
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140927
+At epoch 18699, test loss = 4.5174
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140930
+At epoch 18701, test loss = 4.5163
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140931
+At epoch 18706, test loss = 4.4898
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140934
+At epoch 18708, test loss = 4.4718
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140935
+At epoch 18712, test loss = 4.4580
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140937
+At epoch 18730, test loss = 4.4529
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140948
+At epoch 18733, test loss = 4.4481
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140950
+At epoch 18735, test loss = 4.4323
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_140951
+At epoch 18771, test loss = 4.4030
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141012
+At epoch 18949, test loss = 4.3961
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141158
+At epoch 18953, test loss = 4.3921
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141200
+At epoch 18954, test loss = 4.3741
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141201
+At epoch 18956, test loss = 4.3100
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141202
+At epoch 18959, test loss = 4.2935
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141204
+At epoch 18960, test loss = 4.2635
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141205
+At epoch 18964, test loss = 4.2579
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141207
+At epoch 18965, test loss = 4.2411
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141208
+At epoch 18968, test loss = 4.2178
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141210
+At epoch 18970, test loss = 4.1955
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141211
+At epoch 18977, test loss = 4.1914
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141215
+At epoch 18978, test loss = 4.1805
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141216
+At epoch 18980, test loss = 4.1755
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141217
+At epoch 18993, test loss = 4.1688
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141225
+At epoch 19013, test loss = 4.1644
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141237
+At epoch 19025, test loss = 4.1640
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141244
+At epoch 19027, test loss = 4.1617
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141245
+At epoch 19056, test loss = 4.1552
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141302
+At epoch 19085, test loss = 4.0891
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141320
+At epoch 19790, test loss = 4.0870
+...model saved to 15_exp/models/FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu_best.pth...20260225_141957
+...plot saved to 15_exp/plots/plots_FloydWarshallDataset_vanilla_0.0001_20000_20260225_110902_relu.png...
