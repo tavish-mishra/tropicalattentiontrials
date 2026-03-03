@@ -500,8 +500,8 @@ class SimpleTransformerModel(nn.Module):
         )       
         self.pool = pool
         if skip:
-            output_in_dim = 256 + d_model#256 + d_model #this is for concatenated skip
-            #self.skip_proj = nn.Linear(256, d_model)
+            output_in_dim = d_model#256 + d_model #this is for concatenated skip
+            self.skip_proj = nn.Linear(256, d_model)
         else:
             output_in_dim = d_model
         self.output_ffn = nn.Sequential(nn.Linear(output_in_dim, d_model), nn.ReLU(), nn.Linear(d_model, num_classes))
@@ -517,7 +517,7 @@ class SimpleTransformerModel(nn.Module):
         x = x.reshape(B, N, N * F)
         #print(x.size())
         if self.skip:
-            x_flat = x.view(B, N*N*F) #for concatenated, remove the skip_proj, for additive keep it
+            x_flat = self.skip_proj(x.view(B, N*N*F)) #for concatenated, remove the skip_proj, for additive keep it
         #print(x_flat.size())
         # print('current size 1: ', x.size())
         # print(self.input_linear)
@@ -531,7 +531,7 @@ class SimpleTransformerModel(nn.Module):
             #print('current size 3: ', out.size())
         #print(x.size())
         if self.skip:
-            x = torch.cat([x, x_flat], dim=-1)#x + x_flat#
+            x = x + x_flat##torch.cat([x, x_flat], dim=-1)#
         #print(x.size(), 'right before output_ffn')
         out = self.output_ffn(x) # [B, S, 1]
         if not self.classification:
