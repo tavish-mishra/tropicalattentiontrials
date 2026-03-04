@@ -103,7 +103,7 @@ class Experiment:
         if self.task == 'evaluate':
             model_dir = os.path.join(self.top_cat, "models")
             # 1) Prefer an explicitly saved "best" checkpoint
-            best_pattern = os.path.join(model_dir, 'FloydWarshallDataset_tropical_0.0001_20000_20251205_163813_relu_best.pth')#f"{self.base_pattern}*_best.pth")
+            best_pattern = os.path.join(model_dir, 'FloydWarshallDataset_tropical_0.0001_20000_20260302_230431_relu_best.pth')#f"{self.base_pattern}*_best.pth")
             candidates = glob.glob(best_pattern)
             # 2) If no best checkpoint, fall back to any matching checkpoint
             if not candidates:
@@ -118,7 +118,7 @@ class Experiment:
             ckpt_path = candidates[0]
 
             #LET US SEE WHAT HAPPENS HERE
-            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20251211_141231_relu_best.pth'
+            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260302_230431_relu_best.pth'
             # 4) Load and record which model we evaluated
             state_dict = torch.load(ckpt_path, map_location=self.device)
             self.model_being_evaluated = os.path.splitext(os.path.basename(ckpt_path))[0]
@@ -485,6 +485,7 @@ class Experiment:
             
             loss.backward()
             self.optimizer.step()
+            self.scheduler.step()
             batch_size = x.size(0)
             seen_samples += batch_size
             total_loss_val += loss.item() * batch_size
@@ -501,6 +502,16 @@ class Experiment:
         print(f'...training model...{self._time_string()}')
         #self.optimizer = schedulefree.RAdamScheduleFree(self.model.parameters(), lr=self.lr)
         self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
+        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(
+            self.optimizer,
+            max_lr=self.lr * 10,
+            steps_per_epoch=len(self.train_loader),
+            epochs=self.num_epochs,
+            pct_start=0.3,  # 30% of training spent warming up
+            anneal_strategy='cos',  # cosine annealing in the decay phase
+            div_factor=10.0,  # initial_lr = max_lr / div_factor
+            final_div_factor=1e4,  # final_lr  = initial_lr / final_div_factor
+        )
         self._write_to_csv('w', 'train', ['epoch', 'batch', 'loss', 'time'])
         #self._write_to_csv('w', 'validation', ['epoch', 'val_loss', 'val_f1', 'best_up_to_now', 'time'])
         #loss_measure = True
