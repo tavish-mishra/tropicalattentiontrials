@@ -103,7 +103,7 @@ class Experiment:
         if self.task == 'evaluate':
             model_dir = os.path.join(self.top_cat, "models")
             # 1) Prefer an explicitly saved "best" checkpoint
-            best_pattern = os.path.join(model_dir, 'FloydWarshallDataset_tropical_0.0001_20000_20260302_230431_relu_best.pth')#f"{self.base_pattern}*_best.pth")
+            best_pattern = os.path.join(model_dir, 'FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth')#f"{self.base_pattern}*_best.pth")
             candidates = glob.glob(best_pattern)
             # 2) If no best checkpoint, fall back to any matching checkpoint
             if not candidates:
@@ -118,7 +118,7 @@ class Experiment:
             ckpt_path = candidates[0]
 
             #LET US SEE WHAT HAPPENS HERE
-            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260302_230431_relu_best.pth'
+            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth'
             # 4) Load and record which model we evaluated
             state_dict = torch.load(ckpt_path, map_location=self.device)
             self.model_being_evaluated = os.path.splitext(os.path.basename(ckpt_path))[0]
