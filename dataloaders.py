@@ -98,122 +98,15 @@ class SubsetSumDecisionDataset(Dataset):
         return self.data[idx]
 
 
-
-class FloydWarshallStepDataset(Dataset):
-    """
-    Single-step Floyd–Warshall dataset.
-
-    Uses the same sampling logic as FloydWarshallDataset but targets a single FW
-    update with pivot k=0. Inputs are (weight-like distance, normalized row,
-    normalized col); targets are the updated distances (regression).
-    """
-    def __init__(
-        self,
-        n_samples: int = 1000,
-        length_range: tuple[int, int] = (4, 4),
-        p_range: tuple[float, float] = (math.sqrt(0.5), math.sqrt(0.9)),
-        value_range: tuple[float, float] = (0.0, 0.2),
-        noise_prob: float = 0.0,
-        adversarial_range: tuple[float, float] = (0.1, 0.5),
-        seed: int = 42,
-        **kwargs
-    ):
-        super().__init__()
-        random.seed(seed)
-        np.random.seed(seed)
-
-        self.n_samples = n_samples
-        self.length_range = length_range
-        self.p_range = p_range
-        self.weight_range = value_range
-        self.noise_prob = noise_prob
-        self.adversarial_range = adversarial_range
-
-        large_missing = 1e6
-        self.data = []
-        for _ in range(n_samples):
-            n = random.randint(*self.length_range)
-            if n <= 0:
-                continue
-
-            p_sample = random.uniform(*self.p_range)
-            W = self._generate_er_graph(n, p_sample, self.weight_range)
-
-            # Initial distance matrix D0 (keep a large sentinel for FW math)
-            D0_fw = np.copy(W)
-            D0_fw[np.isinf(D0_fw)] = large_missing
-
-            # Input view of D0: use -1 to mark missing edges instead of inf/large
-            # (Old behavior kept here for easy revert)
-            # old: D0_features = np.copy(W); D0_features[np.isinf(D0_features)] = large_missing
-            D0_features = np.copy(W)
-            D0_features[np.isinf(D0_features)] = -1.0
-
-            # One FW step with pivot k=0: D1 = min(D0, D0[:,0] + D0[0,:])
-            col0 = D0_fw[:, 0:1]
-            row0 = D0_fw[0:1, :]
-            D1 = np.minimum(D0_fw, col0 + row0)
-
-            # Mark unreachable pairs (still at sentinel value) with -1 for outputs
-            unreachable_mask = (D1 >= large_missing - 1)  # Threshold to catch 1e6 values
-            D1[unreachable_mask] = -1.0
-
-            # Mask: 1 where target is valid (reachable), 0 where unreachable
-            y_mask = torch.tensor((~unreachable_mask).astype(np.float32)).flatten()
-
-            # Input features: distance from D0 + normalized indices -> shape (n^2, 3)
-            flat_D0 = D0_features.flatten()
-            features = [torch.tensor(flat_D0, dtype=torch.float).unsqueeze(-1)]
-            indices = np.arange(n * n)
-            norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n * n)
-            norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros(n * n)
-            features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
-            features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
-            x_t = torch.cat(features, dim=-1)
-
-            # Optional noise on distance feature
-            if self.noise_prob > 0:
-                for k_idx in range(n * n):
-                    if (k_idx // n) != (k_idx % n) and random.random() < self.noise_prob:
-                        jitter_val = random.uniform(*self.adversarial_range)
-                        x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
-
-            y_t = torch.tensor(D1.flatten(), dtype=torch.float)
-            # Return mask alongside target for loss filtering
-            self.data.append((x_t, y_t, y_mask))
-
-    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
-        """
-        Generates a weighted, undirected Erdos-Renyi random graph with float weights.
-        """
-        low, high = weight_range
-        adj = np.random.binomial(1, p, size=(n, n))
-        adj = adj * adj.T
-        weights = np.random.uniform(low=low, high=high, size=(n, n))
-        symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
-
-        W = np.full((n, n), np.inf, dtype=float)
-        W[adj == 1] = symmetric_weights[adj == 1]
-        np.fill_diagonal(W, 0.0)
-        return W
-
-    def __len__(self):
-        return len(self.data)
-
-    def __getitem__(self, idx):
-        return self.data[idx]
-
-
 class FloydWarshallArbitraryStepDataset(Dataset):
     """
-    Arbitrary-step Floyd–Warshall dataset.
+    Arbitrary-step Min-Plus Matrix Squaring dataset.
     
-    Generates samples where the model learns a single FW update step at an arbitrary
-    pivot k (0 to n-1). The input is the distance matrix after running FW steps 0 to k-1,
-    and the target is the result after one more step with pivot k.
+    Generates samples where the model learns a single global matrix squaring update.
+    The input is the distance matrix after running squaring steps 0 to current_step-1,
+    and the target is the result after one more global matrix squaring step.
     
-    Input features: (distance, normalized_row, normalized_col, pivot_indicator)
-    where pivot_indicator = 1.0 if row==k or col==k, else 0.0.
+    Input features: (distance, normalized_row, normalized_col) -> shape (n^2, 3)
     """
     def __init__(
         self,
@@ -247,37 +140,37 @@ class FloydWarshallArbitraryStepDataset(Dataset):
             p_sample = random.uniform(*self.p_range)
             W = self._generate_er_graph(n, p_sample, self.weight_range)
 
-            # Initial distance matrix D0 (keep a large sentinel for FW math)
+            # Initial distance matrix D0
             D0_fw = np.copy(W)
             D0_fw[np.isinf(D0_fw)] = large_missing
 
-            # Pick a random step k (0 to n-1)
-            current_k = random.randint(0, n - 1)
+            # Calculate total required matrix squaring steps: ceil(log2(n))
+            max_steps = int(np.ceil(np.log2(n))) if n > 1 else 1
+            
+            # Pick a random step history
+            current_step = random.randint(0, max_steps - 1) if max_steps > 0 else 0
 
-            # Simulate history: run FW steps 0 to current_k - 1
+            # Simulate history: run Min-Plus Squaring steps
             D_input_fw = np.copy(D0_fw)
-            for k_step in range(current_k):
-                col_k = D_input_fw[:, k_step:k_step+1]
-                row_k = D_input_fw[k_step:k_step+1, :]
-                D_input_fw = np.minimum(D_input_fw, col_k + row_k)
+            for _ in range(current_step):
+                # Vectorized Min-Plus Matrix Multiplication: D = D (X) D
+                D_input_fw = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # Compute target: one more step with pivot current_k
-            col_k = D_input_fw[:, current_k:current_k+1]
-            row_k = D_input_fw[current_k:current_k+1, :]
-            D_target = np.minimum(D_input_fw, col_k + row_k)
+            # Compute target: one more step of Min-Plus Squaring
+            D_target = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # Mark unreachable pairs (still at sentinel value) with -1 for outputs
-            unreachable_mask = (D_target >= large_missing - 1)  # Threshold to catch 1e6 values
+            # Mark unreachable pairs with -1 for outputs
+            unreachable_mask = (D_target >= large_missing - 1)  
             D_target[unreachable_mask] = -1.0
 
-            # Mask: 1 where target is valid (reachable), 0 where unreachable
+            # Mask: 1 where target is valid, 0 where unreachable
             y_mask = torch.tensor((~unreachable_mask).astype(np.float32)).flatten()
 
-            # Input view of D_input: use -1 to mark missing edges instead of inf/large
+            # Input view of D_input: use -1 to mark missing edges
             D_input_features = np.copy(D_input_fw)
             D_input_features[D_input_fw >= large_missing - 1] = -1.0
 
-            # Input features: distance from D_input + normalized indices + pivot indicator -> shape (n^2, 4)
+            # Input features: (distance, norm_i, norm_j) -> shape (n^2, 3)
             flat_D_input = D_input_features.flatten()
             features = [torch.tensor(flat_D_input, dtype=torch.float).unsqueeze(-1)]
             
@@ -287,18 +180,9 @@ class FloydWarshallArbitraryStepDataset(Dataset):
             features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
             features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
             
-            # Pivot indicator: 1.0 if row==current_k or col==current_k, else 0.0
-            pivot_indicator = np.zeros(n * n, dtype=np.float32)
-            for idx in range(n * n):
-                row_idx = idx // n
-                col_idx = idx % n
-                if row_idx == current_k or col_idx == current_k:
-                    pivot_indicator[idx] = 1.0
-            features.append(torch.tensor(pivot_indicator, dtype=torch.float).unsqueeze(-1))
-            
             x_t = torch.cat(features, dim=-1)
 
-            # Optional noise on distance feature
+            # Optional noise
             if self.noise_prob > 0:
                 for k_idx in range(n * n):
                     if (k_idx // n) != (k_idx % n) and random.random() < self.noise_prob:
@@ -306,13 +190,9 @@ class FloydWarshallArbitraryStepDataset(Dataset):
                         x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
 
             y_t = torch.tensor(D_target.flatten(), dtype=torch.float)
-            # Return mask alongside target for loss filtering
             self.data.append((x_t, y_t, y_mask))
 
     def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
-        """
-        Generates a weighted, undirected Erdos-Renyi random graph with float weights.
-        """
         low, high = weight_range
         adj = np.random.binomial(1, p, size=(n, n))
         adj = adj * adj.T
