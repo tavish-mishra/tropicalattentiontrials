@@ -38,7 +38,8 @@ class Experiment:
                  num_layers: int = 3,
                  dropout: float = 0.0,
                  activation: str = 'relu',
-                 skip : bool = False,):
+                 skip : bool = False,
+                 checkpoint : str = None,):
         dict_datasets = {
             'SubsetSumDecisionDataset': {'class': SubsetSumDecisionDataset, 'classification': True, 'pool': True}, 
             'MaxSubsetSumDataset': {'class': MaxSubsetSumDataset, 'classification': True, 'pool': False},
@@ -67,6 +68,7 @@ class Experiment:
         self.dict_dataset = dict_datasets[self.dataset_name]
         self.activation = activation
         self.skip = skip
+        self.checkpoint = checkpoint
         
         # -- data --
         self.device = device
@@ -101,24 +103,21 @@ class Experiment:
         self.set_dataloader()
         self.set_model()
         if self.task == 'evaluate':
-            model_dir = os.path.join(self.top_cat, "models")
-            # 1) Prefer an explicitly saved "best" checkpoint
-            best_pattern = os.path.join(model_dir, 'FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth')#f"{self.base_pattern}*_best.pth")
-            candidates = glob.glob(best_pattern)
-            # 2) If no best checkpoint, fall back to any matching checkpoint
-            if not candidates:
-                any_pattern = os.path.join(model_dir, f"{self.base_pattern}*.pth")
-                candidates = glob.glob(any_pattern)
-            if not candidates:
-                raise FileNotFoundError(
-                    f"No checkpoints found for base pattern '{self.base_pattern}' in {model_dir}"
-                )
-            # 3) Pick the most recent by modification time
-            candidates.sort(key=os.path.getmtime, reverse=True)
-            ckpt_path = candidates[0]
-
-            #LET US SEE WHAT HAPPENS HERE
-            ckpt_path = '15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth'
+            if self.checkpoint:
+                ckpt_path = self.checkpoint
+            else:
+                model_dir = os.path.join(self.top_cat, "models")
+                best_pattern = os.path.join(model_dir, f"{self.base_pattern}*_best.pth")
+                candidates = glob.glob(best_pattern)
+                if not candidates:
+                    any_pattern = os.path.join(model_dir, f"{self.base_pattern}*.pth")
+                    candidates = glob.glob(any_pattern)
+                if not candidates:
+                    raise FileNotFoundError(
+                        f"No checkpoints found for base pattern '{self.base_pattern}' in {model_dir}"
+                    )
+                candidates.sort(key=os.path.getmtime, reverse=True)
+                ckpt_path = candidates[0]
             # 4) Load and record which model we evaluated
             state_dict = torch.load(ckpt_path, map_location=self.device)
             self.model_being_evaluated = os.path.splitext(os.path.basename(ckpt_path))[0]
@@ -557,6 +556,7 @@ if __name__ == "__main__":
     #parser.add_argument("--skip", type=bool, default=False, help="Whether or not to use skip connection")
     parser.add_argument("--skip", action='store_true', help="Whether or not to use skip connection")
     default_device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    parser.add_argument("--checkpoint", type=str, default=None, help="Path to model checkpoint .pth file")
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
     args = parser.parse_args()
 
@@ -582,6 +582,7 @@ if __name__ == "__main__":
             top_cat = args.tag,
             activation = args.activation,
             skip = args.skip,
+            checkpoint = args.checkpoint,
             **config_params,
         )
         experiment.run()
