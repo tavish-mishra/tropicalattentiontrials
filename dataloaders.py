@@ -1197,6 +1197,7 @@ class FloydWarshallDataset(Dataset):
         adversarial_range: tuple[float, float] = (0.1, 0.5),
         classification: bool = True,
         seed: int = 42,
+        graph_type : str = 'er',
         **kwargs
     ):
         """
@@ -1216,6 +1217,7 @@ class FloydWarshallDataset(Dataset):
         self.noise_prob = noise_prob
         self.adversarial_range = adversarial_range
         self.classification = classification
+        self.graph_type = graph_type
 
         self.data = []
         for _ in range(n_samples):
@@ -1223,8 +1225,10 @@ class FloydWarshallDataset(Dataset):
             if n <= 0: continue
             p_low, p_high = self.p_range            
             p_sample = random.uniform(np.sqrt(p_low), np.sqrt(p_high))
-            W = self._generate_er_graph(n, p_sample, self.weight_range)
-            #W = self._generate_random_tree(n, self.weight_range)
+            if self.graph_type == 'er':
+                W = self._generate_er_graph(n, p_sample, self.weight_range)
+            elif self.graph_type == 'tree':
+                W = self._generate_random_tree(n, self.weight_range)
             
             W_features = np.copy(W)
             W_features[np.isinf(W_features)] = 0.0

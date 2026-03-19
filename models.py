@@ -246,13 +246,14 @@ class TropicalLinear(nn.Module):
     
 class TropicalAttention(nn.Module):
     def __init__(self, d_model, n_heads, device, use_logsumexp=False, 
-                 use_tropical_metric=True):
+                 use_tropical_metric=True, deval=True):
         super(TropicalAttention, self).__init__()
         assert d_model % n_heads == 0, "d_model must be divisible by n_heads"
         self.d_k = d_model // n_heads
         self.n_heads = n_heads
         self.use_logsumexp = use_logsumexp
         self.use_tropical_metric = use_tropical_metric
+        self.deval = deval
         
         # Linear layers without bias for efficiency
         self.query_linear = nn.Linear(d_model, d_model, bias=False)
@@ -277,10 +278,14 @@ class TropicalAttention(nn.Module):
         batch_size, seq_len, _ = x.size()
         
         # Apply ReLU and log1p in a single pass before linear transformation
-        q = self.normalize_tropical(torch.log1p(F.relu(self.query_linear(x))))#self.normalize_tropical((F.relu(self.query_linear(x))))#
-        k = self.normalize_tropical(torch.log1p(F.relu(self.key_linear(x))))#self.normalize_tropical((F.relu(self.key_linear(x))))#
-        v = self.normalize_tropical(torch.log1p(F.relu(self.value_linear(x))))#self.normalize_tropical((F.relu(self.value_linear(x))))#
-        
+        if self.deval:
+            q = self.normalize_tropical(torch.log1p(F.relu(self.query_linear(x))))##
+            k = self.normalize_tropical(torch.log1p(F.relu(self.key_linear(x))))##
+            v = self.normalize_tropical(torch.log1p(F.relu(self.value_linear(x))))##
+        else:
+            q = self.normalize_tropical((F.relu(self.query_linear(x))))
+            k = self.normalize_tropical((F.relu(self.key_linear(x))))
+            v = self.normalize_tropical((F.relu(self.value_linear(x))))
         # Reshape and permute for multi-head attention
         q = q.reshape(batch_size, seq_len, self.n_heads, self.d_k).permute(0, 2, 1, 3)  # [B, H, S, D]
         k = k.reshape(batch_size, seq_len, self.n_heads, self.d_k).permute(0, 2, 1, 3)
@@ -326,7 +331,8 @@ class TropicalAttention(nn.Module):
         context = context.reshape(batch_size, self.n_heads, seq_len, self.d_k).permute(0, 2, 1, 3).reshape(batch_size, seq_len, -1)
         
         # Apply the output linear layer after exponentiation
-        context = torch.expm1(context)
+        if self.deval:
+            context = torch.expm1(context)
         output = self.out(context)
         
         return output, attn_scores

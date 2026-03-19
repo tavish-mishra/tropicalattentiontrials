@@ -26,4 +26,4 @@ echo "GPU device: $(python -c 'import torch; print(torch.cuda.get_device_name(0)
 echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
 echo "SLURM_JOB_GPUS=$SLURM_JOB_GPUS"
 
-python experiment.py --job_file jobs_to_do_evaluate --job_id 37 --checkpoint 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth --tag 15_exp
+python experiment.py --job_file jobs_to_do_evaluate --job_id 37 --checkpoint 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth --graph_type er --tag 15_exp --skip --no_deval

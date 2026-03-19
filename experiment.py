@@ -39,7 +39,9 @@ class Experiment:
                  dropout: float = 0.0,
                  activation: str = 'relu',
                  skip : bool = False,
-                 checkpoint : str = None,):
+                 checkpoint : str = None,
+                 graph_type: str = 'er',
+                 no_deval : bool = False,):
         dict_datasets = {
             'SubsetSumDecisionDataset': {'class': SubsetSumDecisionDataset, 'classification': True, 'pool': True}, 
             'MaxSubsetSumDataset': {'class': MaxSubsetSumDataset, 'classification': True, 'pool': False},
@@ -69,6 +71,8 @@ class Experiment:
         self.activation = activation
         self.skip = skip
         self.checkpoint = checkpoint
+        self.graph_type = graph_type
+        self.deval = True if (no_deval == False) else False
         
         # -- data --
         self.device = device
@@ -143,7 +147,7 @@ class Experiment:
                                             num_classes = self.num_classes,
                                             dropout = self.dropout,
                                             tropical = (self.model_type == 'tropical'),
-                                            tropical_attention_cls = TropicalAttention(self.d_model, self.n_heads, self.device) if self.model_type == 'tropical' else None,
+                                            tropical_attention_cls = TropicalAttention(self.d_model, self.n_heads, self.device, deval=self.deval) if self.model_type == 'tropical' else None,
                                             classification=self.dict_dataset['classification'],
                                             pool=self.dict_dataset['pool'],
                                             aggregator='softmax' if self.model_type == 'vanilla' else 'adaptive',
@@ -172,7 +176,8 @@ class Experiment:
                                                                 adversarial_range = self.adversarial_range,
                                                                 noise_prob = self.noise_prob,
                                                                 classification =self.dict_dataset['classification'], 
-                                                                seed = self.seed,)
+                                                                seed = self.seed,
+                                                                graph_type = self.graph_type)
 
         n_train   = int(0.8 * len(self.dataset))
         n_test    = len(self.dataset) - n_train
@@ -553,11 +558,12 @@ if __name__ == "__main__":
     parser.add_argument("--tag", type=str, help="Experiment name")
     parser.add_argument("--job_id", type=int, default=-1, help="Row index in the CSV. Use -1 to sweep over every row.")
     parser.add_argument("--activation", type=str, default='relu', help="Activation function")
-    #parser.add_argument("--skip", type=bool, default=False, help="Whether or not to use skip connection")
     parser.add_argument("--skip", action='store_true', help="Whether or not to use skip connection")
     default_device = "cuda:0" if torch.cuda.is_available() else "cpu"
     parser.add_argument("--checkpoint", type=str, default=None, help="Path to model checkpoint .pth file")
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
+    parser.add_argument("--graph_type", type=str, default="er", choices=["er", "tree"], help="Graph type")
+    parser.add_argument("--no_deval", action='store_true', help="Whether or not to use skip connection")
     args = parser.parse_args()
 
     df = pd.read_csv(f'{args.job_file}.csv')
@@ -583,6 +589,8 @@ if __name__ == "__main__":
             activation = args.activation,
             skip = args.skip,
             checkpoint = args.checkpoint,
+            graph_type = args.graph_type,
+            no_deval = args.no_deval,
             **config_params,
         )
         experiment.run()
