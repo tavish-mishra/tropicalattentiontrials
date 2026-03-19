@@ -36,4 +36,4 @@ evaluate,value_range,adaptive,ThreeSumDecisionDataset,2,64,2,1,0,100,0.0001,5000
 evaluate,value_range,adaptive,FloydWarshallDataset,3,64,2,1,0,100,0.0001,5000,1,na,na,"(10,20)","(8,8)","(1,15)",0,0
 evaluate,value_range,adaptive,SCCDataset,3,64,2,1,0,100,0.0001,5000,1,na,na,na,"(8,8)",0.001,0,0
 evaluate,value_range,tropical,FloydWarshallDataset,3,64,4,4,0,100,0.0001,5000,1,na,na,"(10,20)","(8,8)","(1,15)",0,0
-evaluate,value_range,tropical,FloydWarshallDataset,3,64,4,4,0,100,0.0001,5000,1,na,na,"(10,20)","(8,8)","(16,30)",0,0
+evaluate,value_range,tropical,FloydWarshallDataset,3,64,4,4,0,100,0.0001,5000,1,na,na,"(10,20)","(8,8)","(14,20)",0,0
