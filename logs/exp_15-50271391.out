@@ -1,0 +1,11 @@
+CUDA available? True
+GPU device: NVIDIA A100-SXM4-40GB
+CUDA_VISIBLE_DEVICES=0,1,2,3
+SLURM_JOB_GPUS=0,1,2,3
+
+ Running config: {'task': 'evaluate', 'experiment_type': 'value_range', 'model_type': 'tropical', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 64, 'n_heads': 4, 'num_layers': 4, 'dropout': 0, 'num_epochs': 100, 'lr': 0.0001, 'n_samples': 5000, 'batch_size': 1, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'value_range': '(1,15)', 'noise_prob': 0, 'seed': 0}
+FloydWarshallDataset_tropical_(8, 8)_0_(1, 15)_20260319_195716_tropical_relu_FloydWarshallDataset
+...setting dataloader...20260319_195716
+...setting model object...20260319_195717
+Evaluating checkpoint: 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu_best.pth
+...evaluating model...20260319_195718

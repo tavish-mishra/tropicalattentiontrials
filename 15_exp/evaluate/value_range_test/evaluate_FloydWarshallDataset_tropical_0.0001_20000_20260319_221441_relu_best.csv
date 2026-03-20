@@ -1,0 +1,2 @@
+seed,length_range,noise_prob,value_range,loss,std,micro_f1_score
+0,"(8, 8)",0,"(14, 20)",True,er,True,9102.92256375122,4346.481297758995,
