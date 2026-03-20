@@ -101,19 +101,14 @@ class SubsetSumDecisionDataset(Dataset):
 class FloydWarshallArbitraryStepDataset(Dataset):
     """
     Arbitrary-step Min-Plus Matrix Squaring dataset.
-    
     Generates samples where the model learns a single global matrix squaring update.
-    The input is the distance matrix after running squaring steps 0 to current_step-1,
-    and the target is the result after one more global matrix squaring step.
-    
-    Input features: (distance, normalized_row, normalized_col) -> shape (n^2, 3)
     """
     def __init__(
         self,
-        n_samples: int = 1000,
+        num_samples: int = 1000,
         length_range: tuple[int, int] = (4, 4),
         p_range: tuple[float, float] = (math.sqrt(0.5), math.sqrt(0.9)),
-        value_range: tuple[float, float] = (0.0, 0.2),
+        value_range: tuple[float, float] = (1.0, 15.0), # Updated to match your experiment config
         noise_prob: float = 0.0,
         adversarial_range: tuple[float, float] = (0.1, 0.5),
         seed: int = 42,
@@ -123,7 +118,7 @@ class FloydWarshallArbitraryStepDataset(Dataset):
         random.seed(seed)
         np.random.seed(seed)
 
-        self.n_samples = n_samples
+        self.n_samples = num_samples
         self.length_range = length_range
         self.p_range = p_range
         self.weight_range = value_range
@@ -132,7 +127,8 @@ class FloydWarshallArbitraryStepDataset(Dataset):
 
         large_missing = 1e6
         self.data = []
-        for _ in range(n_samples):
+        
+        for _ in range(num_samples):
             n = random.randint(*self.length_range)
             if n <= 0:
                 continue
@@ -150,21 +146,20 @@ class FloydWarshallArbitraryStepDataset(Dataset):
             # Pick a random step history
             current_step = random.randint(0, max_steps - 1) if max_steps > 0 else 0
 
-            # Simulate history: run Min-Plus Squaring steps
+            # Simulate history: run Min-Plus Squaring steps up to current_step
             D_input_fw = np.copy(D0_fw)
             for _ in range(current_step):
-                # Vectorized Min-Plus Matrix Multiplication: D = D (X) D
                 D_input_fw = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # Compute target: one more step of Min-Plus Squaring
+            # Compute target: one MORE step of Min-Plus Squaring
             D_target = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # Mark unreachable pairs with -1 for outputs
-            unreachable_mask = (D_target >= large_missing - 1)  
-            D_target[unreachable_mask] = -1.0
-
-            # Mask: 1 where target is valid, 0 where unreachable
-            y_mask = torch.tensor((~unreachable_mask).astype(np.float32)).flatten()
+            # --- THE FIX ---
+            # Mark unreachable pairs with -1 for the normalizer to catch
+            D_target[D_target >= large_missing - 1] = -1.0
+            
+            # Mask is now ALL ONES. The model must learn to predict PROXY_INF for unreachable edges.
+            y_mask = torch.ones(n * n, dtype=torch.float32)
 
             # Input view of D_input: use -1 to mark missing edges
             D_input_features = np.copy(D_input_fw)
