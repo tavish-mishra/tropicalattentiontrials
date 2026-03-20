@@ -331,7 +331,7 @@ class Experiment:
         print(f'...evaluating model...{self._time_string()}')
         loss, std, micro_f1_score = self._eval_one_epoch()
         if os.path.exists(f'{self.top_cat}/evaluate/{self.experiment_type}_test/evaluate_{self.model_being_evaluated}.csv') == False:
-            self._write_to_csv('w', 'evaluate', ['seed','length_range', 'noise_prob', 'value_range', 'loss', 'std', 'micro_f1_score'])
+            self._write_to_csv('w', 'evaluate', ['seed','length_range', 'noise_prob', 'value_range', 'deval', 'graph_type', 'skip', 'loss', 'std', 'micro_f1_score'])
         self._write_to_csv('a', 'evaluate', [self.seed, self.length_range, self.noise_prob, self.value_range, self.deval, self.graph_type, self.skip, loss, std, micro_f1_score])
     
     def _time_string(self):
