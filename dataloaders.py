@@ -1198,6 +1198,7 @@ class FloydWarshallDataset(Dataset):
         classification: bool = True,
         seed: int = 42,
         graph_type : str = 'er',
+        tree_er_ratio = 0.5,
         **kwargs
     ):
         """
@@ -1218,6 +1219,7 @@ class FloydWarshallDataset(Dataset):
         self.adversarial_range = adversarial_range
         self.classification = classification
         self.graph_type = graph_type
+        self.tree_er_ratio = tree_er_ratio
 
         self.data = []
         for _ in range(n_samples):
@@ -1229,6 +1231,12 @@ class FloydWarshallDataset(Dataset):
                 W = self._generate_er_graph(n, p_sample, self.weight_range)
             elif self.graph_type == 'tree':
                 W = self._generate_random_tree(n, self.weight_range)
+            elif self.graph_type == 'mix':
+                flip = np.random.binomial(n=1, p=self.tree_er_ratio)
+                if flip:
+                    W = self._generate_er_graph(n, p_sample, self.weight_range)
+                else:
+                    W = self._generate_random_tree(n, self.weight_range)
             
             W_features = np.copy(W)
             W_features[np.isinf(W_features)] = 0.0
