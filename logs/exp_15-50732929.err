@@ -1,0 +1,8 @@
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13.2
+
+/global/u2/t/tmishra/Tropical-Attention/dataloaders.py:1286: RuntimeWarning: invalid value encountered in sqrt
+  symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
+/global/u2/t/tmishra/Tropical-Attention/experiment.py:380: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  plt.savefig(output_file)
