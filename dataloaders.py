@@ -1283,7 +1283,7 @@ class FloydWarshallDataset(Dataset):
         adj = np.random.binomial(1, p, size=(n, n))
         adj = adj * adj.T
         weights = np.random.uniform(low=low, high=high, size=(n, n))
-        symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
+        symmetric_weights = ((weights * weights.T) + 1e-6) #add np.sqrt if needed
         
         W = np.full((n, n), np.inf, dtype=float)
         W[adj == 1] = symmetric_weights[adj == 1]
