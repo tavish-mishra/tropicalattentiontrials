@@ -1,0 +1,17 @@
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13.2
+
+Traceback (most recent call last):
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 596, in <module>
+    experiment.run()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 107, in run
+    self.set_dataloader()
+  File "/global/u2/t/tmishra/Tropical-Attention/experiment.py", line 171, in set_dataloader
+    self.dataset = self.dict_dataset['class'](n_samples = self.n_samples,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/global/u2/t/tmishra/Tropical-Attention/dataloaders.py", line 1246, in __init__
+    D, Pi = floyd_warshall(csgraph=graph, directed=False, return_predecessors=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "_shortest_path.pyx", line 346, in scipy.sparse.csgraph._shortest_path.floyd_warshall
+scipy.sparse.csgraph._shortest_path.NegativeCycleError: Negative cycle in nodes [0 1 2 3 4 5 6 7]
