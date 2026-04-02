@@ -99,15 +99,12 @@ class SubsetSumDecisionDataset(Dataset):
 
 
 class FloydWarshallArbitraryStepDataset(Dataset):
-    """
-    Arbitrary-step Min-Plus Matrix Squaring dataset aligned exactly with the paper.
-    """
     def __init__(
         self,
         num_samples: int = 1000,
         length_range: tuple[int, int] = (4, 4),
-        p_range: tuple[float, float] = (math.sqrt(0.5), math.sqrt(0.9)),
-        value_range: tuple[float, float] = (1.0, 15.0),
+        p_range: tuple[float, float] = (0.1, 0.4), # DRASITCALLY SPARSER
+        eps: float = 0.1, # EPSILON FOR SCALING
         noise_prob: float = 0.0,
         adversarial_range: tuple[float, float] = (0.1, 0.5),
         seed: int = 42,
@@ -119,7 +116,7 @@ class FloydWarshallArbitraryStepDataset(Dataset):
 
         self.length_range = length_range
         self.p_range = p_range
-        self.weight_range = value_range
+        self.eps = eps
         self.noise_prob = noise_prob
         self.adversarial_range = adversarial_range
 
@@ -131,7 +128,7 @@ class FloydWarshallArbitraryStepDataset(Dataset):
             if n <= 0: continue
 
             p_sample = random.uniform(*self.p_range)
-            W = self._generate_er_graph(n, p_sample, self.weight_range)
+            W = self._generate_er_graph(n, p_sample, self.eps)
 
             D0_fw = np.copy(W)
             D0_fw[np.isinf(D0_fw)] = large_missing
@@ -139,21 +136,17 @@ class FloydWarshallArbitraryStepDataset(Dataset):
             max_steps = int(np.ceil(np.log2(n))) if n > 1 else 1
             current_step = random.randint(0, max_steps - 1) if max_steps > 0 else 0
 
-            # Simulate history up to current_step
             D_input_fw = np.copy(D0_fw)
             for _ in range(current_step):
                 D_input_fw = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # Target: One more step
             D_target = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # --- PAPER's EXACT INFINITY HANDLING ---
-            # 1. Target: Replace infinity with mathematical ceiling
-            large_val_for_inf = n * self.weight_range[1] + 1
+            # NEW CEILING: Max path length is n * (1 + eps). Add 1 for the ceiling.
+            large_val_for_inf = n * (1.0 + self.eps) + 1.0 
             D_target[D_target >= large_missing - 1] = large_val_for_inf
             y_t = torch.tensor(D_target.flatten(), dtype=torch.float)
 
-            # 2. Input: Zero-fill missing edges
             D_input_features = np.copy(D_input_fw)
             D_input_features[D_input_fw >= large_missing - 1] = 0.0
             
@@ -174,19 +167,25 @@ class FloydWarshallArbitraryStepDataset(Dataset):
                         jitter_val = random.uniform(*self.adversarial_range)
                         x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
 
-            # Notice: No mask returned! Just (x, y)
             self.data.append((x_t, y_t))
 
-    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
-        low, high = weight_range
+    def _generate_er_graph(self, n: int, p: float, eps: float) -> np.ndarray:
         adj = np.random.binomial(1, p, size=(n, n))
         adj = adj * adj.T
-        weights = np.random.uniform(low=low, high=high, size=(n, n))
+        weights = np.random.uniform(low=1.0, high=15.0, size=(n, n))
         symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
         
         W = np.full((n, n), np.inf, dtype=float)
         W[adj == 1] = symmetric_weights[adj == 1]
         np.fill_diagonal(W, 0.0)
+        
+        # EPSILON SCALING LOGIC
+        valid_mask = (W > 0) & (~np.isinf(W))
+        if np.any(valid_mask):
+            w_max = np.max(W[valid_mask])
+            target_max = random.uniform(1.0 - eps, 1.0 + eps)
+            W[valid_mask] = W[valid_mask] * (target_max / w_max)
+            
         return W
 
     def __len__(self):
