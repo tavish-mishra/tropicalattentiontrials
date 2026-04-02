@@ -103,11 +103,12 @@ class FloydWarshallArbitraryStepDataset(Dataset):
         self,
         num_samples: int = 1000,
         length_range: tuple[int, int] = (4, 4),
-        p_range: tuple[float, float] = (0.1, 0.4), # DRASITCALLY SPARSER
-        eps: float = 0.1, # EPSILON FOR SCALING
+        p_range: tuple[float, float] = (0.5, 0.9), # REVERTED: Denser graphs
+        eps: float = 0.1, 
         noise_prob: float = 0.0,
         adversarial_range: tuple[float, float] = (0.1, 0.5),
         seed: int = 42,
+        curriculum_phase_A: bool = True, # NEW: Curriculum toggle
         **kwargs
     ):
         super().__init__()
@@ -119,6 +120,7 @@ class FloydWarshallArbitraryStepDataset(Dataset):
         self.eps = eps
         self.noise_prob = noise_prob
         self.adversarial_range = adversarial_range
+        self.curriculum_phase_A = curriculum_phase_A
 
         large_missing = 1e6
         self.data = []
@@ -133,8 +135,12 @@ class FloydWarshallArbitraryStepDataset(Dataset):
             D0_fw = np.copy(W)
             D0_fw[np.isinf(D0_fw)] = large_missing
 
-            max_steps = int(np.ceil(np.log2(n))) if n > 1 else 1
-            current_step = random.randint(0, max_steps - 1) if max_steps > 0 else 0
+            # CURRICULUM LOGIC: Lock to step 0 if Phase A is active
+            if self.curriculum_phase_A:
+                current_step = 0
+            else:
+                max_steps = int(np.ceil(np.log2(n))) if n > 1 else 1
+                current_step = random.randint(0, max_steps - 1) if max_steps > 0 else 0
 
             D_input_fw = np.copy(D0_fw)
             for _ in range(current_step):
@@ -142,7 +148,6 @@ class FloydWarshallArbitraryStepDataset(Dataset):
 
             D_target = np.min(D_input_fw[:, :, None] + D_input_fw[None, :, :], axis=1)
 
-            # NEW CEILING: Max path length is n * (1 + eps). Add 1 for the ceiling.
             large_val_for_inf = n * (1.0 + self.eps) + 1.0 
             D_target[D_target >= large_missing - 1] = large_val_for_inf
             y_t = torch.tensor(D_target.flatten(), dtype=torch.float)
@@ -179,7 +184,6 @@ class FloydWarshallArbitraryStepDataset(Dataset):
         W[adj == 1] = symmetric_weights[adj == 1]
         np.fill_diagonal(W, 0.0)
         
-        # EPSILON SCALING LOGIC
         valid_mask = (W > 0) & (~np.isinf(W))
         if np.any(valid_mask):
             w_max = np.max(W[valid_mask])
