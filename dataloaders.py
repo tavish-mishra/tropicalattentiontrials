@@ -1282,24 +1282,77 @@ class FloydWarshallDataset(Dataset):
             
             self.data.append((x_t, y_t))
 
-    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
-        """
-        Generates a weighted, undirected Erdos-Renyi random graph with float weights.
-        The logic to choose between int/float is removed as it's no longer needed.
-        """
+    # def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float]) -> np.ndarray:
+    #     """
+    #     Generates a weighted, undirected Erdos-Renyi random graph with float weights.
+    #     The logic to choose between int/float is removed as it's no longer needed.
+    #     """
+    #     low, high = weight_range
+    #     adj = np.random.binomial(1, p, size=(n, n))
+    #     adj = adj * adj.T
+    #     weights = np.random.uniform(low=low, high=high, size=(n, n))
+    #     symmetric_weights = ((weights * weights.T) + 1e-6) #add np.sqrt if needed
+    #
+    #     W = np.full((n, n), np.inf, dtype=float)
+    #     W[adj == 1] = symmetric_weights[adj == 1]
+    #     np.fill_diagonal(W, 0.0)
+    #     return W
+
+    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float], eps: float = 0.05) -> np.ndarray:
         low, high = weight_range
-        adj = np.random.binomial(1, p, size=(n, n))
-        adj = adj * adj.T
-        weights = np.random.uniform(low=low, high=high, size=(n, n))
-        symmetric_weights = ((weights * weights.T) + 1e-6) #add np.sqrt if needed
-        
+
+        # Symmetric adjacency
+        adj_upper = np.random.binomial(1, p, size=(n, n))
+        adj = np.triu(adj_upper, k=1)
+        adj = adj + adj.T
+
+        # Symmetric weights
+        weights_upper = np.random.uniform(low=low, high=high, size=(n, n))
+        weights = np.triu(weights_upper, k=1)
+        weights = weights + weights.T
+
+        # Sample target max M from (1-eps, 1+eps), then normalize
+        M = np.random.uniform(1 - eps, 1 + eps)
+        edge_weights = weights[adj == 1]
+        if edge_weights.size > 0:
+            weights = weights * (M / edge_weights.max())
+
         W = np.full((n, n), np.inf, dtype=float)
-        W[adj == 1] = symmetric_weights[adj == 1]
+        W[adj == 1] = weights[adj == 1]
         np.fill_diagonal(W, 0.0)
         return W
 
-    def _generate_random_tree(self, n: int, weight_range: tuple[float, float]) -> np.ndarray:
+    # def _generate_random_tree(self, n: int, weight_range: tuple[float, float]) -> np.ndarray:
+    #     low, high = weight_range
+    #     prufer = np.random.randint(0, n, size=n - 2)
+    #     degree = np.ones(n, dtype=int)
+    #     for x in prufer:
+    #         degree[x] += 1
+    #     adj = np.zeros((n, n), dtype=int)
+    #     leaf_set = set(np.where(degree == 1)[0])
+    #     for x in prufer:
+    #         leaf = min(leaf_set)
+    #         leaf_set.remove(leaf)
+    #         adj[leaf, x] = 1
+    #         adj[x, leaf] = 1
+    #         degree[leaf] -= 1
+    #         degree[x] -= 1
+    #         if degree[x] == 1:
+    #             leaf_set.add(x)
+    #     remaining = list(leaf_set)
+    #     a, b = remaining[0], remaining[1]
+    #     adj[a, b] = adj[b, a] = adj[b, a] = 1
+    #     weights = np.random.uniform(low=low, high=high, size=(n, n))
+    #     symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
+    #     W = np.full((n, n), np.inf, dtype=float)
+    #     W[adj == 1] = symmetric_weights[adj == 1]
+    #     np.fill_diagonal(W, 0.0)
+    #     return W
+
+    def _generate_random_tree(self, n: int, weight_range: tuple[float, float], eps: float = 0.05) -> np.ndarray:
         low, high = weight_range
+
+        # Prüfer sequence -> tree adjacency
         prufer = np.random.randint(0, n, size=n - 2)
         degree = np.ones(n, dtype=int)
         for x in prufer:
@@ -1317,11 +1370,21 @@ class FloydWarshallDataset(Dataset):
                 leaf_set.add(x)
         remaining = list(leaf_set)
         a, b = remaining[0], remaining[1]
-        adj[a, b] = adj[b, a] = adj[b, a] = 1
-        weights = np.random.uniform(low=low, high=high, size=(n, n))
-        symmetric_weights = np.sqrt((weights * weights.T) + 1e-6)
+        adj[a, b] = adj[b, a] = 1
+
+        # Symmetric weights
+        weights_upper = np.random.uniform(low=low, high=high, size=(n, n))
+        weights = np.triu(weights_upper, k=1)
+        weights = weights + weights.T
+
+        # Sample target max M from (1-eps, 1+eps), then normalize
+        M = np.random.uniform(1 - eps, 1 + eps)
+        edge_weights = weights[adj == 1]
+        if edge_weights.size > 0:
+            weights = weights * (M / edge_weights.max())
+
         W = np.full((n, n), np.inf, dtype=float)
-        W[adj == 1] = symmetric_weights[adj == 1]
+        W[adj == 1] = weights[adj == 1]
         np.fill_diagonal(W, 0.0)
         return W
 
