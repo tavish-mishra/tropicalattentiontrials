@@ -562,7 +562,7 @@ if __name__ == "__main__":
     default_device = "cuda:0" if torch.cuda.is_available() else "cpu"
     parser.add_argument("--checkpoint", type=str, default=None, help="Path to model checkpoint .pth file")
     parser.add_argument("--device", type=str, default=default_device, help="Device to run on (e.g., 'cuda:0', 'cpu')")
-    parser.add_argument("--graph_type", type=str, default="er", choices=["er", "tree"], help="Graph type")
+    parser.add_argument("--graph_type", type=str, default="er", choices=["er", "tree", 'mix'], help="Graph type")
     parser.add_argument("--no_deval", action='store_true', help="Whether or not to use skip connection")
     args = parser.parse_args()
 
