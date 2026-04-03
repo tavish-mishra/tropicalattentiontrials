@@ -103,12 +103,12 @@ class FloydWarshallArbitraryStepDataset(Dataset):
         self,
         num_samples: int = 1000,
         length_range: tuple[int, int] = (4, 4),
-        p_range: tuple[float, float] = (0.5, 0.9), # REVERTED: Denser graphs
+        p_range: tuple[float, float] = (0.3, 0.6), # REVERTED: Denser graphs
         eps: float = 0.1, 
         noise_prob: float = 0.0,
         adversarial_range: tuple[float, float] = (0.1, 0.5),
         seed: int = 42,
-        curriculum_phase_A: bool = True, # NEW: Curriculum toggle
+        curriculum_phase_A: bool = False, # NEW: Curriculum toggle
         **kwargs
     ):
         super().__init__()
