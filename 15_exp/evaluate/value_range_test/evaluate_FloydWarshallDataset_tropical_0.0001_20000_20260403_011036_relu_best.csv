@@ -1,0 +1,2 @@
+seed,length_range,noise_prob,value_range,deval,graph_type,skip,loss,std,micro_f1_score
+0,"(8, 8)",0,"(14, 20)",True,er,True,0.05386113347392529,0.029065093147916315,
