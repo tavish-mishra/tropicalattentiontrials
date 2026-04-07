@@ -1398,6 +1398,164 @@ class FloydWarshallDataset(Dataset):
 
 
 
+class StepWiseFloydWarshallDataset(Dataset):
+    """
+    Step-Wise Repeated Matrix Squaring dataset for algorithmic reasoning.
+    Simulates intermediate states of the min-plus shortest path algorithm.
+    """
+    def __init__(
+        self,
+        n_samples: int = 1000,
+        length_range: tuple[int, int] = (4, 4),
+        p_range: tuple[float, float] = (0.5, 0.9),
+        value_range: tuple[float, float] = (0.0, 0.2),
+        noise_prob: float = 0.0,
+        adversarial_range: tuple[float, float] = (0.1, 0.5),
+        seed: int = 42,
+        graph_type : str = 'er',
+        tree_er_ratio = 0.5,
+        force_step: int = None, # NEW: Curriculum control
+        **kwargs
+    ):
+        super().__init__()
+        random.seed(seed)
+        np.random.seed(seed)
+
+        self.n_samples = n_samples
+        self.length_range = length_range
+        self.p_range = p_range
+        self.weight_range = value_range
+        self.noise_prob = noise_prob
+        self.adversarial_range = adversarial_range
+        self.graph_type = graph_type
+        self.tree_er_ratio = tree_er_ratio
+
+        self.data = []
+        for _ in range(n_samples):
+            n = random.randint(*self.length_range)
+            if n <= 0: continue
+            p_low, p_high = self.p_range            
+            p_sample = random.uniform(np.sqrt(p_low), np.sqrt(p_high))
+            if self.graph_type == 'er':
+                W = self._generate_er_graph(n, p_sample, self.weight_range)
+            elif self.graph_type == 'tree':
+                W = self._generate_random_tree(n, self.weight_range)
+            elif self.graph_type == 'mix':
+                flip = np.random.binomial(n=1, p=self.tree_er_ratio)
+                if flip:
+                    W = self._generate_er_graph(n, p_sample, self.weight_range)
+                else:
+                    W = self._generate_random_tree(n, self.weight_range)
+            
+            # --- STEP-WISE SIMULATION ---
+            max_steps = int(np.ceil(np.log2(n))) if n > 1 else 0
+
+            # Curriculum Control
+            if force_step is not None:
+                current_step = min(force_step, max_steps) 
+            else:
+                current_step = random.randint(0, max_steps - 1) if max_steps > 0 else 0
+
+            # Simulate up to current_step (Input D^t)
+            D_input = np.copy(W)
+            for _ in range(current_step):
+                D_input = np.min(D_input[:, :, None] + D_input[None, :, :], axis=1)
+
+            # Simulate exactly one more step (Target D^{t+1})
+            D_target = np.min(D_input[:, :, None] + D_input[None, :, :], axis=1)
+
+            # Handle Target Infinities (Fixed Math Ceiling based on eps=0.05)
+            eps = 0.05 
+            large_val_for_inf = n * (1.0 + eps) + 1.0 
+            
+            D_target_capped = np.copy(D_target)
+            D_target_capped[np.isinf(D_target_capped)] = large_val_for_inf
+            y_t = torch.tensor(D_target_capped.flatten(), dtype=torch.float)
+
+            # Handle Input Infinities and prepare flat sequence
+            D_input_features = np.copy(D_input)
+            D_input_features[np.isinf(D_input_features)] = 0.0
+            flat_W = D_input_features.flatten()
+            
+            # --- FEATURE CONSTRUCTION (1D Sequence Fixed) ---
+            features = [torch.tensor(flat_W, dtype=torch.float).unsqueeze(-1)]
+            
+            indices = np.arange(n*n) # 1D shape: (n*n,)
+            norm_i = (indices // n) / (n - 1) if n > 1 else np.zeros(n*n)
+            norm_j = (indices % n) / (n - 1) if n > 1 else np.zeros(n*n)
+            
+            features.append(torch.tensor(norm_i, dtype=torch.float).unsqueeze(-1))
+            features.append(torch.tensor(norm_j, dtype=torch.float).unsqueeze(-1))
+            
+            x_t = torch.cat(features, dim=-1)
+
+            # Noise addition
+            if self.noise_prob > 0:
+                for k_idx in range(n * n):
+                    if (k_idx // n) != (k_idx % n) and random.random() < self.noise_prob:
+                        jitter_val = random.uniform(*self.adversarial_range)
+                        x_t[k_idx, 0] = torch.clamp(x_t[k_idx, 0] + jitter_val, min=0.0)
+            
+            self.data.append((x_t, y_t))
+
+    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float], eps: float = 0.05) -> np.ndarray:
+        low, high = weight_range
+        adj_upper = np.random.binomial(1, p, size=(n, n))
+        adj = np.triu(adj_upper, k=1)
+        adj = adj + adj.T
+        weights_upper = np.random.uniform(low=low, high=high, size=(n, n))
+        weights = np.triu(weights_upper, k=1)
+        weights = weights + weights.T
+        M = np.random.uniform(1 - eps, 1 + eps)
+        edge_weights = weights[adj == 1]
+        if edge_weights.size > 0:
+            weights = weights * (M / edge_weights.max())
+        W = np.full((n, n), np.inf, dtype=float)
+        W[adj == 1] = weights[adj == 1]
+        np.fill_diagonal(W, 0.0)
+        return W
+
+    def _generate_random_tree(self, n: int, weight_range: tuple[float, float], eps: float = 0.05) -> np.ndarray:
+        low, high = weight_range
+        prufer = np.random.randint(0, n, size=n - 2)
+        degree = np.ones(n, dtype=int)
+        for x in prufer:
+            degree[x] += 1
+        adj = np.zeros((n, n), dtype=int)
+        leaf_set = set(np.where(degree == 1)[0])
+        for x in prufer:
+            leaf = min(leaf_set)
+            leaf_set.remove(leaf)
+            adj[leaf, x] = 1
+            adj[x, leaf] = 1
+            degree[leaf] -= 1
+            degree[x] -= 1
+            if degree[x] == 1:
+                leaf_set.add(x)
+        remaining = list(leaf_set)
+        a, b = remaining[0], remaining[1]
+        adj[a, b] = adj[b, a] = 1
+        weights_upper = np.random.uniform(low=low, high=high, size=(n, n))
+        weights = np.triu(weights_upper, k=1)
+        weights = weights + weights.T
+        M = np.random.uniform(1 - eps, 1 + eps)
+        edge_weights = weights[adj == 1]
+        if edge_weights.size > 0:
+            weights = weights * (M / edge_weights.max())
+        W = np.full((n, n), np.inf, dtype=float)
+        W[adj == 1] = weights[adj == 1]
+        np.fill_diagonal(W, 0.0)
+        return W
+
+    def __len__(self):
+        return self.n_samples
+
+    def __getitem__(self, idx):
+        return self.data[idx]
+
+
+
+
 
 
 # ----- strongly connected components classification -----
