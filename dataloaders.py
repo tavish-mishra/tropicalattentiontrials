@@ -1191,7 +1191,7 @@ class FloydWarshallDataset(Dataset):
         self,
         n_samples: int = 1000,
         length_range: tuple[int, int] = (4, 4),
-        p_range: tuple[float, float] = (0.5, 0.9),
+        p_range: tuple[float, float] = (0.25, 0.95),
         value_range: tuple[float, float] = (0.0, 0.2),
         noise_prob: float = 0.0,
         adversarial_range: tuple[float, float] = (0.1, 0.5),
