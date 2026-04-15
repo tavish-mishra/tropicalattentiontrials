@@ -1298,7 +1298,7 @@ class FloydWarshallDataset(Dataset):
     #     np.fill_diagonal(W, 0.0)
     #     return W
 
-    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float], eps: float = 0.05) -> np.ndarray:
+    def _generate_er_graph(self, n: int, p: float, weight_range: tuple[float, float], eps: float = 0.5) -> np.ndarray:
         low, high = weight_range
 
         # Symmetric adjacency
