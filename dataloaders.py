@@ -1474,7 +1474,7 @@ class StepWiseFloydWarshallDataset(Dataset):
 
             # Handle Input Infinities and prepare flat sequence
             D_input_features = np.copy(D_input)
-            D_input_features[np.isinf(D_input_features)] = 0.0
+            D_input_features[np.isinf(D_input_features)] = large_val_for_inf
             flat_W = D_input_features.flatten()
             
             # --- FEATURE CONSTRUCTION (1D Sequence Fixed) ---
