@@ -1547,6 +1547,33 @@ class StepWiseFloydWarshallDataset(Dataset):
         np.fill_diagonal(W, 0.0)
         return W
 
+    def _generate_line_graph(self, n: int, weight_range: tuple[float, float], eps: float = 0.05) -> np.ndarray:
+        low, high = weight_range
+        adj = np.zeros((n, n), dtype=int)
+        
+        # Random permutation so the model doesn't just memorize a diagonal pattern
+        nodes = np.random.permutation(n)
+        for i in range(n - 1):
+            u, v = nodes[i], nodes[i+1]
+            adj[u, v] = 1
+            adj[v, u] = 1
+
+        # Symmetric weights
+        weights_upper = np.random.uniform(low=low, high=high, size=(n, n))
+        weights = np.triu(weights_upper, k=1)
+        weights = weights + weights.T
+
+        # Normalize max edge to ~1.0
+        M = np.random.uniform(1 - eps, 1 + eps)
+        edge_weights = weights[adj == 1]
+        if edge_weights.size > 0:
+            weights = weights * (M / edge_weights.max())
+
+        W = np.full((n, n), np.inf, dtype=float)
+        W[adj == 1] = weights[adj == 1]
+        np.fill_diagonal(W, 0.0)
+        return W
+
     def __len__(self):
         return self.n_samples
 
