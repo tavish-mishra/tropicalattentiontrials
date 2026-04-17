@@ -1,0 +1,681 @@
+CUDA available? True
+GPU device: NVIDIA A100-SXM4-80GB
+CUDA_VISIBLE_DEVICES=0,1,2,3
+SLURM_JOB_GPUS=0,1,2,3
+
+ Running config: {'task': 'train', 'model_type': 'tropical', 'dataset_name': 'FloydWarshallDataset', 'input_dim': 3, 'd_model': 64, 'n_heads': 4, 'num_layers': 4, 'num_epochs': 20000, 'dropout': 0.05, 'lr': 0.0001, 'seed': 999, 'n_samples': 50000, 'batch_size': 1000, 'target_range': 'na', 'weight_range': 'na', 'adversarial_range': '(10,20)', 'length_range': '(8,8)', 'noise_prob': 0, 'value_range': '(1, 15)'}
+FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu
+...setting dataloader...20260416_150701
+...setting model object...20260416_150715
+...training model...20260416_150715
+At epoch 0, test loss = 28.2800
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150740
+At epoch 1, test loss = 28.1043
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150741
+At epoch 2, test loss = 28.0014
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150741
+At epoch 3, test loss = 27.9572
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150742
+At epoch 4, test loss = 27.9391
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150743
+At epoch 5, test loss = 27.9302
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150744
+At epoch 6, test loss = 27.9253
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150744
+At epoch 7, test loss = 27.9200
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150745
+At epoch 8, test loss = 27.9156
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150746
+At epoch 9, test loss = 27.9124
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150746
+At epoch 10, test loss = 27.9076
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150747
+At epoch 11, test loss = 27.9048
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150748
+At epoch 12, test loss = 27.8876
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150749
+At epoch 13, test loss = 27.8649
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150749
+At epoch 14, test loss = 27.7892
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150750
+At epoch 15, test loss = 27.3782
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150751
+At epoch 16, test loss = 26.7491
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150752
+At epoch 17, test loss = 26.0683
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150752
+At epoch 18, test loss = 25.4026
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150753
+At epoch 19, test loss = 24.5549
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150754
+At epoch 20, test loss = 24.2886
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150755
+At epoch 21, test loss = 23.8091
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150755
+At epoch 22, test loss = 23.0706
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150756
+At epoch 23, test loss = 23.0359
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150757
+At epoch 24, test loss = 22.3380
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150758
+At epoch 27, test loss = 22.2199
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150800
+At epoch 29, test loss = 21.7870
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150801
+At epoch 33, test loss = 21.5954
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150804
+At epoch 35, test loss = 21.4827
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150806
+At epoch 37, test loss = 21.4452
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150807
+At epoch 39, test loss = 21.4395
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150809
+At epoch 58, test loss = 21.4395
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150823
+At epoch 71, test loss = 21.4365
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150832
+At epoch 72, test loss = 21.4269
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150833
+At epoch 74, test loss = 21.4097
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150835
+At epoch 80, test loss = 21.3284
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150839
+At epoch 82, test loss = 21.3009
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150841
+At epoch 83, test loss = 21.2778
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150841
+At epoch 85, test loss = 21.2425
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150843
+At epoch 89, test loss = 21.1357
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150846
+At epoch 91, test loss = 21.1200
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150847
+At epoch 92, test loss = 20.9438
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150848
+At epoch 93, test loss = 20.8646
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150849
+At epoch 97, test loss = 20.6774
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150852
+At epoch 98, test loss = 20.5444
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150853
+At epoch 100, test loss = 20.4338
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150854
+At epoch 101, test loss = 20.3975
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150855
+At epoch 102, test loss = 20.2454
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150856
+At epoch 103, test loss = 20.1109
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150856
+At epoch 104, test loss = 20.0732
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150857
+At epoch 105, test loss = 19.9431
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150858
+At epoch 106, test loss = 19.8918
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150859
+At epoch 107, test loss = 19.7495
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150859
+At epoch 109, test loss = 19.6761
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150901
+At epoch 110, test loss = 19.5005
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150902
+At epoch 111, test loss = 19.3899
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150902
+At epoch 112, test loss = 19.3211
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150903
+At epoch 113, test loss = 19.2678
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150904
+At epoch 114, test loss = 19.2400
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150905
+At epoch 115, test loss = 19.0134
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150905
+At epoch 117, test loss = 18.8003
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150907
+At epoch 118, test loss = 18.7890
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150908
+At epoch 120, test loss = 18.5463
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150909
+At epoch 121, test loss = 18.4408
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150910
+At epoch 122, test loss = 18.3433
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150911
+At epoch 125, test loss = 18.3270
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150913
+At epoch 127, test loss = 18.3042
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150914
+At epoch 128, test loss = 17.9708
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150915
+At epoch 129, test loss = 17.9450
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150916
+At epoch 130, test loss = 17.7637
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150917
+At epoch 131, test loss = 17.6695
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150918
+At epoch 132, test loss = 17.6180
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150918
+At epoch 133, test loss = 17.5723
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150919
+At epoch 135, test loss = 17.4507
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150921
+At epoch 137, test loss = 17.2889
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150922
+At epoch 138, test loss = 17.2198
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150923
+At epoch 139, test loss = 17.1578
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150924
+At epoch 140, test loss = 17.1095
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150924
+At epoch 141, test loss = 17.0666
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150925
+At epoch 143, test loss = 16.9666
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150927
+At epoch 144, test loss = 16.8932
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150927
+At epoch 145, test loss = 16.8419
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150928
+At epoch 146, test loss = 16.7874
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150929
+At epoch 147, test loss = 16.7550
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150930
+At epoch 148, test loss = 16.6692
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150930
+At epoch 153, test loss = 16.6173
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150934
+At epoch 154, test loss = 16.5367
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150935
+At epoch 155, test loss = 16.5179
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150936
+At epoch 156, test loss = 16.4864
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150936
+At epoch 157, test loss = 16.4141
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150937
+At epoch 158, test loss = 16.3433
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150938
+At epoch 161, test loss = 16.2868
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150940
+At epoch 163, test loss = 16.2262
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150941
+At epoch 165, test loss = 16.1975
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150943
+At epoch 166, test loss = 16.1590
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150944
+At epoch 168, test loss = 16.1353
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150945
+At epoch 169, test loss = 16.1218
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150946
+At epoch 170, test loss = 16.0893
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150947
+At epoch 173, test loss = 16.0548
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150949
+At epoch 174, test loss = 16.0330
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150950
+At epoch 177, test loss = 15.9929
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150952
+At epoch 181, test loss = 15.9787
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150955
+At epoch 182, test loss = 15.9510
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150956
+At epoch 185, test loss = 15.9501
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150958
+At epoch 186, test loss = 15.9347
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150959
+At epoch 187, test loss = 15.9091
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_150959
+At epoch 188, test loss = 15.8908
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151000
+At epoch 189, test loss = 15.8581
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151001
+At epoch 192, test loss = 15.8499
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151003
+At epoch 194, test loss = 15.8460
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151005
+At epoch 197, test loss = 15.7846
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151007
+At epoch 198, test loss = 15.7844
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151007
+At epoch 199, test loss = 15.7780
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151008
+At epoch 206, test loss = 15.7206
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151013
+At epoch 213, test loss = 15.6215
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151019
+At epoch 214, test loss = 15.6117
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151019
+At epoch 215, test loss = 15.5939
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151020
+At epoch 216, test loss = 15.5818
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151021
+At epoch 218, test loss = 15.5600
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151022
+At epoch 219, test loss = 15.4693
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151023
+At epoch 221, test loss = 15.4480
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151025
+At epoch 223, test loss = 15.4031
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151026
+At epoch 228, test loss = 15.3171
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151030
+At epoch 229, test loss = 15.2780
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151031
+At epoch 230, test loss = 15.2291
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151031
+At epoch 231, test loss = 15.2037
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151032
+At epoch 232, test loss = 15.1839
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151033
+At epoch 233, test loss = 15.1083
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151034
+At epoch 234, test loss = 15.0856
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151034
+At epoch 236, test loss = 15.0611
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151036
+At epoch 237, test loss = 14.9679
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151037
+At epoch 238, test loss = 14.9164
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151037
+At epoch 239, test loss = 14.9021
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151038
+At epoch 241, test loss = 14.8726
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151040
+At epoch 242, test loss = 14.7960
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151040
+At epoch 243, test loss = 14.7664
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151041
+At epoch 244, test loss = 14.6888
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151042
+At epoch 246, test loss = 14.5854
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151043
+At epoch 247, test loss = 14.5735
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151044
+At epoch 248, test loss = 14.5178
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151045
+At epoch 249, test loss = 14.4575
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151046
+At epoch 250, test loss = 14.3974
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151046
+At epoch 251, test loss = 14.3791
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151047
+At epoch 252, test loss = 14.3074
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151048
+At epoch 253, test loss = 14.2704
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151049
+At epoch 254, test loss = 14.1873
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151049
+At epoch 255, test loss = 14.0795
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151050
+At epoch 256, test loss = 14.0205
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151051
+At epoch 257, test loss = 13.9522
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151052
+At epoch 258, test loss = 13.8956
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151052
+At epoch 259, test loss = 13.8017
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151053
+At epoch 260, test loss = 13.7545
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151054
+At epoch 261, test loss = 13.6803
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151054
+At epoch 262, test loss = 13.6366
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151055
+At epoch 263, test loss = 13.5188
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151056
+At epoch 264, test loss = 13.4648
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151057
+At epoch 265, test loss = 13.4117
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151057
+At epoch 266, test loss = 13.3097
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151058
+At epoch 267, test loss = 13.2744
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151059
+At epoch 268, test loss = 13.2516
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151059
+At epoch 269, test loss = 13.0925
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151100
+At epoch 270, test loss = 12.9921
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151101
+At epoch 271, test loss = 12.9750
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151102
+At epoch 273, test loss = 12.8164
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151103
+At epoch 274, test loss = 12.7936
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151104
+At epoch 275, test loss = 12.6439
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151104
+At epoch 276, test loss = 12.5255
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151105
+At epoch 277, test loss = 12.4552
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151106
+At epoch 278, test loss = 12.4217
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151106
+At epoch 279, test loss = 12.2764
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151107
+At epoch 280, test loss = 12.2105
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151108
+At epoch 281, test loss = 12.1856
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151109
+At epoch 282, test loss = 12.1447
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151109
+At epoch 283, test loss = 11.9881
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151110
+At epoch 284, test loss = 11.8967
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151111
+At epoch 285, test loss = 11.8556
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151112
+At epoch 286, test loss = 11.7439
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151112
+At epoch 287, test loss = 11.6337
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151113
+At epoch 288, test loss = 11.5254
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151114
+At epoch 289, test loss = 11.4656
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151114
+At epoch 290, test loss = 11.3955
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151115
+At epoch 291, test loss = 11.3668
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151116
+At epoch 292, test loss = 11.2631
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151116
+At epoch 294, test loss = 11.1020
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151118
+At epoch 295, test loss = 10.9693
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151119
+At epoch 296, test loss = 10.9164
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151119
+At epoch 297, test loss = 10.8409
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151120
+At epoch 298, test loss = 10.7688
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151121
+At epoch 299, test loss = 10.6934
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151121
+At epoch 300, test loss = 10.6881
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151122
+At epoch 301, test loss = 10.5604
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151123
+At epoch 302, test loss = 10.4731
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151123
+At epoch 303, test loss = 10.3887
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151124
+At epoch 304, test loss = 10.3283
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151125
+At epoch 305, test loss = 10.2644
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151126
+At epoch 306, test loss = 10.1909
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151126
+At epoch 313, test loss = 9.9700
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151131
+At epoch 315, test loss = 9.9091
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151133
+At epoch 317, test loss = 9.8545
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151134
+At epoch 319, test loss = 9.5897
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151136
+At epoch 320, test loss = 9.5106
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151136
+At epoch 321, test loss = 9.4564
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151137
+At epoch 322, test loss = 9.4153
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151138
+At epoch 323, test loss = 9.3233
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151139
+At epoch 324, test loss = 9.2725
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151139
+At epoch 325, test loss = 9.2226
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151140
+At epoch 326, test loss = 9.1600
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151141
+At epoch 327, test loss = 9.0930
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151142
+At epoch 328, test loss = 9.0427
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151142
+At epoch 329, test loss = 8.9657
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151143
+At epoch 330, test loss = 8.8988
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151144
+At epoch 331, test loss = 8.8425
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151145
+At epoch 332, test loss = 8.7832
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151145
+At epoch 333, test loss = 8.7085
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151146
+At epoch 334, test loss = 8.6293
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151147
+At epoch 335, test loss = 8.5540
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151148
+At epoch 336, test loss = 8.5135
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151148
+At epoch 338, test loss = 8.4298
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151150
+At epoch 339, test loss = 8.3313
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151151
+At epoch 342, test loss = 8.1003
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151153
+At epoch 343, test loss = 8.0011
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151154
+At epoch 344, test loss = 7.8993
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151155
+At epoch 345, test loss = 7.8561
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151155
+At epoch 346, test loss = 7.7485
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151156
+At epoch 347, test loss = 7.6848
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151157
+At epoch 348, test loss = 7.6123
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151158
+At epoch 349, test loss = 7.5299
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151158
+At epoch 350, test loss = 7.4708
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151159
+At epoch 351, test loss = 7.3978
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151200
+At epoch 352, test loss = 7.3306
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151201
+At epoch 353, test loss = 7.2250
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151201
+At epoch 354, test loss = 7.1127
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151202
+At epoch 355, test loss = 7.0881
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151203
+At epoch 356, test loss = 7.0422
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151204
+At epoch 357, test loss = 6.8800
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151204
+At epoch 358, test loss = 6.8470
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151205
+At epoch 359, test loss = 6.7723
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151206
+At epoch 360, test loss = 6.6872
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151207
+At epoch 361, test loss = 6.6212
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151207
+At epoch 362, test loss = 6.5421
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151208
+At epoch 363, test loss = 6.4036
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151209
+At epoch 364, test loss = 6.3478
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151210
+At epoch 365, test loss = 6.3026
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151210
+At epoch 366, test loss = 6.2033
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151211
+At epoch 367, test loss = 6.1521
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151212
+At epoch 368, test loss = 6.0733
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151213
+At epoch 369, test loss = 5.9304
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151213
+At epoch 370, test loss = 5.9126
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151214
+At epoch 371, test loss = 5.7952
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151215
+At epoch 372, test loss = 5.6943
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151216
+At epoch 373, test loss = 5.6332
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151216
+At epoch 374, test loss = 5.5759
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151217
+At epoch 375, test loss = 5.4736
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151218
+At epoch 376, test loss = 5.3957
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151219
+At epoch 377, test loss = 5.3343
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151219
+At epoch 378, test loss = 5.2789
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151220
+At epoch 379, test loss = 5.1825
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151221
+At epoch 380, test loss = 5.1109
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151222
+At epoch 382, test loss = 4.9714
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151223
+At epoch 383, test loss = 4.8542
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151224
+At epoch 384, test loss = 4.7799
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151225
+At epoch 385, test loss = 4.7447
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151225
+At epoch 386, test loss = 4.6769
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151226
+At epoch 387, test loss = 4.5702
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151227
+At epoch 391, test loss = 4.3132
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151230
+At epoch 396, test loss = 4.1000
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151233
+At epoch 398, test loss = 3.9592
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151235
+At epoch 402, test loss = 3.6853
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151238
+At epoch 403, test loss = 3.6001
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151239
+At epoch 404, test loss = 3.5230
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151239
+At epoch 405, test loss = 3.4679
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151240
+At epoch 406, test loss = 3.4187
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151241
+At epoch 407, test loss = 3.3515
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151242
+At epoch 408, test loss = 3.2979
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151242
+At epoch 409, test loss = 3.2687
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151243
+At epoch 410, test loss = 3.2073
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151244
+At epoch 411, test loss = 3.1838
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151245
+At epoch 412, test loss = 3.0956
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151245
+At epoch 413, test loss = 3.0563
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151246
+At epoch 414, test loss = 2.9934
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151247
+At epoch 416, test loss = 2.9077
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151248
+At epoch 417, test loss = 2.8806
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151249
+At epoch 418, test loss = 2.8520
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151250
+At epoch 419, test loss = 2.7814
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151251
+At epoch 420, test loss = 2.7288
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151251
+At epoch 421, test loss = 2.7167
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151252
+At epoch 422, test loss = 2.6787
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151253
+At epoch 423, test loss = 2.6182
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151254
+At epoch 424, test loss = 2.5655
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151254
+At epoch 425, test loss = 2.5369
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151255
+At epoch 426, test loss = 2.5236
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151256
+At epoch 427, test loss = 2.4913
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151257
+At epoch 428, test loss = 2.4472
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151258
+At epoch 429, test loss = 2.4391
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151258
+At epoch 431, test loss = 2.3938
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151300
+At epoch 433, test loss = 2.3380
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151301
+At epoch 434, test loss = 2.3094
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151302
+At epoch 436, test loss = 2.2814
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151303
+At epoch 437, test loss = 2.2619
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151304
+At epoch 438, test loss = 2.2366
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151305
+At epoch 439, test loss = 2.2215
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151306
+At epoch 440, test loss = 2.2141
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151306
+At epoch 443, test loss = 2.2024
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151308
+At epoch 444, test loss = 2.1966
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151309
+At epoch 445, test loss = 2.1540
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151310
+At epoch 446, test loss = 2.1435
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151311
+At epoch 450, test loss = 2.1009
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151313
+At epoch 453, test loss = 2.0703
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151315
+At epoch 458, test loss = 2.0667
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151319
+At epoch 459, test loss = 2.0618
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151320
+At epoch 460, test loss = 2.0523
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151320
+At epoch 461, test loss = 2.0473
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151321
+At epoch 471, test loss = 2.0327
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151328
+At epoch 473, test loss = 2.0235
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151329
+At epoch 483, test loss = 2.0164
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151336
+At epoch 508, test loss = 2.0112
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151353
+At epoch 523, test loss = 2.0004
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_151403
+At epoch 2456, test loss = 1.9963
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153602
+At epoch 2462, test loss = 1.9945
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153606
+At epoch 2466, test loss = 1.9875
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153609
+At epoch 2468, test loss = 1.9792
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153611
+At epoch 2469, test loss = 1.9769
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153611
+At epoch 2470, test loss = 1.9730
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153612
+At epoch 2471, test loss = 1.9722
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153613
+At epoch 2472, test loss = 1.9686
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153614
+At epoch 2473, test loss = 1.9633
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153615
+At epoch 2475, test loss = 1.9632
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153616
+At epoch 2476, test loss = 1.9562
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153617
+At epoch 2477, test loss = 1.9561
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153618
+At epoch 2479, test loss = 1.9558
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153619
+At epoch 2480, test loss = 1.9548
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153620
+At epoch 2787, test loss = 1.9530
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_153950
+At epoch 3029, test loss = 1.9508
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_154237
+At epoch 3229, test loss = 1.8843
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_154453
+At epoch 3230, test loss = 1.8133
+...model saved to 15_exp/models/FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu_best.pth...20260416_154454
+...plot saved to 15_exp/plots/plots_FloydWarshallDataset_tropical_0.0001_20000_20260416_150701_relu.png...
