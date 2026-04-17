@@ -1231,8 +1231,6 @@ class FloydWarshallDataset(Dataset):
                 W = self._generate_er_graph(n, p_sample, self.weight_range)
             elif self.graph_type == 'tree':
                 W = self._generate_random_tree(n, self.weight_range)
-            elif self.graph_type == 'line':
-                W = self._generate_line_graph(n, self.weight_range)
             elif self.graph_type == 'mix':
                 flip = np.random.binomial(n=1, p=self.tree_er_ratio)
                 if flip:
@@ -1442,6 +1440,8 @@ class StepWiseFloydWarshallDataset(Dataset):
                 W = self._generate_er_graph(n, p_sample, self.weight_range)
             elif self.graph_type == 'tree':
                 W = self._generate_random_tree(n, self.weight_range)
+            elif self.graph_type == 'line':
+                W = self._generate_line_graph(n, self.weight_range)
             elif self.graph_type == 'mix':
                 flip = np.random.binomial(n=1, p=self.tree_er_ratio)
                 if flip:
