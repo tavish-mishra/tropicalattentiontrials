@@ -13,6 +13,33 @@ import ast
 import matplotlib.pyplot as plt
 from sklearn.metrics import f1_score
 
+def asymmetry(A, norm='fro', relative=False):
+    """
+    Compute ||(A - A^T)/2|| as a measure of asymmetry.
+    Accepts A of shape (n, n) or (n**2,) which is reshaped to square.
+    """
+    A = A.squeeze()
+    if A.dim() == 1:
+        n2 = A.shape[0]
+        n = int(round(n2 ** 0.5))
+        assert n * n == n2, f"Length {n2} is not a perfect square"
+        A = A.reshape(n, n)
+    assert A.dim() == 2 and A.shape[0] == A.shape[1], "A must be square after reshape"
+    skew = 0.5 * (A - A.T)
+    if norm == 'fro':
+        num = torch.linalg.norm(skew, ord='fro')
+        denom = torch.linalg.norm(A, ord='fro')
+    elif norm in ('op', 2):
+        num = torch.linalg.norm(skew, ord=2)
+        denom = torch.linalg.norm(A, ord=2)
+    elif norm == 'inf':
+        num = torch.linalg.norm(skew, ord=float('inf'))
+        denom = torch.linalg.norm(A, ord=float('inf'))
+    else:
+        raise ValueError(f"Unknown norm: {norm}")
+    return num / denom.clamp(min=1e-12) if relative else num
+
+
 class Experiment:
     def __init__(self,
                  task: str, 
@@ -357,28 +384,51 @@ class Experiment:
         plots_folder = os.path.join(self.top_cat, 'plots')
         os.makedirs(plots_folder, exist_ok=True)
         output_file = os.path.join(plots_folder, f'plots_{self.full_file_name}.png')
+
         f_name = f"{os.path.join(self.top_cat, 'train')}/train_{self.full_file_name}.csv"
         data = pd.read_csv(f_name)
         data.sort_values(by=['epoch', 'batch'], inplace=True)
         data['global_step'] = data.index
-        plt.figure(figsize=(10,6))
-        plt.plot(data['global_step'], data['loss'], linestyle='-', label='loss')
 
+        has_symmetry = 'asymmetry' in data.columns and data['asymmetry'].notna().any()
+
+        n_plots = 2 if has_symmetry else 1
+        fig, axes = plt.subplots(n_plots, 1, figsize=(10, 5 * n_plots), sharex=False)
+        if n_plots == 1:
+            axes = [axes]
+
+        # --- loss subplot ---
+        ax_loss = axes[0]
+        ax_loss.plot(data['global_step'], data['loss'], linestyle='-', label='loss')
         epochs = data['epoch'].unique()
         y_max = data['loss'].max()
         for epoch in epochs:
             first_idx = data[data['epoch'] == epoch]['global_step'].iloc[0]
-            plt.axvline(x=first_idx, color='gray', linestyle='--', alpha=0.5)
-            plt.text(first_idx, y_max, f'Epoch {epoch}', rotation=90, verticalalignment='bottom', fontsize=8, color='gray')
+            ax_loss.axvline(x=first_idx, color='gray', linestyle='--', alpha=0.5)
+            ax_loss.text(first_idx, y_max, f'E{epoch}', rotation=90, verticalalignment='bottom', fontsize=7, color='gray')
         loss_type = "BCE" if self.dict_dataset['classification'] else "MSE"
-        plt.xlabel('Global Step (cumulative batch index)')
-        plt.ylabel(f'{loss_type} Loss')
-        plt.title(f'{loss_type} Loss Progression Across Epochs with {self.model_type} and ReLU')
-        plt.legend()
-        plt.grid(True)
+        ax_loss.set_xlabel('Global Step (cumulative batch index)')
+        ax_loss.set_ylabel(f'{loss_type} Loss')
+        ax_loss.set_title(f'{loss_type} Loss — {self.model_type}, {self.activation}')
+        ax_loss.legend()
+        ax_loss.grid(True)
 
-        plt.savefig(output_file)
-        plt.close()
+        # --- symmetry subplot ---
+        if has_symmetry:
+            ax_sym = axes[1]
+            ax_sym.plot(data['global_step'], data['asymmetry'], linestyle='-', color='tab:orange', label='asymmetry')
+            for epoch in epochs:
+                first_idx = data[data['epoch'] == epoch]['global_step'].iloc[0]
+                ax_sym.axvline(x=first_idx, color='gray', linestyle='--', alpha=0.5)
+            ax_sym.set_xlabel('Global Step (cumulative batch index)')
+            ax_sym.set_ylabel('Asymmetry ||(A − Aᵀ)/2||_F')
+            ax_sym.set_title(f'Output Asymmetry — {self.model_type}, {self.activation}')
+            ax_sym.legend()
+            ax_sym.grid(True)
+
+        fig.tight_layout()
+        fig.savefig(output_file)
+        plt.close(fig)
 
         print(f'...plot saved to {output_file}...')
 
@@ -422,16 +472,15 @@ class Experiment:
 
     def _train_one_epoch(self, epoch):
         self.model.train()
-        #self.optimizer.train()
-    
+
         total_loss_val = 0.0
+        total_asym_val = 0.0
         seen_samples = 0
         use_log_scale = False
-    
+        log_symmetry = (self.dataset_name == 'FloydWarshallDataset')
+
         for i, (x, y) in enumerate(self.train_loader, start=1):
             x, y = x.to(self.device), y.to(self.device)
-            #print('x: ', x.size(), ' y: ', y.size())
-            # (set_to_none=True can be a tiny speedup / lower memory)
             if hasattr(self.optimizer, "zero_grad"):
                 try:
                     self.optimizer.zero_grad(set_to_none=True)
@@ -439,40 +488,30 @@ class Experiment:
                     self.optimizer.zero_grad()
             else:
                 self.model.zero_grad(set_to_none=True)
-    
-            # forward
+
             pred = self.model(x)
-            #print('pred', pred)
-            #print('y', y)
+
             # ----- loss -----
             if self.model.classification:
-                # Pointer-style: per-node binary outputs (no pooling) with same shape as targets
                 if (not self.model.pool) and pred.dim() == 2 and y.dim() == 2 and pred.shape == y.shape:
                     logits = pred  # (B, n)
-                    node_mask = (x.abs().sum(dim=-1) != 0)  # True for real (unpadded) nodes
+                    node_mask = (x.abs().sum(dim=-1) != 0)
                     if node_mask.any():
                         loss = F.binary_cross_entropy_with_logits(
                             logits[node_mask], y[node_mask].float()
                         )
                     else:
-                        # Degenerate case: no valid nodes (keep graph/device/dtype)
                         loss = logits.sum() * 0.0
-    
-                # Multi-class pooled (e.g., Floyd-Warshall)
                 elif self.dataset_name in ["FloydWarshallDataset"]:
                     loss = F.cross_entropy(
                         pred.view(-1, pred.size(-1)),
                         y.view(-1).long()
                     )
-    
-                # Pooled binary
                 else:
                     loss = F.binary_cross_entropy_with_logits(
                         pred.squeeze(-1), y.squeeze(-1).float()
                     )
-    
             else:
-                # Regression
                 if use_log_scale:
                     loss = F.mse_loss(
                         torch.log1p(F.relu(pred)),
@@ -480,29 +519,34 @@ class Experiment:
                     ).sqrt()
                 else:
                     loss = F.mse_loss(pred, y)
-    
-            # (Optional) L1 regularization — coefficient currently 0.000
+
             l1_reg = 0.0
             for p in self.model.parameters():
                 l1_reg += torch.sum(torch.abs(p))
             loss = loss + 0.000 * l1_reg
-            
+
             loss.backward()
             self.optimizer.step()
             self.scheduler.step()
+
             batch_size = x.size(0)
             seen_samples += batch_size
             total_loss_val += loss.item() * batch_size
-    
-            # log every 10 steps: running average is more informative than last-batch loss
+
+            if log_symmetry:
+                with torch.no_grad():
+                    for sample in pred.detach():
+                        total_asym_val += asymmetry(sample).item()
+
             if i % 10 == 0:
-                running_avg = total_loss_val / seen_samples
-                self._write_to_csv('a', 'train', [epoch, i, running_avg, time.time()])
+                running_avg_loss = total_loss_val / seen_samples
+                running_avg_asym = total_asym_val / seen_samples if log_symmetry else ''
+                self._write_to_csv('a', 'train', [epoch, i, running_avg_loss, running_avg_asym, time.time()])
 
         return total_loss_val / len(self.train_loader.dataset)
 
 
-    def train_model(self):
+def train_model(self):
         print(f'...training model...{self._time_string()}')
         #self.optimizer = schedulefree.RAdamScheduleFree(self.model.parameters(), lr=self.lr)
         self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
@@ -516,20 +560,10 @@ class Experiment:
             div_factor=10.0,  # initial_lr = max_lr / div_factor
             final_div_factor=1e4,  # final_lr  = initial_lr / final_div_factor
         )
-        self._write_to_csv('w', 'train', ['epoch', 'batch', 'loss', 'time'])
-        #self._write_to_csv('w', 'validation', ['epoch', 'val_loss', 'val_f1', 'best_up_to_now', 'time'])
-        #loss_measure = True
-        ##best_metric = 100000.0
+        self._write_to_csv('w', 'train', ['epoch', 'batch', 'loss', 'asymmetry', 'time'])
         best_metric = float("inf")
         for epoch in range(self.num_epochs):
-            ##best_this_round = 'No'
             self._train_one_epoch(epoch)
-            ##val_loss, _, val_f1 = self._eval_one_epoch(type='validation')
-            ##if (val_loss < best_metric and epoch > 25) or epoch == 0:
-                ##best_this_round = 'Yes'
-                ##self._save_model()
-                ##best_metric = val_loss
-            ##self._write_to_csv('a', 'validation', [epoch, val_loss, val_f1, best_this_round, time.time()])
             test_loss, _, test_f1 = self._eval_one_epoch()   # always uses test_loader
 
             if test_loss < best_metric:
@@ -537,11 +571,7 @@ class Experiment:
                 best_metric = test_loss
                 self._save_model(best=True)
 
-            # log the epoch-level numbers (optional)
-            # self._write_to_csv('a', 'validation',
-            #                    [epoch, test_loss, test_f1, 'Yes', time.time()])
-
-        self._plot_training_run() 
+        self._plot_training_run()
         #self._save_model()
 
 def convert_value(value):
