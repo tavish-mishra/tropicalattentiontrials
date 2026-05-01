@@ -546,7 +546,7 @@ class Experiment:
         return total_loss_val / len(self.train_loader.dataset)
 
 
-def train_model(self):
+    def train_model(self):
         print(f'...training model...{self._time_string()}')
         #self.optimizer = schedulefree.RAdamScheduleFree(self.model.parameters(), lr=self.lr)
         self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
