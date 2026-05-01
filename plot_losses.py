@@ -56,3 +56,17 @@ for name in name_dict.keys():
     plt.grid(True)
     plt.legend()
     plt.savefig(f'15_exp/plots/{title.replace(" ", "_")}.png')
+
+# Long run: 20,000 epoch tropical FloydWarshall — plot mean loss per epoch
+long_run_df = pd.read_csv('15_exp/train/train_FloydWarshallDataset_tropical_0.0001_20000_20260304_144012_relu.csv')
+epoch_loss = long_run_df.groupby('epoch')['loss'].mean()
+
+plt.figure(figsize=(12, 5))
+plt.plot(epoch_loss.index, epoch_loss.values, linewidth=0.8)
+plt.xlabel('Epoch')
+plt.ylabel('Mean MSE Loss')
+plt.title('Tropical FloydWarshall — Mean Loss per Epoch (20k epochs, lr=1e-4, relu)')
+plt.grid(True)
+plt.yscale('log')
+plt.tight_layout()
+plt.savefig('15_exp/plots/tropical_floydwarshall_20k_loss_vs_epoch.png', dpi=150)
